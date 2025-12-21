@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Tutoring: Musab İkbal SUBAŞI</title>
+    <style>
+        /* --- FONTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+        /* --- VARIABLES --- */
+        :root {
+            --navy: #0A192F;
+            --navy-light: #172a45;
+            --gold: #D4AF37;
+            --gold-light: #f3cf55;
+            --cream: #F8F8F0;
+            --white: #ffffff;
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--navy);
+            color: var(--navy);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--navy);
+            color: var(--gold);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        header h1 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--cream);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: var(--cream);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            flex: 1;
+            width: 95%;
+        }
+
+        /* --- NAVIGATION --- */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: var(--navy-light);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1.2rem;
+            background: transparent;
+            border: none;
+            color: var(--cream);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+            min-width: 150px;
+        }
+
+        .tab-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+        }
+
+        .tab-btn.active {
+            color: var(--gold);
+            border-bottom: 4px solid var(--gold);
+            background: rgba(10, 25, 47, 0.5);
+        }
+
+        /* --- SECTIONS --- */
+        .section {
+            display: none;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 1rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .instructions {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--navy);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        /* --- ACTIVITY 1: FLASHCARDS --- */
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .flashcard {
+            background-color: transparent;
+            perspective: 1000px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 2px solid var(--navy);
+        }
+
+        .flashcard-front {
+            background-color: var(--white);
+            color: var(--navy);
+        }
+
+        .flashcard-back {
+            background-color: var(--navy);
+            color: var(--gold);
+            transform: rotateY(180deg);
+            padding: 1rem;
+        }
+
+        .word-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* --- ACTIVITY 2: DICTATION --- */
+        .dictation-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--gold);
+        }
+
+        .dictation-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+        }
+
+        .feedback {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            min-height: 1.5rem;
+        }
+
+        .correct { color: var(--success); }
+        .incorrect { color: var(--error); }
+
+        /* --- ACTIVITY 3: GAP FILL --- */
+        .gap-fill-container {
+            line-height: 2.2;
+            font-size: 1.1rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--navy-light);
+            border-radius: 8px;
+        }
+
+        .bank-word {
+            background: var(--cream);
+            color: var(--navy);
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--gold);
+            transition: all 0.2s;
+        }
+
+        .bank-word.selected {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .bank-word.used {
+            opacity: 0.5;
+            pointer-events: none;
+            text-decoration: line-through;
+        }
+
+        .gap {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 2px solid var(--navy);
+            color: var(--gold);
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+        /* --- ACTIVITY 4: SCRAMBLE --- */
+        .scramble-container {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .word-pool, .answer-pool {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-height: 60px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .word-pool {
+            background: #f0f0f0;
+            margin-bottom: 1rem;
+        }
+
+        .answer-pool {
+            border: 2px dashed var(--navy);
+        }
+
+        .scramble-word {
+            background: var(--navy);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .scramble-word:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* --- ACTIVITY 5: QUIZ --- */
+        .quiz-question {
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .question-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .options label:hover {
+            background: #f0f0f0;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--navy);
+            color: var(--cream);
+            padding: 1rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 1px solid var(--gold);
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        .score-item span {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tabs { flex-direction: column; }
+            .tab-btn { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid transparent; }
+            .tab-btn.active { border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--gold); }
+            header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Private Tutoring: Musab İkbal SUBAŞI</h1>
+        <p>Premium English Curriculum • The Community Connector</p>
+    </header>
+
+    <div class="container">
+        <!-- NAVIGATION -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="openTab('vocabulary')">Vocabulary</button>
+            <button class="tab-btn" onclick="openTab('dictation')">Listening Dictation</button>
+            <button class="tab-btn" onclick="openTab('grammar')">Grammar Gap-Fill</button>
+            <button class="tab-btn" onclick="openTab('scramble')">Sentence Scramble</button>
+            <button class="tab-btn" onclick="openTab('quiz')">Comprehension</button>
+        </nav>
+
+        <!-- 1. VOCABULARY -->
+        <div id="vocabulary" class="section active">
+            <h2 class="section-title">Essential Vocabulary</h2>
+            <p class="instructions">Click the card to reveal the meaning. Click the speaker icon to listen.</p>
+            
+            <div class="flashcard-grid" id="vocab-grid">
+                <!-- Cards injected via JS -->
+            </div>
+        </div>
+
+        <!-- 2. DICTATION -->
+        <div id="dictation" class="section">
+            <h2 class="section-title">Listening Dictation</h2>
+            <p class="instructions">Listen to the sentence from the story and type exactly what you hear.</p>
+            <div id="dictation-container"></div>
+        </div>
+
+        <!-- 3. GRAMMAR -->
+        <div id="grammar" class="section">
+            <h2 class="section-title">Grammar Gap-Fill</h2>
+            <p class="instructions">Select a word from the bank, then click the gap where it belongs.</p>
+            
+            <div class="word-bank" id="grammar-bank">
+                <!-- Words injected via JS -->
+            </div>
+
+            <div class="gap-fill-container" id="grammar-text">
+                <!-- Text injected via JS -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn" onclick="checkGrammar()">Check Answers</button>
+                <div id="grammar-feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- 4. SCRAMBLE -->
+        <div id="scramble" class="section">
+            <h2 class="section-title">Sentence Scramble</h2>
+            <p class="instructions">Click words in the top box to move them to the bottom box to form a correct sentence.</p>
+            <div id="scramble-container"></div>
+        </div>
+
+        <!-- 5. QUIZ -->
+        <div id="quiz" class="section">
+            <h2 class="section-title">Comprehension Check</h2>
+            <p class="instructions">Answer questions based on "The Community Connector".</p>
+            <div id="quiz-container"></div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn" onclick="checkQuiz()">Submit Quiz</button>
+                <div id="quiz-feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="score-board">
+            <div class="score-item">Vocab: <span id="score-vocab">0</span></div>
+            <div class="score-item">Dictation: <span id="score-dictation">0</span>/3</div>
+            <div class="score-item">Grammar: <span id="score-grammar">0</span>/8</div>
+            <div class="score-item">Scramble: <span id="score-scramble">0</span>/3</div>
+            <div class="score-item">Quiz: <span id="score-quiz">0</span>/3</div>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA ---
+        
+        const vocabData = [
+            { word: "Promote", def: "To help something happen or develop.", sent: "I came to promote community health." },
+            { word: "Concentrated", def: "Thinking very hard about something.", sent: "He was deeply concentrated on his phone." },
+            { word: "Fusion", def: "A mix of different styles.", sent: "It is jazz fusion music." },
+            { word: "Originally", def: "In the beginning; where someone is from.", sent: "Where are you from originally?" },
+            { word: "Satisfied", def: "Feeling happy because you did something well.", sent: "It makes me feel creative and satisfied." },
+            { word: "Energized", def: "Feeling full of energy and excitement.", sent: "Furkan realized he was energized!" }
+        ];
+
+        const dictationData = [
+            "He needed to make new friends in his new city.",
+            "I cook Thai food almost every weekend.",
+            "Meeting new people was simply the best cure for loneliness."
+        ];
+
+        const grammarText = [
+            { text: "Dr. Furkan ", type: "text" },
+            { text: "woke", type: "gap" },
+            { text: " up feeling happy. He ", type: "text" },
+            { text: "decided", type: "gap" },
+            { text: " to introduce himself. “Hello! I’m Furkan. ", type: "text" },
+            { text: "Are", type: "gap" },
+            { text: " you enjoying the beautiful weather?” Kira replied, “I ", type: "text" },
+            { text: "coach", type: "gap" },
+            { text: " a youth soccer team.” Later, Furkan met Liran. “What ", type: "text" },
+            { text: "kind", type: "gap" },
+            { text: " of music are you listening to?” Liran said, “It’s jazz. It ", type: "text" },
+            { text: "helps", type: "gap" },
+            { text: " me focus.” Furkan felt ", type: "text" },
+            { text: "excited", type: "gap" },
+            { text: " and realized he wasn't ", type: "text" },
+            { text: "shy", type: "gap" },
+            { text: " at all.", type: "text" }
+        ];
+
+        const scrambleData = [
+            "I came to promote community health.",
+            "The park was full of people jogging and stretching.",
+            "I cook Thai food because it makes me feel creative."
+        ];
+
+        const quizData = [
+            {
+                q: "Why did Dr. Furkan go to Elm Park?",
+                options: ["To play soccer", "To sleep", "For the Community Wellness Festival", "To listen to Jazz"],
+                a: 2
+            },
+            {
+                q: "What is Liran's job?",
+                options: ["Family Doctor", "Soccer Coach", "Musician", "Graphic Designer"],
+                a: 3
+            },
+            {
+                q: "How did Furkan feel at the end of the story?",
+                options: ["Lonely and tired", "Energized and connected", "Angry and moody", "Hungry for Thai food"],
+                a: 1
+            }
+        ];
+
+        // --- STATE ---
+        let scores = { vocab: 0, dictation: 0, grammar: 0, scramble: 0, quiz: 0 };
+        let selectedWord = null;
+
+        // --- SPEECH SYNTHESIS ---
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Slightly slower for ESL learners
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const sections = document.querySelectorAll('.section');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            sections.forEach(sec => sec.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- INIT VOCABULARY ---
+        function initVocab() {
+            const grid = document.getElementById('vocab-grid');
+            vocabData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'flashcard';
+                card.onclick = (e) => {
+                    if(!e.target.closest('.btn-small')) {
+                        card.classList.toggle('flipped');
+                        if(card.classList.contains('flipped')) {
+                             // Increment score only once per card flip
+                             if(!card.dataset.viewed) {
+                                 scores.vocab += 1;
+                                 card.dataset.viewed = "true";
+                                 updateScores();
+                             }
+                        }
+                    }
+                };
+
+                card.innerHTML = `
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div class="word-title">${item.word}</div>
+                            <p style="margin-top:10px; font-size: 0.8rem; color: #777;">(Click to flip)</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <p><strong>${item.def}</strong></p>
+                            <p style="font-style:italic; margin: 10px 0;">"${item.sentence || item.sent}"</p>
+                            <button class="btn btn-small" onclick="speak('${item.word}. ${item.sentence || item.sent}')">
+                                🔊 Listen
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- INIT DICTATION ---
+        function initDictation() {
+            const container = document.getElementById('dictation-container');
+            dictationData.forEach((sentence, index) => {
+                const div = document.createElement('div');
+                div.className = 'dictation-item';
+                div.innerHTML = `
+                    <div class="dictation-controls">
+                        <button class="btn" onclick="speak('${sentence.replace(/'/g, "\\'")}')">🔊 Listen</button>
+                        <span>Sentence #${index + 1}</span>
+                    </div>
+                    <input type="text" id="dict-input-${index}" placeholder="Type what you hear...">
+                    <div id="dict-feedback-${index}" class="feedback"></div>
+                    <button class="btn btn-small" style="margin-top:10px" onclick="checkDictation(${index}, '${sentence.replace(/'/g, "\\'")}')">Check</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function checkDictation(index, correct) {
+            const input = document.getElementById(`dict-input-${index}`).value.trim();
+            const feedback = document.getElementById(`dict-feedback-${index}`);
+            
+            // Normalize strings (remove punctuation for easier matching)
+            const cleanInput = input.toLowerCase().replace(/[.,!]/g, '');
+            const cleanCorrect = correct.toLowerCase().replace(/[.,!]/g, '');
+
+            if (cleanInput === cleanCorrect) {
+                feedback.textContent = "Correct! Great listening.";
+                feedback.className = "feedback correct";
+                if(!feedback.dataset.scored) {
+                    scores.dictation += 1;
+                    feedback.dataset.scored = "true";
+                    updateScores();
+                }
+            } else {
+                feedback.innerHTML = `Incorrect. Try again.<br><small>Hint: ${correct}</small>`;
+                feedback.className = "feedback incorrect";
+            }
+        }
+
+        // --- INIT GRAMMAR ---
+        function initGrammar() {
+            const bank = document.getElementById('grammar-bank');
+            const textContainer = document.getElementById('grammar-text');
+            const words = [];
+            
+            // Extract gaps and shuffle
+            grammarText.forEach(item => {
+                if(item.type === 'gap') words.push(item.text);
+            });
+            words.sort(() => Math.random() - 0.5);
+
+            // Create Word Bank
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.className = 'bank-word';
+                span.textContent = word;
+                span.onclick = () => selectWord(span);
+                bank.appendChild(span);
+            });
+
+            // Create Text with Gaps
+            grammarText.forEach((item, index) => {
+                if (item.type === 'text') {
+                    textContainer.appendChild(document.createTextNode(item.text));
+                } else {
+                    const gap = document.createElement('span');
+                    gap.className = 'gap';
+                    gap.textContent = "____";
+                    gap.dataset.correct = item.text;
+                    gap.dataset.index = index;
+                    gap.onclick = () => fillGap(gap);
+                    textContainer.appendChild(gap);
+                }
+            });
+        }
+
+        function selectWord(element) {
+            // Deselect others
+            document.querySelectorAll('.bank-word').forEach(el => el.classList.remove('selected'));
+            if (!element.classList.contains('used')) {
+                element.classList.add('selected');
+                selectedWord = element;
+            }
+        }
+
+        function fillGap(gapElement) {
+            if (selectedWord) {
+                // If gap already filled, return word to bank (logic simplified for this demo)
+                // Just overwrite
+                gapElement.textContent = selectedWord.textContent;
+                gapElement.classList.remove('correct', 'incorrect'); // Reset state
+                selectedWord.classList.add('used');
+                selectedWord.classList.remove('selected');
+                selectedWord = null;
+            }
+        }
+
+        function checkGrammar() {
+            const gaps = document.querySelectorAll('.gap');
+            let correctCount = 0;
+            gaps.forEach(gap => {
+                if (gap.textContent === gap.dataset.correct) {
+                    gap.style.color = "var(--success)";
+                    gap.style.borderBottom = "2px solid var(--success)";
+                    correctCount++;
+                } else {
+                    gap.style.color = "var(--error)";
+                }
+            });
+            scores.grammar = correctCount;
+            updateScores();
+            document.getElementById('grammar-feedback').textContent = `You got ${correctCount} out of ${gaps.length} correct.`;
+        }
+
+        // --- INIT SCRAMBLE ---
+        function initScramble() {
+            const container = document.getElementById('scramble-container');
+            
+            scrambleData.forEach((sentence, sIdx) => {
+                const wrapper = document.createElement('div');
+                wrapper.style.marginBottom = "2rem";
+                
+                // Prepare words
+                const words = sentence.split(' ');
+                const shuffled = [...words].sort(() => Math.random() - 0.5);
+                
+                // HTML structure
+                wrapper.innerHTML = `
+                    <div style="margin-bottom:5px; font-weight:bold; color:var(--navy);">Sentence ${sIdx+1}</div>
+                    <div class="word-pool" id="pool-${sIdx}"></div>
+                    <div class="answer-pool" id="ans-${sIdx}"></div>
+                    <div id="scramble-msg-${sIdx}" class="feedback"></div>
+                    <button class="btn btn-small" style="margin-top:5px;" onclick="checkScramble(${sIdx}, '${sentence.replace(/'/g, "\\'")}')">Check</button>
+                `;
+                container.appendChild(wrapper);
+
+                const poolDiv = document.getElementById(`pool-${sIdx}`);
+                const ansDiv = document.getElementById(`ans-${sIdx}`);
+
+                // Add words to pool
+                shuffled.forEach(word => {
+                    const wSpan = document.createElement('span');
+                    wSpan.className = 'scramble-word';
+                    wSpan.textContent = word;
+                    wSpan.onclick = function() {
+                        // Move between pool and answer
+                        if (this.parentElement === poolDiv) {
+                            ansDiv.appendChild(this);
+                        } else {
+                            poolDiv.appendChild(this);
+                        }
+                    };
+                    poolDiv.appendChild(wSpan);
+                });
+            });
+        }
+
+        function checkScramble(index, correctSentence) {
+            const ansDiv = document.getElementById(`ans-${index}`);
+            const words = Array.from(ansDiv.children).map(span => span.textContent);
+            const userSentence = words.join(' ');
+            const feedback = document.getElementById(`scramble-msg-${index}`);
+
+            if (userSentence === correctSentence) {
+                feedback.textContent = "Correct!";
+                feedback.className = "feedback correct";
+                speak(correctSentence);
+                if (!feedback.dataset.scored) {
+                    scores.scramble += 1;
+                    feedback.dataset.scored = "true";
+                    updateScores();
+                }
+            } else {
+                feedback.textContent = "Incorrect order. Try again.";
+                feedback.className = "feedback incorrect";
+            }
+        }
+
+        // --- INIT QUIZ ---
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            quizData.forEach((item, idx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'quiz-question';
+                
+                let optionsHtml = '';
+                item.options.forEach((opt, optIdx) => {
+                    optionsHtml += `
+                        <label>
+                            <input type="radio" name="q${idx}" value="${optIdx}">
+                            ${opt}
+                        </label>
+                    `;
+                });
+
+                qDiv.innerHTML = `
+                    <div class="question-text">${idx+1}. ${item.q}</div>
+                    <div class="options">${optionsHtml}</div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function checkQuiz() {
+            let correct = 0;
+            quizData.forEach((item, idx) => {
+                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                if (selected && parseInt(selected.value) === item.a) {
+                    correct++;
+                }
+            });
+            scores.quiz = correct;
+            updateScores();
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.textContent = `You scored ${correct} out of ${quizData.length}.`;
+            if(correct === quizData.length) feedback.className = "feedback correct";
+        }
+
+        // --- UTILS ---
+        function updateScores() {
+            document.getElementById('score-vocab').textContent = scores.vocab;
+            document.getElementById('score-dictation').textContent = scores.dictation;
+            document.getElementById('score-grammar').textContent = scores.grammar;
+            document.getElementById('score-scramble').textContent = scores.scramble;
+            document.getElementById('score-quiz').textContent = scores.quiz;
+        }
+
+        // --- STARTUP ---
+        window.onload = function() {
+            initVocab();
+            initDictation();
+            initGrammar();
+            initScramble();
+            initQuiz();
+        };
+
+    </script>
+</body>
+</html>

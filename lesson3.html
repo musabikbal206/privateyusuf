@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Lesson: Musab İkbal SUBAŞI</title>
+    <style>
+        /* --- FONTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+        /* --- VARIABLES --- */
+        :root {
+            --navy: #0A192F;
+            --navy-light: #172a45;
+            --gold: #D4AF37;
+            --gold-light: #f3cf55;
+            --cream: #F8F8F0;
+            --white: #ffffff;
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--navy);
+            color: var(--navy);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--navy);
+            color: var(--gold);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+        }
+
+        header h1 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--cream);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .header-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: var(--cream);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            flex: 1;
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- NAVIGATION --- */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: var(--navy-light);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1.2rem;
+            background: transparent;
+            border: none;
+            color: var(--cream);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tab-icon {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        .tab-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+        }
+
+        .tab-btn.active {
+            color: var(--gold);
+            border-bottom: 4px solid var(--gold);
+            background: rgba(10, 25, 47, 0.5);
+        }
+
+        /* --- SECTIONS --- */
+        .section {
+            display: none;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.5s ease;
+            flex: 1;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 1rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .instructions {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--navy);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        /* --- ACTIVITY 1: STORY READER --- */
+        .story-block {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .story-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .story-text {
+            padding: 2rem;
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: left;
+            color: var(--navy);
+        }
+
+        .story-sentence {
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            display: inline;
+        }
+
+        .story-sentence:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .story-sentence.playing {
+            background-color: var(--gold);
+            color: var(--navy);
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* --- ACTIVITY 2: FLASHCARDS (VISUALS) --- */
+        .category-header {
+            width: 100%;
+            text-align: left;
+            margin: 2rem 0 1rem 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--navy-light);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .flashcard {
+            background-color: transparent;
+            perspective: 1000px;
+            height: 260px; /* Taller for visuals */
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            padding: 1rem;
+        }
+
+        .flashcard-front {
+            background-color: var(--white);
+            color: var(--navy);
+        }
+
+        .flashcard-back {
+            background-color: var(--navy);
+            color: var(--gold);
+            transform: rotateY(180deg);
+            border: 1px solid var(--navy);
+        }
+
+        .visual-icon {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+            line-height: 1;
+        }
+
+        .color-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 4px solid white;
+        }
+
+        .word-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        /* --- ACTIVITY 3: GAP FILL --- */
+        .gap-fill-container {
+            line-height: 2.5;
+            font-size: 1.15rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--navy-light);
+            border-radius: 8px;
+            justify-content: center;
+        }
+
+        .bank-word {
+            background: var(--cream);
+            color: var(--navy);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--gold);
+            font-weight: bold;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .bank-word.selected {
+            background: var(--gold);
+            color: var(--navy);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .bank-word.used {
+            opacity: 0.4;
+            pointer-events: none;
+            text-decoration: line-through;
+            background: #ccc;
+            border-color: #999;
+        }
+
+        .gap {
+            display: inline-block;
+            min-width: 100px;
+            border-bottom: 2px solid var(--navy);
+            color: var(--gold);
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            padding: 0 5px;
+            margin: 0 5px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 4px 4px 0 0;
+            transition: background 0.3s;
+        }
+        
+        .gap:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* --- ACTIVITY 4: DICTATION --- */
+        .dictation-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .dictation-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: bold;
+            color: var(--navy);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* --- ACTIVITY 5: SCRAMBLE --- */
+        .scramble-container {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .word-pool, .answer-pool {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-height: 70px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .word-pool {
+            background: #f4f4f4;
+            margin-bottom: 1rem;
+            align-content: flex-start;
+        }
+
+        .answer-pool {
+            border: 2px dashed var(--navy);
+            background: #fafafa;
+            align-content: flex-start;
+        }
+
+        .scramble-word {
+            background: var(--navy);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .scramble-word:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* --- COMMON FEEDBACK STYLES --- */
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            min-height: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .correct { color: var(--success); }
+        .incorrect { color: var(--error); }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--navy);
+            color: var(--cream);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 1px solid var(--gold);
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        .score-item span {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tabs { flex-direction: column; }
+            .tab-btn { 
+                width: 100%; 
+                border-bottom: 1px solid rgba(255,255,255,0.1); 
+                border-left: 4px solid transparent; 
+                flex-direction: row; /* Horizontal on mobile for better space */
+                justify-content: center;
+            }
+            .tab-btn.active { border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--gold); }
+            header h1 { font-size: 1.6rem; }
+            .container { margin: 0 auto; width: 100%; border-radius: 0; }
+            .section { padding: 2rem 1rem; }
+            .story-img { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="header-icon">🎓</span>
+        <h1>Private Tutoring: Musab İkbal SUBAŞI</h1>
+        <p>The Community Day Description Challenge • Premium English</p>
+    </header>
+
+    <div class="container">
+        <!-- NAVIGATION WITH VISUALS -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="openTab('story')">
+                <span class="tab-icon">📖</span>
+                <span>Interactive Story</span>
+            </button>
+            <button class="tab-btn" onclick="openTab('vocabulary')">
+                <span class="tab-icon">🗂️</span>
+                <span>Visual Vocabulary</span>
+            </button>
+            <button class="tab-btn" onclick="openTab('grammar')">
+                <span class="tab-icon">✍️</span>
+                <span>Grammar</span>
+            </button>
+            <button class="tab-btn" onclick="openTab('dictation')">
+                <span class="tab-icon">🎧</span>
+                <span>Dictation</span>
+            </button>
+            <button class="tab-btn" onclick="openTab('scramble')">
+                <span class="tab-icon">🧩</span>
+                <span>Word Order</span>
+            </button>
+        </nav>
+
+        <!-- ACTIVITY 1: STORY READER WITH IMAGES -->
+        <div id="story" class="section active">
+            <h2 class="section-title">The Community Day Challenge</h2>
+            <p class="instructions">Click on any sentence in the story paragraphs below to hear it read aloud.</p>
+            
+            <div id="story-content">
+                <!-- Story blocks injected via JS -->
+            </div>
+        </div>
+
+        <!-- ACTIVITY 2: VISUAL VOCABULARY -->
+        <div id="vocabulary" class="section">
+            <h2 class="section-title">Descriptive Vocabulary</h2>
+            <p class="instructions">Click to flip the card. Use the speaker button to practice pronunciation.</p>
+            
+            <div id="vocab-container">
+                <!-- Categories and Grids injected via JS -->
+            </div>
+        </div>
+
+        <!-- ACTIVITY 3: GRAMMAR -->
+        <div id="grammar" class="section">
+            <h2 class="section-title">Grammar: Describing People</h2>
+            <p class="instructions">Click a word in the bank (note the visuals), then click the gap.</p>
+            
+            <div class="word-bank" id="grammar-bank">
+                <!-- Words injected via JS -->
+            </div>
+
+            <div class="gap-fill-container" id="grammar-text">
+                <!-- Text injected via JS -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn" onclick="checkGrammar()">Check Answers</button>
+                <div id="grammar-feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- ACTIVITY 4: DICTATION -->
+        <div id="dictation" class="section">
+            <h2 class="section-title">Listening Dictation</h2>
+            <p class="instructions">Listen to the character description, then type exactly what you hear.</p>
+            <div id="dictation-container">
+                <!-- Dictation items injected via JS -->
+            </div>
+        </div>
+
+        <!-- ACTIVITY 5: SCRAMBLE -->
+        <div id="scramble" class="section">
+            <h2 class="section-title">Sentence Structure</h2>
+            <p class="instructions">Reorder the words to make correct descriptions.</p>
+            <div id="scramble-container">
+                <!-- Scramble items injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="score-board">
+            <div class="score-item">Story: <span id="score-story">0</span>%</div>
+            <div class="score-item">Vocab: <span id="score-vocab">0</span></div>
+            <div class="score-item">Grammar: <span id="score-grammar">0</span>/6</div>
+            <div class="score-item">Dictation: <span id="score-dictation">0</span>/3</div>
+            <div class="score-item">Order: <span id="score-scramble">0</span>/3</div>
+        </div>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">Designed for Musab İkbal SUBAŞI</p>
+    </footer>
+
+    <script>
+        // --- DATA CONTENT ---
+
+        const storyParagraphs = [
+            {
+                img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+                text: "Dr. Furkan was preparing for the biggest event of the year: the Community Health Day! He wanted everything to be perfect. \"I need helpers to welcome people,\" he thought. \"The visitors need to know who to ask for assistance.\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
+                text: "Suddenly, a young volunteer named Tamsin arrived. \"I am here to help!\" she announced. Dr. Furkan smiled. \"Welcome, Tamsin! I am Dr. Furkan. I am quite tall, and I have short, dark hair. I have a trimmed beard and brown eyes. My coat is white, so I am easy to spot!\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=800&q=80",
+                text: "Tamsin looked at the list of volunteers. \"Who should I look for next?\" she asked. Dr. Furkan pointed to a name. \"Atlas. He is very strong, and he is going to carry the heavy boxes. He is a tall man, definitely taller than me.\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1615813967515-e1838c1c5116?auto=format&fit=crop&w=800&q=80",
+                text: "\"Let’s practice describing Atlas,\" Dr. Furkan said. \"He has broad shoulders and a muscular build. His hair is very dark and curly. He has kind, deep brown eyes, and he usually wears a bright red shirt. Remember: He is very tall.\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80",
+                text: "Tamsin studied the image. \"Okay. Broad shoulders, curly hair, brown eyes, red shirt. Got it. Who else is coming? We need someone to set up the juice station.\" Dr. Furkan checked the list for the next arrival. \"That will be Elara.\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1583336154865-c3065e9b898d?auto=format&fit=crop&w=800&q=80",
+                text: "\"Elara is shorter than Atlas, and she has a slim build. She is full of energy!\" Dr. Furkan described. \"She has amazing red hair—very long and straight. She has freckles across her nose, and her eyes are usually bright blue, matching her favorite scarf.\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+                text: "Just then, a large man entered carrying a huge box! \"Hello, Dr. Furkan! I’m Atlas!\" Dr. Furkan nudged Tamsin. \"Tell me, Tamsin, is he the right person? Does he have dark, curly hair? Is he tall? Yes, he is! He has a muscular build, just as we discussed.\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+                text: "Next, a woman with vibrant hair walked in. Tamsin immediately spoke up, pointing. \"She is Elara! She has long, straight red hair, and she is wearing a blue scarf. She is shorter than Atlas, and she has blue eyes! She looks energetic!\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+                text: "The team worked perfectly. Later, an elderly woman looked confused. \"Excuse me,\" she asked Tamsin, \"I need to find the main doctor for a check-up.\" Tamsin replied confidently, \"You need Dr. Furkan. He is very tall. He has short, dark hair and a neat beard. He is wearing a white coat.\""
+            },
+            {
+                img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80",
+                text: "The Community Health Day was a huge success! Dr. Furkan thanked Tamsin. \"Your skills at describing people were excellent, Tamsin! You helped everyone find who they needed. Knowing how to describe height, hair, and features is a great skill for any helper!\""
+            }
+        ];
+
+        // Expanded Vocab Data with Categories and Visuals
+        const vocabData = {
+            "Story Characters": [
+                { word: "Dr. Furkan", icon: "👨‍⚕️", type: "emoji", def: "The main doctor organizing the event.", sent: "I am Dr. Furkan." },
+                { word: "Atlas", icon: "🏋️‍♂️", type: "emoji", def: "A strong volunteer who carries boxes.", sent: "Atlas is very strong." },
+                { word: "Elara", icon: "👩‍🦰", type: "emoji", def: "An energetic volunteer with red hair.", sent: "Elara is shorter than Atlas." }
+            ],
+            "Colors (from Slides)": [
+                { word: "Red", icon: "#FF0000", type: "color", def: "The color of blood or fire.", sent: "He usually wears a bright red shirt." },
+                { word: "Orange", icon: "#FFA500", type: "color", def: "A bright citrus color.", sent: "Orange is a warm color." },
+                { word: "Yellow", icon: "#FFFF00", type: "color", def: "The color of the sun.", sent: "Sunflowers are yellow." },
+                { word: "Green", icon: "#2ecc71", type: "color", def: "The color of grass.", sent: "The park is green." },
+                { word: "Blue", icon: "#3498db", type: "color", def: "The color of the sky.", sent: "She has blue eyes." },
+                { word: "Purple", icon: "#9b59b6", type: "color", def: "A royal color.", sent: "Grapes can be purple." },
+                { word: "Pink", icon: "#FFC0CB", type: "color", def: "A soft reddish-white color.", sent: "Flowers are pink." },
+                { word: "Brown", icon: "#8B4513", type: "color", def: "The color of earth or wood.", sent: "He has deep brown eyes." },
+                { word: "Black", icon: "#000000", type: "color", def: "The darkest color.", sent: "He has short dark hair." },
+                { word: "White", icon: "#FFFFFF", type: "color", def: "The color of snow.", sent: "My coat is white." },
+                { word: "Grey", icon: "#808080", type: "color", def: "Between black and white.", sent: "Elephants are grey." },
+                { word: "Gold", icon: "#FFD700", type: "color", def: "A precious yellow metal.", sent: "The medal is gold." }
+            ],
+            "Body Parts": [
+                { word: "Face", icon: "🙂", type: "emoji", def: "The front part of the head.", sent: "He has a kind face." },
+                { word: "Eyes", icon: "👀", type: "emoji", def: "We use them to see.", sent: "She has bright blue eyes." },
+                { word: "Nose", icon: "👃", type: "emoji", def: "We use it to smell.", sent: "She has freckles on her nose." },
+                { word: "Mouth", icon: "👄", type: "emoji", def: "We use it to speak and eat.", sent: "He smiled with his mouth." },
+                { word: "Ear", icon: "👂", type: "emoji", def: "We use them to hear.", sent: "Listen with your ear." },
+                { word: "Teeth", icon: "🦷", type: "emoji", def: "Inside the mouth, used to bite.", sent: "Brush your teeth." },
+                { word: "Shoulder", icon: "💪", type: "emoji", def: "The joint connecting arm to body.", sent: "He has broad shoulders." },
+                { word: "Hand", icon: "🤚", type: "emoji", def: "At the end of the arm.", sent: "Wave your hand." }
+            ],
+            "Traits & Adjectives": [
+                { word: "Muscular", icon: "💪", type: "emoji", def: "Having strong muscles.", sent: "Atlas has a muscular build." },
+                { word: "Curly Hair", icon: "➰", type: "emoji", def: "Hair that spirals, not straight.", sent: "His hair is dark and curly." },
+                { word: "Straight Hair", icon: "📏", type: "emoji", def: "Hair with no curls.", sent: "She has long straight hair." },
+                { word: "Beard", icon: "🧔", type: "emoji", def: "Hair on the chin and face.", sent: "He has a trimmed beard." },
+                { word: "Tall", icon: "🦒", type: "emoji", def: "High in height.", sent: "He is a tall man." },
+                { word: "Glasses", icon: "👓", type: "emoji", def: "Lenses worn to help see.", sent: "Some people wear glasses." }
+            ]
+        };
+
+        // Grammar Data with visual hints
+        const grammarStory = [
+            { text: "Dr. Furkan is preparing for the event. He has a ", type: "text" },
+            { text: "trimmed", type: "gap", hint: "🧔" },
+            { text: " beard and brown eyes. Atlas is a very ", type: "text" },
+            { text: "strong", type: "gap", hint: "💪" },
+            { text: " man. He has ", type: "text" },
+            { text: "broad", type: "gap", hint: "↔️" },
+            { text: " shoulders and a muscular build. Elara is ", type: "text" },
+            { text: "shorter", type: "gap", hint: "⬇️" },
+            { text: " than Atlas. She has amazing ", type: "text" },
+            { text: "red", type: "gap", hint: "🔴" },
+            { text: " hair which is very long and ", type: "text" },
+            { text: "straight", type: "gap", hint: "📏" },
+            { text: ".", type: "text" }
+        ];
+
+        const dictationData = [
+            "My coat is white so I am easy to spot.",
+            "He has kind deep brown eyes and he wears a red shirt.",
+            "She has amazing red hair very long and straight."
+        ];
+
+        const scrambleData = [
+            "She has freckles across her nose.",
+            "He is a tall man definitely taller than me.",
+            "She is wearing a blue scarf."
+        ];
+
+        // --- STATE MANAGEMENT ---
+        let scores = { story: 0, vocab: 0, grammar: 0, dictation: 0, scramble: 0 };
+        let selectedWord = null;
+        let sentencesRead = new Set();
+        let totalSentences = 0;
+
+        // --- SPEECH ENGINE ---
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // --- TABS LOGIC ---
+        function openTab(tabId) {
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            
+            // Find specific button
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // --- INIT: STORY READER ---
+        function initStory() {
+            const container = document.getElementById('story-content');
+            totalSentences = 0;
+            
+            storyParagraphs.forEach((para, pIdx) => {
+                const block = document.createElement('div');
+                block.className = 'story-block';
+                
+                // Add Image
+                const img = document.createElement('img');
+                img.src = para.img;
+                img.className = 'story-img';
+                block.appendChild(img);
+
+                // Add Text
+                const textDiv = document.createElement('div');
+                textDiv.className = 'story-text';
+
+                // Simple regex to split sentences, keeping punctuation
+                const sentences = para.text.match( /[^\.!\?]+[\.!\?]+/g ) || [para.text];
+                
+                sentences.forEach((sentence, sIdx) => {
+                    const span = document.createElement('span');
+                    span.className = 'story-sentence';
+                    span.textContent = sentence.trim() + " ";
+                    
+                    // Unique ID for score tracking
+                    const uniqueId = `${pIdx}-${sIdx}`;
+                    totalSentences++;
+
+                    span.onclick = function() {
+                        document.querySelectorAll('.story-sentence').forEach(s => s.classList.remove('playing'));
+                        this.classList.add('playing');
+                        speak(sentence);
+                        
+                        sentencesRead.add(uniqueId);
+                        scores.story = Math.round((sentencesRead.size / totalSentences) * 100);
+                        updateScores();
+                    };
+                    textDiv.appendChild(span);
+                });
+
+                block.appendChild(textDiv);
+                container.appendChild(block);
+            });
+        }
+
+        // --- INIT: VOCABULARY (UPDATED WITH VISUALS) ---
+        function initVocab() {
+            const container = document.getElementById('vocab-container');
+            
+            for (const [category, items] of Object.entries(vocabData)) {
+                // Create Category Header
+                const header = document.createElement('h3');
+                header.className = 'category-header';
+                header.textContent = category;
+                container.appendChild(header);
+
+                // Create Grid
+                const grid = document.createElement('div');
+                grid.className = 'flashcard-grid';
+                
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'flashcard';
+                    card.onclick = (e) => {
+                        if(e.target.closest('button')) return;
+                        
+                        card.classList.toggle('flipped');
+                        if(card.classList.contains('flipped') && !card.dataset.viewed) {
+                            scores.vocab += 1;
+                            card.dataset.viewed = "true";
+                            updateScores();
+                        }
+                    };
+
+                    // Render Visual based on Type
+                    let visualHtml = '';
+                    if (item.type === 'color') {
+                        visualHtml = `<div class="color-circle" style="background-color: ${item.icon};"></div>`;
+                    } else {
+                        visualHtml = `<div class="visual-icon">${item.icon}</div>`;
+                    }
+
+                    card.innerHTML = `
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                ${visualHtml}
+                                <div class="word-title">${item.word}</div>
+                                <p style="color:#666; font-size:0.8rem; margin-top:5px;">(Click to Reveal)</p>
+                            </div>
+                            <div class="flashcard-back">
+                                <h3 style="color:var(--gold); margin-bottom:10px;">${item.word}</h3>
+                                <p style="margin-bottom:10px; font-size:0.95rem;">${item.def}</p>
+                                <p style="font-style:italic; font-size:0.85rem; margin-bottom:15px; opacity:0.8;">"${item.sent}"</p>
+                                <button class="btn btn-small" onclick="speak('${item.word}. ${item.sent.replace(/'/g, "\\'")}')">
+                                    🔊 Listen
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                container.appendChild(grid);
+            }
+        }
+
+        // --- INIT: GRAMMAR ---
+        function initGrammar() {
+            const bank = document.getElementById('grammar-bank');
+            const textContainer = document.getElementById('grammar-text');
+            const words = [];
+            
+            grammarStory.forEach(item => {
+                if(item.type === 'gap') words.push({ text: item.text, hint: item.hint });
+            });
+            words.sort(() => Math.random() - 0.5);
+
+            words.forEach(wObj => {
+                const span = document.createElement('span');
+                span.className = 'bank-word';
+                // Add mini visual to bank word
+                span.innerHTML = `<span>${wObj.hint}</span> ${wObj.text}`;
+                span.dataset.word = wObj.text; // Store raw text for checking
+                span.onclick = () => selectGrammarWord(span);
+                bank.appendChild(span);
+            });
+
+            grammarStory.forEach(item => {
+                if (item.type === 'text') {
+                    textContainer.appendChild(document.createTextNode(item.text));
+                } else {
+                    const gap = document.createElement('span');
+                    gap.className = 'gap';
+                    gap.textContent = "_____";
+                    gap.dataset.answer = item.text;
+                    gap.onclick = function() { fillGap(this); };
+                    textContainer.appendChild(gap);
+                }
+            });
+        }
+
+        function selectGrammarWord(el) {
+            if(el.classList.contains('used')) return;
+            document.querySelectorAll('.bank-word').forEach(w => w.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedWord = el;
+        }
+
+        function fillGap(gapEl) {
+            if(!selectedWord) return;
+            
+            gapEl.textContent = selectedWord.dataset.word;
+            gapEl.style.color = "var(--navy)";
+            
+            selectedWord.classList.remove('selected');
+            selectedWord.classList.add('used');
+            selectedWord = null;
+        }
+
+        function checkGrammar() {
+            const gaps = document.querySelectorAll('.gap');
+            let correctCount = 0;
+            gaps.forEach(gap => {
+                if(gap.textContent === gap.dataset.answer) {
+                    gap.style.borderBottomColor = "var(--success)";
+                    gap.style.color = "var(--success)";
+                    correctCount++;
+                } else {
+                    gap.style.borderBottomColor = "var(--error)";
+                    gap.style.color = "var(--error)";
+                }
+            });
+            scores.grammar = correctCount;
+            updateScores();
+            const fb = document.getElementById('grammar-feedback');
+            fb.textContent = `You got ${correctCount} out of ${gaps.length} correct.`;
+            fb.className = correctCount === gaps.length ? "feedback correct" : "feedback incorrect";
+        }
+
+        // --- INIT: DICTATION ---
+        function initDictation() {
+            const container = document.getElementById('dictation-container');
+            dictationData.forEach((sent, idx) => {
+                const item = document.createElement('div');
+                item.className = 'dictation-item';
+                item.innerHTML = `
+                    <div class="dictation-header">
+                        <span style="background:var(--navy); color:var(--gold); width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:50%;">${idx + 1}</span>
+                        <span>Listen and type:</span>
+                        <button class="btn btn-small" onclick="speak('${sent.replace(/'/g, "\\'")}')">🔊 Play Audio</button>
+                    </div>
+                    <input type="text" id="dict-input-${idx}" placeholder="Type exactly what you hear...">
+                    <div id="dict-fb-${idx}" class="feedback"></div>
+                    <button class="btn btn-small" style="align-self: flex-start;" onclick="checkDictation(${idx}, '${sent.replace(/'/g, "\\'")}')">Check Answer</button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function checkDictation(idx, correctText) {
+            const input = document.getElementById(`dict-input-${idx}`);
+            const fb = document.getElementById(`dict-fb-${idx}`);
+            const userClean = input.value.toLowerCase().replace(/[^a-z ]/g, "").trim();
+            const correctClean = correctText.toLowerCase().replace(/[^a-z ]/g, "").trim();
+            
+            if(userClean === correctClean) {
+                fb.textContent = "Excellent! Perfect match.";
+                fb.className = "feedback correct";
+                input.style.borderColor = "var(--success)";
+                if(!input.dataset.scored) {
+                    scores.dictation++;
+                    input.dataset.scored = "true";
+                    updateScores();
+                }
+            } else {
+                fb.innerHTML = `Not quite. <br><strong>Correct:</strong> ${correctText}`;
+                fb.className = "feedback incorrect";
+                input.style.borderColor = "var(--error)";
+            }
+        }
+
+        // --- INIT: SCRAMBLE ---
+        function initScramble() {
+            const container = document.getElementById('scramble-container');
+            scrambleData.forEach((sentence, sIdx) => {
+                const words = sentence.split(' ');
+                const shuffled = [...words].sort(() => Math.random() - 0.5);
+                
+                const wrap = document.createElement('div');
+                wrap.innerHTML = `
+                    <h3 style="font-size:1.1rem; margin-bottom:10px;">Sentence ${sIdx + 1}</h3>
+                    <div class="word-pool" id="pool-${sIdx}"></div>
+                    <div class="answer-pool" id="ans-${sIdx}"></div>
+                    <div id="scramble-fb-${sIdx}" class="feedback"></div>
+                    <button class="btn btn-small" style="margin-top:10px" onclick="checkScramble(${sIdx}, '${sentence.replace(/'/g, "\\'")}')">Check Order</button>
+                    <hr style="margin: 20px 0; border:0; border-top:1px solid #eee;">
+                `;
+                container.appendChild(wrap);
+                const pool = wrap.querySelector(`#pool-${sIdx}`);
+                const ans = wrap.querySelector(`#ans-${sIdx}`);
+                
+                shuffled.forEach(word => {
+                    const span = document.createElement('span');
+                    span.className = 'scramble-word';
+                    span.textContent = word;
+                    span.onclick = function() {
+                        if(this.parentElement === pool) {
+                            ans.appendChild(this);
+                        } else {
+                            pool.appendChild(this);
+                        }
+                    };
+                    pool.appendChild(span);
+                });
+            });
+        }
+
+        function checkScramble(idx, correctSent) {
+            const ansContainer = document.getElementById(`ans-${idx}`);
+            const fb = document.getElementById(`scramble-fb-${idx}`);
+            const currentOrder = Array.from(ansContainer.children).map(c => c.textContent).join(' ');
+            
+            if(currentOrder === correctSent) {
+                fb.textContent = "Correct! Well done.";
+                fb.className = "feedback correct";
+                speak(correctSent);
+                if(!ansContainer.dataset.scored) {
+                    scores.scramble++;
+                    ansContainer.dataset.scored = "true";
+                    updateScores();
+                }
+            } else {
+                fb.textContent = "Incorrect order. Try moving the words again.";
+                fb.className = "feedback incorrect";
+            }
+        }
+
+        // --- SCORE UPDATE ---
+        function updateScores() {
+            document.getElementById('score-story').textContent = scores.story;
+            document.getElementById('score-vocab').textContent = scores.vocab;
+            document.getElementById('score-grammar').textContent = scores.grammar;
+            document.getElementById('score-dictation').textContent = scores.dictation;
+            document.getElementById('score-scramble').textContent = scores.scramble;
+        }
+
+        // --- INITIALIZE ALL ---
+        window.onload = function() {
+            initStory();
+            initVocab();
+            initGrammar();
+            initDictation();
+            initScramble();
+        };
+
+    </script>
+</body>
+</html>

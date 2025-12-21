@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Portal | Musab İkbal SUBAŞI</title>
+    <style>
+        /* --- FONTS & VARS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+        :root {
+            --navy: #0A192F;
+            --navy-light: #172a45;
+            --gold: #D4AF37;
+            --cream: #F8F8F0;
+            --white: #ffffff;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s ease;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--navy);
+            color: var(--cream);
+            font-family: 'Lato', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(to bottom, var(--navy), var(--navy-light));
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* --- PROGRESS BAR SECTION --- */
+        .progress-container {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .progress-bar-bg {
+            background-color: var(--navy-light);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .progress-bar-fill {
+            background-color: var(--gold);
+            height: 100%;
+            width: 7.5%; 
+            border-radius: 5px;
+        }
+
+        /* --- GRID LAYOUT --- */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* --- LESSON CARD --- */
+        .lesson-card {
+            background-color: var(--navy-light);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: var(--cream);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: var(--shadow);
+            background-color: #1c3352;
+        }
+
+        .lesson-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.03);
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .lesson-card:hover .lesson-number {
+            color: rgba(212, 175, 55, 0.1);
+        }
+
+        .card-content {
+            z-index: 2;
+        }
+
+        .lesson-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            margin-top: 1rem;
+        }
+
+        .lesson-status {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .completed .status-dot { background-color: #2ecc71; }
+        .current .status-dot { background-color: var(--gold); box-shadow: 0 0 10px var(--gold); }
+        .locked .status-dot { background-color: #555; }
+
+        /* --- ACTION BUTTONS (ROOTING) --- */
+        .action-row {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            z-index: 2;
+        }
+
+        .btn-card {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn-lesson {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-lesson:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-game {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+        .btn-game:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* Locked State */
+        .locked .btn-card {
+            pointer-events: none;
+            opacity: 0.5;
+            border-color: #444;
+            color: #666;
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--navy-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Private Tutoring: Musab İkbal SUBAŞI</h1>
+        <p class="subtitle">Personalized English Curriculum Dashboard</p>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-label">
+            <span>Course Progress</span>
+            <span>3 / 40 Lessons</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill"></div>
+        </div>
+    </div>
+
+    <main class="course-grid" id="grid">
+        <!-- Lessons generated via JS below -->
+    </main>
+
+    <footer>
+        <p>© 2025 Musab İkbal SUBAŞI | Private English Instruction</p>
+    </footer>
+
+    <script>
+        // --- CONFIGURATION ---
+        const totalLessons = 40;
+        
+        // --- LESSON DATA ---
+        // Clean filenames: No spaces (%20) and no colons.
+        const lessonMap = {
+            1: { 
+                title: "Meeting New People", 
+                file: "lesson1.html", 
+                game: "game1.html", 
+                status: "completed" 
+            },
+            2: { 
+                title: "Speaking About Yourself", 
+                file: "lesson2.html", 
+                game: "game2.html", 
+                status: "completed" 
+            },
+            3: { 
+                title: "Describing People", 
+                file: "lesson3.html", // Replaced spaces/colon with underscores
+                game: "game3.html",    // Replaced spaces with underscores
+                status: "completed" 
+            },
+            4: { 
+                title: "Fun Test", 
+                file: "lesson4.html", 
+                game: "game4.html", 
+                status: "current" 
+            },
+            5: { 
+                title: "Lesson 5: Topic Coming Soon", 
+                file: "lesson5.html", 
+                game: "game5.html", 
+                status: "locked" 
+            },
+            6: { 
+                title: "Lesson 6: Topic Coming Soon", 
+                file: "lesson6.html", 
+                game: "game6.html", 
+                status: "locked" 
+            },
+            7: { 
+                title: "Lesson 7: Topic Coming Soon", 
+                file: "lesson7.html", // Replaced spaces/colon with underscores
+                game: "game7.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            8: { 
+                title: "Lesson 8: Topic Coming Soon", 
+                file: "lesson8.html", 
+                game: "game8.html", 
+                status: "locked" 
+            },
+            9: { 
+                title: "Lesson 9: Topic Coming Soon", 
+                file: "lesson9.html", 
+                game: "game9.html", 
+                status: "locked" 
+            },
+            10: { 
+                title: "Lesson 10: Topic Coming Soon", 
+                file: "lesson10.html", 
+                game: "game10.html", 
+                status: "locked" 
+            },
+            11: { 
+                title: "Lesson 11: Topic Coming Soon", 
+                file: "lesson11.html", // Replaced spaces/colon with underscores
+                game: "game11.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            12: { 
+                title: "Lesson 12: Topic Coming Soon", 
+                file: "lesson12.html", 
+                game: "game12.html", 
+                status: "locked" 
+            },
+            13: { 
+                title: "Lesson 13: Topic Coming Soon", 
+                file: "lesson13.html", 
+                game: "game13.html", 
+                status: "locked" 
+            },
+            14: { 
+                title: "Lesson 14: Topic Coming Soon", 
+                file: "lesson14.html", 
+                game: "game14.html", 
+                status: "locked" 
+            },
+            15: { 
+                title: "Lesson 15: Topic Coming Soon", 
+                file: "lesson15.html", // Replaced spaces/colon with underscores
+                game: "game15.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            16: { 
+                title: "Lesson 16: Topic Coming Soon", 
+                file: "lesson16.html", 
+                game: "game16.html", 
+                status: "locked" 
+            },
+            17: { 
+                title: "Lesson 17: Topic Coming Soon", 
+                file: "lesson17.html", 
+                game: "game17.html", 
+                status: "locked" 
+            },
+            18: { 
+                title: "Lesson 18: Topic Coming Soon", 
+                file: "lesson18.html", 
+                game: "game18.html", 
+                status: "locked" 
+            },
+            19: { 
+                title: "Lesson 19: Topic Coming Soon", 
+                file: "lesson19.html", // Replaced spaces/colon with underscores
+                game: "game19.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            20: { 
+                title: "Lesson 20: Topic Coming Soon", 
+                file: "lesson20.html", 
+                game: "game20.html", 
+                status: "locked" 
+            },
+            21: { 
+                title: "Lesson 21: Topic Coming Soon", 
+                file: "lesson21.html", 
+                game: "game21.html", 
+                status: "locked" 
+            },
+            22: { 
+                title: "Lesson 22: Topic Coming Soon", 
+                file: "lesson22.html", 
+                game: "game22.html", 
+                status: "locked" 
+            },
+            23: { 
+                title: "Lesson 23: Topic Coming Soon", 
+                file: "lesson23.html", // Replaced spaces/colon with underscores
+                game: "game23.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            24: { 
+                title: "Lesson 24: Topic Coming Soon", 
+                file: "lesson24.html", 
+                game: "game24.html", 
+                status: "locked" 
+            },
+            25: { 
+                title: "Lesson 25: Topic Coming Soon", 
+                file: "lesson25.html", 
+                game: "game25.html", 
+                status: "locked" 
+            },
+            26: { 
+                title: "Lesson 26: Topic Coming Soon", 
+                file: "lesson26.html", 
+                game: "game26.html", 
+                status: "locked" 
+            },
+            27: { 
+                title: "Lesson 27: Topic Coming Soon", 
+                file: "lesson27.html", // Replaced spaces/colon with underscores
+                game: "game27.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            28: { 
+                title: "Lesson 28: Topic Coming Soon", 
+                file: "lesson28.html", 
+                game: "game28.html", 
+                status: "locked" 
+            },
+            29: { 
+                title: "Lesson 29: Topic Coming Soon", 
+                file: "lesson29.html", 
+                game: "game29.html", 
+                status: "locked" 
+            },
+            30: { 
+                title: "Lesson 30: Topic Coming Soon", 
+                file: "lesson30.html", 
+                game: "game30.html", 
+                status: "locked" 
+            },
+            31: { 
+                title: "Lesson 31: Topic Coming Soon", 
+                file: "lesson31.html", // Replaced spaces/colon with underscores
+                game: "game31.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            32: { 
+                title: "Lesson 32: Topic Coming Soon", 
+                file: "lesson32.html", 
+                game: "game32.html", 
+                status: "locked" 
+            },
+            33: { 
+                title: "Lesson 33: Topic Coming Soon", 
+                file: "lesson33.html", 
+                game: "game33.html", 
+                status: "locked" 
+            },
+            34: { 
+                title: "Lesson 34: Topic Coming Soon", 
+                file: "lesson34.html", 
+                game: "game34.html", 
+                status: "locked" 
+            },
+            35: { 
+                title: "Lesson 35: Topic Coming Soon", 
+                file: "lesson35.html", // Replaced spaces/colon with underscores
+                game: "game35.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            36: { 
+                title: "Lesson 36: Topic Coming Soon", 
+                file: "lesson36.html", 
+                game: "game36.html", 
+                status: "locked" 
+            },
+            37: { 
+                title: "Lesson 37: Topic Coming Soon", 
+                file: "lesson37.html", 
+                game: "game37.html", 
+                status: "locked" 
+            },
+            38: { 
+                title: "Lesson 38: Topic Coming Soon", 
+                file: "lesson38.html", 
+                game: "game38.html", 
+                status: "locked" 
+            },
+            39: { 
+                title: "Lesson 39: Topic Coming Soon", 
+                file: "lesson39.html", // Replaced spaces/colon with underscores
+                game: "game39.html",    // Replaced spaces with underscores
+                status: "locked" 
+            },
+            40: { 
+                title: "Lesson 40: Topic Coming Soon", 
+                file: "lesson40.html", 
+                game: "game40.html", 
+                status: "locked" 
+            },  
+            // Future lessons...
+        };
+
+        const grid = document.getElementById('grid');
+
+        for (let i = 1; i <= totalLessons; i++) {
+            const lesson = lessonMap[i] || { 
+                title: `Lesson ${i}: Topic Coming Soon`, 
+                file: "#", 
+                game: "#",
+                status: "locked" 
+            };
+
+            // Determine Status Text
+            let statusText = "Locked";
+            if (lesson.status === 'completed') statusText = "Completed";
+            if (lesson.status === 'current') statusText = "Ready to Start";
+
+            // Create Card
+            const card = document.createElement('div');
+            card.className = `lesson-card ${lesson.status}`;
+            
+            // Handle Locked State for Clicks
+            const linkProps = lesson.status === 'locked' ? 'onclick="return false;"' : '';
+
+            card.innerHTML = `
+                <div class="lesson-number">${i}</div>
+                
+                <div class="card-content">
+                    <div class="lesson-status">
+                        <div class="status-dot"></div>
+                        ${statusText}
+                    </div>
+                    <div class="lesson-title">${lesson.title}</div>
+                </div>
+
+                <div class="action-row">
+                    <a href="${lesson.file}" class="btn-card btn-lesson" ${linkProps}>
+                        <span>📄</span> Lesson
+                    </a>
+                    <a href="${lesson.game}" class="btn-card btn-game" ${linkProps}>
+                        <span>🎮</span> Game
+                    </a>
+                </div>
+            `;
+
+            grid.appendChild(card);
+        }
+    </script>
+
+</body>
+</html>

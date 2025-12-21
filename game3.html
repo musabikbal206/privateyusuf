@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Staff Identification Task</title>
+    <style>
+        /* --- FONTS & VARS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --navy: #0A192F;
+            --navy-light: #112240;
+            --gold: #D4AF37;
+            --text-light: #ccd6f6;
+            --white: #ffffff;
+            --success: #64ffda;
+            --error: #ff5555;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--navy);
+            color: var(--text-light);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none; /* Critical for 3D controls */
+        }
+
+        /* --- UI LAYER --- */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: auto;
+        }
+
+        .header-info h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* MISSION CARD */
+        #mission-card {
+            background: rgba(17, 34, 64, 0.95);
+            border-left: 4px solid var(--gold);
+            padding: 15px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .card-label {
+            color: var(--gold);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #mission-target-name {
+            font-size: 1.3rem;
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        #mission-details {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-light);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 8px;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* CONTROLS OVERLAY */
+        .controls-overlay {
+            text-align: center;
+            pointer-events: auto;
+            margin-bottom: 20px;
+        }
+
+        .hint-text {
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--white);
+            display: inline-block;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* BUTTONS */
+        .btn {
+            background: rgba(10, 25, 47, 0.9);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 15px 30px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .btn:active {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        /* START SCREEN */
+        #start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--navy);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            pointer-events: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .intro-box {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            border: 1px solid var(--gold);
+            background: var(--navy-light);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* FEEDBACK */
+        #feedback-modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 25, 47, 0.95);
+            padding: 30px 40px;
+            border: 1px solid var(--gold);
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 50;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        #feedback-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        #reset-cam-btn {
+            pointer-events: auto;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 30px;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+            display: none;
+            font-size: 1.2rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (min-width: 768px) {
+            .top-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+            .header-info h1 { font-size: 1.5rem; }
+            #mission-card { width: 350px; border-radius: 0 0 8px 8px; }
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100vh;
+            touch-action: none;
+        }
+
+    </style>
+    
+    <!-- LIBRARIES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div id="loading">Initializing Simulation...</div>
+
+    <!-- UI -->
+    <div id="ui-layer">
+        <div class="top-bar">
+            <div class="header-info">
+                <h1>Staff Identification</h1>
+            </div>
+            <div id="mission-card" style="opacity: 0;">
+                <span class="card-label">Target Profile</span>
+                <div id="mission-target-name">Loading...</div>
+                <div id="mission-details">Loading parameters...</div>
+            </div>
+        </div>
+
+        <div class="controls-overlay">
+            <div class="hint-text">👆 Drag to Rotate • Tap Person to Select</div>
+            <br>
+            <button id="reset-cam-btn" onclick="resetCamera()">Reset Camera</button>
+        </div>
+    </div>
+
+    <!-- FEEDBACK -->
+    <div id="feedback-modal">
+        <div id="feedback-title">Correct</div>
+        <div id="feedback-msg">Target Identified.</div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="start-screen">
+        <div class="intro-box">
+            <h1 style="color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 15px;">Simulation Ready</h1>
+            <p style="color: #8892b0; margin-bottom: 30px; line-height: 1.6; font-size: 1rem;">
+                <strong>Objective:</strong> Locate personnel based on physical descriptions.<br><br>
+                1. Read the <strong>Target Profile</strong>.<br>
+                2. <strong>Drag</strong> screen to rotate room.<br>
+                3. <strong>Tap</strong> directly on the matching person.
+            </p>
+            <button class="btn" onclick="initGame()">Access Simulation</button>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA ---
+        const levels = [
+            {
+                id: 'furkan',
+                name: "Dr. Furkan",
+                desc: "Male. <span class='highlight'>Tall</span>. <span class='highlight'>Dark hair</span>. Wearing a <span class='highlight'>white coat</span>.",
+                audio: "Locate Dr. Furkan. Tall, dark hair, white coat."
+            },
+            {
+                id: 'atlas',
+                name: "Atlas",
+                desc: "Male. <span class='highlight'>Muscular build</span> (broad shoulders). <span class='highlight'>Curly hair</span>. Wearing <span class='highlight'>red</span>.",
+                audio: "Locate Atlas. Broad shoulders, curly hair, red shirt."
+            },
+            {
+                id: 'elara',
+                name: "Elara",
+                desc: "Female. <span class='highlight'>Shorter</span> height. <span class='highlight'>Red hair</span>. Wearing <span class='highlight'>blue</span>.",
+                audio: "Locate Elara. Shorter, red hair, wearing blue."
+            },
+            {
+                id: 'elderly',
+                name: "Guest",
+                desc: "Female. <span class='highlight'>Elderly</span> (Grey hair). Wearing a <span class='highlight'>purple dress</span>.",
+                audio: "Locate the elderly guest. Grey hair, purple dress."
+            },
+            {
+                id: 'bald',
+                name: "Guest",
+                desc: "Male. <span class='highlight'>Bald</span> (No hair). Wearing a <span class='highlight'>green shirt</span>.",
+                audio: "Locate the bald guest. No hair, green shirt."
+            },
+            {
+                id: 'kid',
+                name: "Child Visitor",
+                desc: "Small child. <span class='highlight'>Very Short</span>. Wearing a <span class='highlight'>Bright Orange</span> shirt.",
+                audio: "Locate the child visitor. Small, bright orange shirt."
+            }
+        ];
+
+        let currentState = {
+            levelIndex: 0,
+            active: false
+        };
+
+        // --- THREE.JS GLOBALS ---
+        let scene, camera, renderer, controls, raycaster, mouse;
+        let peopleGroup = new THREE.Group();
+        
+        // --- INPUT STATE ---
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isDragging = false;
+
+        // --- INITIALIZATION ---
+        function initGame() {
+            const startScreen = document.getElementById('start-screen');
+            const loading = document.getElementById('loading');
+            
+            gsap.to(startScreen, { opacity: 0, duration: 0.5, onComplete: () => {
+                startScreen.style.display = 'none';
+                loading.style.display = 'block';
+                
+                setTimeout(() => {
+                    init3D();
+                    loading.style.display = 'none';
+                    startLevel(0);
+                }, 100);
+            }});
+        }
+
+        function init3D() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0A192F); 
+            scene.fog = new THREE.Fog(0x0A192F, 10, 40);
+
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 8, 14);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
+            
+            const container = document.getElementById('canvas-container');
+            container.appendChild(renderer.domElement);
+
+            // Controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.minDistance = 5;
+            controls.maxDistance = 25;
+            controls.maxPolarAngle = Math.PI / 2 - 0.05;
+
+            // Lights
+            const ambiLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambiLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(10, 15, 10);
+            dirLight.castShadow = true;
+            scene.add(dirLight);
+
+            buildEnvironment();
+            spawnCharacters();
+
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+            
+            window.addEventListener('resize', onResize);
+
+            // --- IMPROVED INPUT HANDLING ---
+            // We use pointer events for unified mouse/touch handling
+            container.addEventListener('pointerdown', onPointerDown);
+            container.addEventListener('pointerup', onPointerUp);
+            
+            // Fallback for simple clicks if pointer events fail on some old devices
+            container.addEventListener('click', onClickFallback);
+
+            animate();
+        }
+
+        function buildEnvironment() {
+            const floorGeo = new THREE.PlaneGeometry(60, 60);
+            const floorMat = new THREE.MeshStandardMaterial({ 
+                color: 0x112240, 
+                roughness: 0.5,
+                metalness: 0.1
+            });
+            const floor = new THREE.Mesh(floorGeo, floorMat);
+            floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
+            scene.add(floor);
+
+            const grid = new THREE.GridHelper(60, 20, 0xD4AF37, 0x1d2d50);
+            grid.position.y = 0.01;
+            grid.material.opacity = 0.2;
+            grid.material.transparent = true;
+            scene.add(grid);
+            
+            const pillarGeo = new THREE.CylinderGeometry(0.5, 0.5, 6, 8);
+            const pillarMat = new THREE.MeshStandardMaterial({ color: 0x8892b0 });
+            
+            [[12, -12], [-12, -12], [12, 8], [-12, 8]].forEach(pos => {
+                const pillar = new THREE.Mesh(pillarGeo, pillarMat);
+                pillar.position.set(pos[0], 3, pos[1]);
+                pillar.castShadow = true;
+                scene.add(pillar);
+            });
+        }
+
+        function spawnCharacters() {
+            scene.add(peopleGroup);
+
+            function createChar(config) {
+                const group = new THREE.Group();
+                group.position.set(config.x, 0, config.z);
+                group.rotation.y = Math.random() * 6.28;
+
+                let h = config.height === 'tall' ? 2.1 : (config.height === 'short' ? 1.5 : 1.75);
+                let w = config.build === 'broad' ? 0.8 : (config.build === 'slim' ? 0.45 : 0.6);
+                
+                // Child Override
+                if(config.child) {
+                    h = 1.1;
+                    w = 0.4;
+                }
+
+                // Body
+                const bodyGeo = new THREE.BoxGeometry(w, h * 0.45, 0.35);
+                const bodyMat = new THREE.MeshLambertMaterial({ color: config.color });
+                const body = new THREE.Mesh(bodyGeo, bodyMat);
+                body.position.y = h * 0.6;
+                body.castShadow = true;
+                group.add(body);
+
+                // Legs
+                const legGeo = new THREE.BoxGeometry(w * 0.3, h * 0.4, 0.25);
+                const legMat = new THREE.MeshLambertMaterial({ color: 0x222222 });
+                const lLeg = new THREE.Mesh(legGeo, legMat);
+                lLeg.position.set(-w/4, h * 0.2, 0);
+                group.add(lLeg);
+                const rLeg = new THREE.Mesh(legGeo, legMat);
+                rLeg.position.set(w/4, h * 0.2, 0);
+                group.add(rLeg);
+
+                // Head
+                const headGeo = new THREE.BoxGeometry(0.35, 0.4, 0.35);
+                const headMat = new THREE.MeshLambertMaterial({ color: 0xffdbac });
+                const head = new THREE.Mesh(headGeo, headMat);
+                head.position.y = h * 0.88;
+                group.add(head);
+
+                // Hair Logic
+                if(config.hairColor && !config.bald) {
+                    const hairGeo = new THREE.BoxGeometry(0.38, 0.15, 0.38);
+                    const hairMat = new THREE.MeshLambertMaterial({ color: config.hairColor });
+                    const hair = new THREE.Mesh(hairGeo, hairMat);
+                    hair.position.y = h * 1.05;
+                    group.add(hair);
+
+                    if(config.hairStyle === 'curly') {
+                        const curl = new THREE.Mesh(new THREE.DodecahedronGeometry(0.25), hairMat);
+                        curl.position.y = h * 1.05;
+                        group.add(curl);
+                    }
+                }
+
+                // Invisible Hit Box (Makes clicking easier!)
+                const hitGeo = new THREE.BoxGeometry(1.5, h * 1.5, 1.5);
+                const hitMat = new THREE.MeshBasicMaterial({ visible: false });
+                const hitBox = new THREE.Mesh(hitGeo, hitMat);
+                hitBox.position.y = h / 2;
+                group.add(hitBox);
+
+                group.userData = { id: config.id };
+                peopleGroup.add(group);
+            }
+
+            // TARGETS
+            createChar({ x: -4, z: 2, id: 'furkan', height: 'tall', build: 'normal', color: 0xffffff, hairColor: 0x111111 });
+            createChar({ x: 0, z: -4, id: 'atlas', height: 'tall', build: 'broad', color: 0xc0392b, hairColor: 0x000000, hairStyle: 'curly' });
+            createChar({ x: 5, z: 2, id: 'elara', height: 'short', build: 'slim', color: 0x2980b9, hairColor: 0xd35400 }); 
+            createChar({ x: 3, z: -6, id: 'elderly', height: 'short', build: 'normal', color: 0x8e44ad, hairColor: 0xbdc3c7 }); 
+            createChar({ x: -6, z: 4, id: 'bald', height: 'normal', build: 'broad', color: 0x27ae60, bald: true }); 
+            createChar({ x: 2, z: 4, id: 'kid', child: true, color: 0xFF6600, hairColor: 0x555555 }); // NEW KID
+
+            // DISTRACTORS
+            createChar({ x: -2, z: -8, id: 'd1', height: 'normal', build: 'normal', color: 0xf1c40f, hairColor: 0x8b4513 });
+            createChar({ x: 6, z: -2, id: 'd2', height: 'tall', build: 'slim', color: 0x7f8c8d, hairColor: 0x555555 });
+            createChar({ x: -8, z: 0, id: 'd3', height: 'short', build: 'slim', color: 0xe67e22, hairColor: 0x000000 });
+        }
+
+        // --- INPUT HANDLING ---
+        function onPointerDown(event) {
+            touchStartX = event.clientX;
+            touchStartY = event.clientY;
+            isDragging = false;
+        }
+
+        function onPointerUp(event) {
+            // Calculate distance moved
+            const dist = Math.sqrt(
+                Math.pow(event.clientX - touchStartX, 2) + 
+                Math.pow(event.clientY - touchStartY, 2)
+            );
+
+            // If moved less than 10 pixels, consider it a tap/click
+            if (dist < 10) {
+                checkIntersection(event.clientX, event.clientY);
+            }
+        }
+
+        function onClickFallback(event) {
+            // Backup for mouse clicks that might slip through pointer events
+            checkIntersection(event.clientX, event.clientY);
+        }
+
+        function checkIntersection(x, y) {
+            if(!currentState.active) return;
+
+            // Normalize coordinates (-1 to +1)
+            mouse.x = (x / window.innerWidth) * 2 - 1;
+            mouse.y = -(y / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(peopleGroup.children, true);
+
+            if (intersects.length > 0) {
+                let target = intersects[0].object;
+                
+                // Traverse up to the main group
+                while(target.parent !== peopleGroup && target.parent !== null) {
+                    target = target.parent;
+                }
+
+                if(target.userData && target.userData.id) {
+                    validateChoice(target.userData.id, target);
+                }
+            }
+        }
+
+        // --- GAMEPLAY LOGIC ---
+        function startLevel(idx) {
+            if (idx >= levels.length) {
+                showFeedback("Simulation Complete", "All staff identified successfully.", true);
+                return;
+            }
+
+            currentState.levelIndex = idx;
+            currentState.active = true;
+
+            const data = levels[idx];
+            
+            const card = document.getElementById('mission-card');
+            card.style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById('mission-target-name').textContent = data.name;
+                document.getElementById('mission-details').innerHTML = data.desc;
+                card.style.opacity = 1;
+                speak(data.audio);
+            }, 300);
+        }
+
+        function validateChoice(id, charObj) {
+            const currentLevel = levels[currentState.levelIndex];
+            
+            if(id === currentLevel.id) {
+                currentState.active = false;
+                showFeedback("Confirmed", `Target: ${currentLevel.name}`, true);
+                
+                // Success Animation
+                gsap.to(charObj.scale, { x: 1.3, y: 1.3, z: 1.3, duration: 0.3, yoyo: true, repeat: 1 });
+                gsap.to(charObj.rotation, { y: charObj.rotation.y + 6.28, duration: 0.6 });
+
+                setTimeout(() => {
+                    startLevel(currentState.levelIndex + 1);
+                }, 2000);
+
+            } else {
+                showFeedback("Incorrect Target", "Review profile description.", false);
+            }
+        }
+
+        function showFeedback(title, msg, isSuccess) {
+            const modal = document.getElementById('feedback-modal');
+            const titleEl = document.getElementById('feedback-title');
+            
+            titleEl.textContent = title;
+            titleEl.style.color = isSuccess ? 'var(--success)' : 'var(--error)';
+            document.getElementById('feedback-msg').textContent = msg;
+
+            modal.style.opacity = 1;
+            
+            setTimeout(() => {
+                modal.style.opacity = 0;
+            }, 1500);
+        }
+
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.rate = 1;
+            window.speechSynthesis.speak(u);
+        }
+
+        function resetCamera() {
+            if(controls) {
+                gsap.to(camera.position, { x: 0, y: 8, z: 14, duration: 1 });
+                gsap.to(controls.target, { x: 0, y: 0, z: 0, duration: 1 });
+            }
+        }
+
+        function onResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            
+            const time = Date.now() * 0.001;
+            peopleGroup.children.forEach((char, i) => {
+                char.position.y = Math.sin(time + i) * 0.03;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+    </script>
+</body>
+</html>
