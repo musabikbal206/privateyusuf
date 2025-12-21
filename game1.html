@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Icebreaker Run | Musab İkbal SUBAŞI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --navy: #0A192F;
+            --navy-light: #112240;
+            --gold: #D4AF37;
+            --cream: #F8F8F0;
+            --success: #2ecc71;
+            --error: #e74c3c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--navy);
+            color: var(--cream);
+            font-family: 'Lato', sans-serif;
+            overflow: hidden;
+            touch-action: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F7FA 100%);
+            border: 4px solid var(--gold);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            /* Important for positioning */
+            z-index: 1;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* UI OVERLAYS */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95); /* Darker opacity for readability */
+            display: flex; /* Changed via JS, but default flex for centering */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 20; /* High z-index */
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px var(--navy);
+        }
+
+        p { font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 20px; }
+
+        .btn {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 0 #b08d28;
+            font-family: 'Playfair Display', serif;
+            z-index: 30;
+        }
+
+        .btn:active { transform: translateY(4px); box-shadow: none; }
+        .btn:hover { background: #fff; }
+
+        /* HUD */
+        #hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--navy);
+            text-shadow: 1px 1px white;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* QUIZ MODAL */
+        #quiz-modal {
+            background: var(--navy-light);
+            border: 2px solid var(--gold);
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 90%;
+            width: 450px;
+            color: var(--cream);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 25;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .quiz-question {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            line-height: 1.3;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--gold);
+            color: var(--cream);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.2s;
+            text-align: left;
+            font-size: 1rem;
+            position: relative;
+            z-index: 30; /* Ensure clickable */
+        }
+
+        .quiz-option:hover { background: var(--gold); color: var(--navy); }
+
+        /* MOBILE CONTROLS HINT */
+        .mobile-hint {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: var(--navy);
+            font-weight: bold;
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 0.8; } 100% { opacity: 0.4; } }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- HUD -->
+        <div id="hud">
+            <div>Score: <span id="score">0</span></div>
+            <div>Lives: <span id="lives">❤️❤️❤️</span></div>
+        </div>
+
+        <!-- START SCREEN -->
+        <div id="start-screen" class="overlay">
+            <h1>Icebreaker Run</h1>
+            <p>Play as Yusuf! Run through the university, avoid the <b>Shy Ghosts 👻</b>, and jump to catch <b>Icebreaker Bubbles 💬</b> to answer questions!</p>
+            <p style="font-size: 0.9rem; color: var(--gold);">Desktop: Space/Up to Jump • Mobile: Tap to Jump</p>
+            <button class="btn" onclick="startGame()">Start Running</button>
+        </div>
+
+        <!-- GAME OVER SCREEN -->
+        <div id="game-over-screen" class="overlay" style="display: none;">
+            <h1 id="go-title">Game Over</h1>
+            <p id="go-msg">You got too shy!</p>
+            <p>Final Score: <span id="final-score" style="color:var(--gold); font-weight:bold;">0</span></p>
+            <button class="btn" onclick="resetGame()">Try Again</button>
+        </div>
+
+        <!-- QUIZ OVERLAY (PAUSE) -->
+        <div id="quiz-overlay" class="overlay" style="display: none; background: rgba(0,0,0,0.85);">
+            <div id="quiz-modal">
+                <div class="quiz-question" id="q-text">Question here?</div>
+                <div id="q-options"></div>
+            </div>
+        </div>
+
+        <div class="mobile-hint" id="mobile-hint">TAP TO JUMP</div>
+    </div>
+
+    <script>
+        /* --- GAME ENGINE & LOGIC --- */
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Game State
+        let isPlaying = false;
+        let isPaused = false;
+        let frame = 0;
+        let score = 0;
+        let lives = 3;
+        let gameSpeed = 5;
+        let animationId;
+
+        // Canvas Dimensions
+        canvas.width = 800;
+        canvas.height = 400;
+
+        // Assets
+        const playerEmoji = "🏃";
+        const ghostEmoji = "👻";
+        const bubbleEmoji = "💬";
+
+        // Game Objects
+        const player = {
+            x: 50,
+            y: 300,
+            width: 40,
+            height: 60,
+            dy: 0,
+            jumpPower: -15,
+            gravity: 0.8,
+            grounded: false,
+            draw: function() {
+                ctx.font = "50px Arial";
+                ctx.fillText(playerEmoji, this.x, this.y + this.height - 10);
+            },
+            update: function() {
+                // Gravity
+                this.dy += this.gravity;
+                this.y += this.dy;
+
+                // Ground Collision
+                if (this.y + this.height > canvas.height - 20) {
+                    this.y = canvas.height - 20 - this.height;
+                    this.dy = 0;
+                    this.grounded = true;
+                } else {
+                    this.grounded = false;
+                }
+            },
+            jump: function() {
+                if (this.grounded) {
+                    this.dy = this.jumpPower;
+                }
+            }
+        };
+
+        let obstacles = [];
+        let collectibles = [];
+        let clouds = [];
+
+        // Question Bank
+        const questions = [
+            {
+                q: "What does Yusuf study at University?",
+                options: ["Literature", "Electrical Engineering", "Medicine"],
+                a: 1 
+            },
+            {
+                q: "Where is Selin from?",
+                options: ["Van", "Istanbul", "Izmir"],
+                a: 2
+            },
+            {
+                q: "What made Emre happy?",
+                options: ["Morning Coffee", "Winning a game", "Sleeping"],
+                a: 0
+            },
+            {
+                q: "What is Yusuf's hometown (Van) famous for?",
+                options: ["Cars", "The Lake and Cats", "Tall Buildings"],
+                a: 1
+            },
+            {
+                q: "Where did they meet?",
+                options: ["Online Book Club", "At a Cafe", "In Class"],
+                a: 0
+            },
+            {
+                q: "What is Yusuf's hobby?",
+                options: ["Basketball", "Sci-Fi Movies", "Dancing"],
+                a: 1
+            }
+        ];
+
+        /* --- CONTROLS --- */
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                if (isPlaying && !isPaused) player.jump();
+            }
+        });
+
+        // FIXED TOUCH HANDLER
+        document.getElementById('game-container').addEventListener('touchstart', function(e) {
+            // If tapping a button or overlay, do NOT jump/prevent default
+            if (e.target.tagName === 'BUTTON' || e.target.closest('.overlay')) {
+                return;
+            }
+            e.preventDefault(); 
+            if (isPlaying && !isPaused) player.jump();
+        }, { passive: false });
+
+        document.getElementById('game-container').addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('.overlay')) {
+                return;
+            }
+            if (isPlaying && !isPaused) player.jump();
+        });
+
+        /* --- GAME LOOP --- */
+        function startGame() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('game-over-screen').style.display = 'none';
+            resetState();
+            isPlaying = true;
+            loop();
+        }
+
+        function resetState() {
+            score = 0;
+            lives = 3;
+            gameSpeed = 5;
+            obstacles = [];
+            collectibles = [];
+            clouds = [];
+            player.y = 300;
+            player.dy = 0;
+            updateHUD();
+            // Init clouds
+            for(let i=0; i<5; i++) {
+                clouds.push({x: Math.random() * canvas.width, y: Math.random() * 100, speed: 0.5 + Math.random()});
+            }
+        }
+
+        function resetGame() {
+            startGame();
+        }
+
+        function updateHUD() {
+            document.getElementById('score').textContent = score;
+            let heartString = "";
+            for(let i=0; i<lives; i++) heartString += "❤️";
+            document.getElementById('lives').textContent = heartString;
+        }
+
+        function loop() {
+            if (!isPlaying || isPaused) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            frame++;
+
+            // 1. Draw Background
+            drawBackground();
+
+            // 2. Draw Floor
+            ctx.fillStyle = "#27ae60"; 
+            ctx.fillRect(0, canvas.height - 20, canvas.width, 20);
+            ctx.fillStyle = "#8e44ad"; 
+            ctx.fillRect(0, canvas.height - 15, canvas.width, 10);
+
+            // 3. Player
+            player.update();
+            player.draw();
+
+            // 4. Spawner
+            if (frame % 110 === 0) { 
+                let type = Math.random() > 0.4 ? 1 : 0; // Slightly more bubbles
+                if (type === 0) {
+                    obstacles.push({ x: canvas.width, y: 310, w: 40, h: 40, emoji: ghostEmoji });
+                } else {
+                    // Lowered Y position (240-290) to make it easier to hit
+                    collectibles.push({ x: canvas.width, y: 240 + Math.random()*40, w: 40, h: 40, emoji: bubbleEmoji });
+                }
+            }
+
+            // Move & Draw Obstacles (Ghosts)
+            for (let i = 0; i < obstacles.length; i++) {
+                let obs = obstacles[i];
+                obs.x -= gameSpeed;
+                ctx.font = "40px Arial";
+                ctx.fillText(obs.emoji, obs.x, obs.y + 35);
+
+                if (checkCollision(player, obs)) {
+                    hitObstacle();
+                    obstacles.splice(i, 1);
+                    i--;
+                } else if (obs.x + obs.w < 0) {
+                    obstacles.splice(i, 1);
+                    i--;
+                }
+            }
+
+            // Move & Draw Collectibles (Bubbles)
+            for (let i = 0; i < collectibles.length; i++) {
+                let col = collectibles[i];
+                col.x -= gameSpeed;
+                col.y += Math.sin(frame * 0.1) * 2; 
+
+                ctx.font = "40px Arial";
+                ctx.fillText(col.emoji, col.x, col.y + 35);
+
+                if (checkCollision(player, col)) {
+                    triggerQuiz();
+                    collectibles.splice(i, 1);
+                    i--;
+                } else if (col.x + col.w < 0) {
+                    collectibles.splice(i, 1);
+                    i--;
+                }
+            }
+
+            if (frame % 600 === 0) gameSpeed += 0.5;
+
+            updateHUD();
+
+            if (lives <= 0) gameOver();
+            else animationId = requestAnimationFrame(loop);
+        }
+
+        /* --- HELPERS --- */
+        function drawBackground() {
+            ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+            clouds.forEach(c => {
+                c.x -= c.speed;
+                if (c.x < -100) c.x = canvas.width;
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, 30, 0, Math.PI * 2);
+                ctx.arc(c.x + 25, c.y - 10, 40, 0, Math.PI * 2);
+                ctx.arc(c.x + 50, c.y, 30, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            ctx.fillStyle = "#3498db";
+            ctx.fillRect(0, 350, canvas.width, 50);
+        }
+
+        function checkCollision(p, o) {
+            return (p.x < o.x + o.w &&
+                    p.x + p.width > o.x &&
+                    p.y < o.y + o.h &&
+                    p.y + p.height > o.y);
+        }
+
+        function hitObstacle() {
+            lives--;
+            const container = document.getElementById('game-container');
+            container.style.borderColor = "red";
+            setTimeout(() => container.style.borderColor = "var(--gold)", 200);
+        }
+
+        function gameOver() {
+            isPlaying = false;
+            document.getElementById('game-over-screen').style.display = 'flex';
+            document.getElementById('final-score').textContent = score;
+            
+            let title = "Game Over";
+            let msg = "Don't be shy! Try again.";
+            if (score > 100) { title = "Great Job!"; msg = "You made some new friends!"; }
+            if (score > 250) { title = "Excellent!"; msg = "You are the master of conversation!"; }
+            
+            document.getElementById('go-title').textContent = title;
+            document.getElementById('go-msg').textContent = msg;
+        }
+
+        /* --- QUIZ LOGIC --- */
+        function triggerQuiz() {
+            isPaused = true;
+            
+            const qData = questions[Math.floor(Math.random() * questions.length)];
+            
+            document.getElementById('quiz-overlay').style.display = 'flex';
+            document.getElementById('q-text').textContent = qData.q;
+            
+            const optsContainer = document.getElementById('q-options');
+            optsContainer.innerHTML = '';
+            
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = opt;
+                // Add touchstart logic to buttons specifically
+                btn.onclick = (e) => {
+                    e.stopPropagation(); // Stop bubbling
+                    answerQuiz(idx === qData.a);
+                };
+                optsContainer.appendChild(btn);
+            });
+        }
+
+        function answerQuiz(isCorrect) {
+            document.getElementById('quiz-overlay').style.display = 'none';
+            if (isCorrect) {
+                score += 50;
+            } else {
+                lives--;
+            }
+            updateHUD();
+            
+            if (lives <= 0) {
+                gameOver();
+            } else {
+                isPaused = false;
+                loop(); 
+            }
+        }
+
+        // Initial Draw
+        drawBackground();
+        ctx.fillStyle = "#fff";
+        ctx.font = "20px Lato";
+        ctx.fillText("Press Start to Play", 350, 200);
+
+    </script>
+</body>
+</html>
