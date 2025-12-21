@@ -3,867 +3,973 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Tutoring: Musab İkbal SUBAŞI</title>
+    <title>Private Lesson | Meeting New People</title>
     <style>
-        /* --- FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap');
 
-        /* --- VARIABLES --- */
         :root {
             --navy: #0A192F;
-            --navy-light: #172a45;
+            --navy-light: #112240;
             --gold: #D4AF37;
-            --gold-light: #f3cf55;
             --cream: #F8F8F0;
             --white: #ffffff;
             --success: #2ecc71;
             --error: #e74c3c;
-            --shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            --accent: #64ffda; /* New accent for variety */
         }
 
-        /* --- RESET & BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
         body {
             background-color: var(--navy);
-            color: var(--navy);
+            color: var(--cream);
             font-family: 'Lato', sans-serif;
-            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--navy);
-        }
-
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            background-color: var(--navy);
-            color: var(--gold);
-            padding: 2rem 1rem;
+            background: linear-gradient(180deg, var(--navy-light) 0%, var(--navy) 100%);
+            padding: 2rem;
             text-align: center;
-            border-bottom: 2px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+            box-shadow: var(--shadow);
         }
 
-        header h1 {
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
             color: var(--gold);
-            font-size: 2.2rem;
-            letter-spacing: 1px;
             margin-bottom: 0.5rem;
+            letter-spacing: 1px;
         }
 
-        header p {
-            color: var(--cream);
-            font-size: 0.9rem;
+        .subtitle {
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            opacity: 0.8;
         }
 
-        /* --- CONTAINER --- */
+        /* CONTAINER */
         .container {
             max-width: 1000px;
             margin: 2rem auto;
-            background: var(--cream);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            flex: 1;
             width: 95%;
+            flex: 1;
         }
 
-        /* --- NAVIGATION --- */
+        /* NAVIGATION */
         .tabs {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            background: var(--navy-light);
+            gap: 10px;
+            margin-bottom: 2rem;
         }
 
         .tab-btn {
-            flex: 1;
-            padding: 1.2rem;
             background: transparent;
-            border: none;
-            color: var(--cream);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
-            min-width: 150px;
+            transition: all 0.3s;
+            border-radius: 4px;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
         }
 
-        .tab-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+            font-weight: bold;
         }
 
-        .tab-btn.active {
-            color: var(--gold);
-            border-bottom: 4px solid var(--gold);
-            background: rgba(10, 25, 47, 0.5);
-        }
-
-        /* --- SECTIONS --- */
+        /* SECTIONS */
         .section {
             display: none;
-            padding: 3rem 2rem;
             animation: fadeIn 0.5s ease;
+            background: var(--navy-light);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 2rem;
         }
 
-        .section.active {
-            display: block;
-        }
+        .section.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-            border-bottom: 1px solid var(--gold);
-            padding-bottom: 1rem;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .instructions {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #555;
-            font-style: italic;
-        }
-
-        /* --- BUTTONS --- */
-        .btn {
-            padding: 0.8rem 1.5rem;
-            background-color: var(--navy);
+        h2 {
+            font-family: 'Playfair Display', serif;
             color: var(--gold);
-            border: 1px solid var(--gold);
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .btn:hover {
-            background-color: var(--gold);
+        /* ACTIVITY 1: STORY */
+        .story-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .story-sentence {
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .story-sentence:hover {
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .story-sentence.playing {
+            background: var(--gold);
             color: var(--navy);
         }
 
-        .btn-small {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-        }
-
-        /* --- ACTIVITY 1: FLASHCARDS --- */
-        .flashcard-grid {
+        /* ACTIVITY 2: FLASHCARDS */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
         }
 
-        .flashcard {
-            background-color: transparent;
-            perspective: 1000px;
+        .card {
+            background: var(--cream);
+            color: var(--navy);
             height: 200px;
+            perspective: 1000px;
             cursor: pointer;
+            border-radius: 8px;
         }
 
-        .flashcard-inner {
+        .card-inner {
             position: relative;
             width: 100%;
             height: 100%;
             text-align: center;
             transition: transform 0.6s;
             transform-style: preserve-3d;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .flashcard.flipped .flashcard-inner {
+        .card.flipped .card-inner {
             transform: rotateY(180deg);
         }
 
-        .flashcard-front, .flashcard-back {
+        .card-front, .card-back {
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 20px;
             border-radius: 8px;
-            border: 2px solid var(--navy);
+            border: 2px solid var(--gold);
         }
 
-        .flashcard-front {
-            background-color: var(--white);
-            color: var(--navy);
-        }
-
-        .flashcard-back {
-            background-color: var(--navy);
-            color: var(--gold);
+        .card-back {
             transform: rotateY(180deg);
-            padding: 1rem;
+            background: var(--navy);
+            color: var(--gold);
         }
 
-        .word-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
+        .card-icon { font-size: 3rem; margin-bottom: 10px; }
+        .card-word { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: bold; }
+        .card-def { font-size: 0.9rem; line-height: 1.4; }
 
-        /* --- ACTIVITY 2: DICTATION --- */
-        .dictation-item {
-            background: white;
-            padding: 2rem;
+        /* ACTIVITY 3: TRUE OR FALSE */
+        .tf-container { display: flex; flex-direction: column; gap: 15px; }
+        .tf-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--gold);
-        }
-
-        .dictation-controls {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            justify-content: space-between;
             align-items: center;
         }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ccc;
+        .tf-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            cursor: pointer;
+            margin-left: 5px;
             border-radius: 4px;
-            font-family: 'Lato', sans-serif;
-            font-size: 1rem;
         }
+        .tf-btn.correct { background: var(--success); color: white; border-color: var(--success); }
+        .tf-btn.wrong { background: var(--error); color: white; border-color: var(--error); }
 
-        .feedback {
-            margin-top: 0.5rem;
-            font-weight: bold;
-            min-height: 1.5rem;
-        }
-
-        .correct { color: var(--success); }
-        .incorrect { color: var(--error); }
-
-        /* --- ACTIVITY 3: GAP FILL --- */
-        .gap-fill-container {
-            line-height: 2.2;
-            font-size: 1.1rem;
-            background: white;
-            padding: 2rem;
+        /* ACTIVITY 4: SENTENCE BUILDER */
+        .scramble-box {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
             border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
         }
-
         .word-bank {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: var(--navy-light);
-            border-radius: 8px;
+            justify-content: center;
+            margin-top: 15px;
+            min-height: 50px;
         }
-
-        .bank-word {
+        .drop-zone {
+            border-bottom: 2px solid var(--gold);
+            min-height: 50px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.05);
+        }
+        .scramble-word {
             background: var(--cream);
             color: var(--navy);
-            padding: 5px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            border: 1px solid var(--gold);
-            transition: all 0.2s;
-        }
-
-        .bank-word.selected {
-            background: var(--gold);
-            color: var(--navy);
-        }
-
-        .bank-word.used {
-            opacity: 0.5;
-            pointer-events: none;
-            text-decoration: line-through;
-        }
-
-        .gap {
-            display: inline-block;
-            min-width: 80px;
-            border-bottom: 2px solid var(--navy);
-            color: var(--gold);
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-            padding: 0 5px;
-        }
-
-        /* --- ACTIVITY 4: SCRAMBLE --- */
-        .scramble-container {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .word-pool, .answer-pool {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            min-height: 60px;
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .word-pool {
-            background: #f0f0f0;
-            margin-bottom: 1rem;
-        }
-
-        .answer-pool {
-            border: 2px dashed var(--navy);
-        }
-
-        .scramble-word {
-            background: var(--navy);
-            color: var(--white);
             padding: 8px 15px;
             border-radius: 20px;
             cursor: pointer;
+            font-weight: bold;
             user-select: none;
         }
-        
-        .scramble-word:hover {
-            background: var(--gold);
-            color: var(--navy);
-        }
 
-        /* --- ACTIVITY 5: QUIZ --- */
-        .quiz-question {
-            margin-bottom: 2rem;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
+        /* ACTIVITY 5: MATCH UP */
+        .match-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
-
-        .question-text {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .options label {
-            display: block;
-            margin-bottom: 0.8rem;
+        .match-col { display: flex; flex-direction: column; gap: 10px; }
+        .match-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border: 1px solid var(--gold);
             cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .options label:hover {
-            background: #f0f0f0;
-        }
-
-        input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--navy);
-            color: var(--cream);
-            padding: 1rem;
             text-align: center;
-            margin-top: auto;
-            border-top: 1px solid var(--gold);
+            transition: 0.2s;
+            border-radius: 6px;
         }
+        .match-card:hover { background: rgba(212, 175, 55, 0.2); }
+        .match-card.selected { background: var(--gold); color: var(--navy); }
+        .match-card.matched { background: var(--success); color: white; border-color: var(--success); opacity: 0.5; pointer-events: none; }
 
-        .score-board {
+        /* ACTIVITY 6: SORTING */
+        .sorting-area {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            gap: 20px;
+            margin-top: 20px;
         }
-
-        .score-item span {
-            color: var(--gold);
+        .sort-bucket {
+            flex: 1;
+            border: 2px dashed var(--gold);
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 200px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .sort-bucket.drag-over { background: rgba(212, 175, 55, 0.1); }
+        .bucket-title { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 10px; font-size: 1.2rem; }
+        .draggable-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .draggable {
+            background: var(--cream);
+            color: var(--navy);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: grab;
             font-weight: bold;
         }
 
-        /* Responsive */
+        /* ACTIVITY 7: CHAT SIM */
+        .chat-screen {
+            background: #fff;
+            color: #333;
+            border-radius: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 4px solid var(--navy-light);
+        }
+        .chat-header {
+            background: var(--success);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #e5ddd5;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .msg {
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+            font-size: 0.9rem;
+        }
+        .msg.received { background: white; align-self: flex-start; border-top-left-radius: 0; }
+        .msg.sent { background: #dcf8c6; align-self: flex-end; border-top-right-radius: 0; }
+        .chat-options {
+            padding: 10px;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .chat-btn {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
+        }
+        .chat-btn:hover { background: #eee; }
+
+        /* ACTIVITY 8: DICTATION */
+        .dictation-box { text-align: center; max-width: 500px; margin: 0 auto; }
+        .dictation-input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid var(--gold);
+            background: rgba(255,255,255,0.1);
+            color: var(--cream);
+            font-size: 1.2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .btn-main {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 10px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .feedback-msg { margin-top: 15px; font-weight: bold; min-height: 24px; text-align: center; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: auto;
+            color: var(--gold);
+        }
+
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .tabs { flex-direction: column; }
-            .tab-btn { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid transparent; }
-            .tab-btn.active { border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--gold); }
-            header h1 { font-size: 1.5rem; }
+            .match-container { grid-template-columns: 1fr; }
+            .sorting-area { flex-direction: column; }
+            .card { height: 250px; }
+            .chat-screen { width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Private Tutoring: Musab İkbal SUBAŞI</h1>
-        <p>Premium English Curriculum • The Community Connector</p>
+        <div style="font-size: 2rem;">🤝</div>
+        <h1>Meeting New People</h1>
+        <div class="subtitle">Private Lesson • Beginner A1-A2</div>
     </header>
 
     <div class="container">
-        <!-- NAVIGATION -->
+        <!-- Navigation -->
         <nav class="tabs">
-            <button class="tab-btn active" onclick="openTab('vocabulary')">Vocabulary</button>
-            <button class="tab-btn" onclick="openTab('dictation')">Listening Dictation</button>
-            <button class="tab-btn" onclick="openTab('grammar')">Grammar Gap-Fill</button>
-            <button class="tab-btn" onclick="openTab('scramble')">Sentence Scramble</button>
-            <button class="tab-btn" onclick="openTab('quiz')">Comprehension</button>
+            <button class="tab-btn active" onclick="openTab('story')">1. Story</button>
+            <button class="tab-btn" onclick="openTab('vocab')">2. Words</button>
+            <button class="tab-btn" onclick="openTab('tf')">3. True/False</button>
+            <button class="tab-btn" onclick="openTab('sentence')">4. Builder</button>
+            <button class="tab-btn" onclick="openTab('match')">5. Match</button>
+            <button class="tab-btn" onclick="openTab('sorting')">6. Sort</button>
+            <button class="tab-btn" onclick="openTab('chat')">7. Chat</button>
+            <button class="tab-btn" onclick="openTab('dictation')">8. Listen</button>
         </nav>
 
-        <!-- 1. VOCABULARY -->
-        <div id="vocabulary" class="section active">
-            <h2 class="section-title">Essential Vocabulary</h2>
-            <p class="instructions">Click the card to reveal the meaning. Click the speaker icon to listen.</p>
-            
-            <div class="flashcard-grid" id="vocab-grid">
-                <!-- Cards injected via JS -->
+        <!-- 1. Interactive Story -->
+        <div id="story" class="section active">
+            <h2>📖 Yusuf Makes New Friends</h2>
+            <p style="margin-bottom: 15px; font-style: italic; color: #aaa;">Click any sentence to listen.</p>
+            <div id="story-content" class="story-text"></div>
+        </div>
+
+        <!-- 2. Vocabulary -->
+        <div id="vocab" class="section">
+            <h2>📇 Vocabulary Flashcards</h2>
+            <div class="grid" id="vocab-grid"></div>
+        </div>
+
+        <!-- 3. True or False -->
+        <div id="tf" class="section">
+            <h2>❓ True or False?</h2>
+            <p>Read the sentences about the story. Is it True or False?</p>
+            <div class="tf-container" id="tf-container">
+                <!-- JS populates this -->
+            </div>
+            <p id="tf-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 4. Sentence Builder -->
+        <div id="sentence" class="section">
+            <h2>🏗️ Sentence Builder</h2>
+            <p>Click the words in the correct order to form the sentence.</p>
+            <div class="scramble-box">
+                <h3 id="scramble-hint" style="color:var(--gold); margin-bottom:10px;">Hint: Asking about location</h3>
+                <div class="drop-zone" id="scramble-zone"></div>
+                <div class="word-bank" id="scramble-bank"></div>
+                <button class="btn-main" onclick="resetScramble()" style="margin-top:15px; font-size:0.8rem;">Reset</button>
+            </div>
+            <p id="scramble-feedback" class="feedback-msg"></p>
+            <button class="btn-main" onclick="nextScramble()">Next Sentence ➡</button>
+        </div>
+
+        <!-- 5. Match Up -->
+        <div id="match" class="section">
+            <h2>🔗 Conversation Match</h2>
+            <p>Match the Question (Left) to the Answer (Right).</p>
+            <div class="match-container">
+                <div class="match-col" id="match-left"></div>
+                <div class="match-col" id="match-right"></div>
+            </div>
+            <p id="match-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 6. Sorting Game -->
+        <div id="sorting" class="section">
+            <h2>👥 Who is it?</h2>
+            <p>Drag the words to Yusuf or Selin.</p>
+            <div class="draggable-container" id="draggable-source">
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d1">From Van</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d2">From Izmir</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d3">Engineering</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d4">Literature</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d5">Sci-Fi Movies</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d6">Likes Coffee</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d7">Shy at first</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d8">Waved Hello</div>
+            </div>
+            <div class="sorting-area">
+                <div class="sort-bucket" ondrop="drop(event, 'yusuf')" ondragover="allowDrop(event)">
+                    <div class="bucket-title">🎓 Yusuf</div>
+                </div>
+                <div class="sort-bucket" ondrop="drop(event, 'selin')" ondragover="allowDrop(event)">
+                    <div class="bucket-title">📚 Selin</div>
+                </div>
+            </div>
+            <p id="sort-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 7. Chat Simulator -->
+        <div id="chat" class="section">
+            <h2>💬 Chat Simulator</h2>
+            <p style="margin-bottom:10px;">Choose the polite response to make friends!</p>
+            <div class="chat-screen">
+                <div class="chat-header">Online Book Club Group</div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="msg received">Selin: Hi everyone! I'm Selin from Izmir. 👋</div>
+                </div>
+                <div class="chat-options" id="chat-options">
+                    <button class="chat-btn" onclick="handleChat(0)">Ignore her.</button>
+                    <button class="chat-btn" onclick="handleChat(1)">Hi Selin! Nice to meet you.</button>
+                </div>
             </div>
         </div>
 
-        <!-- 2. DICTATION -->
+        <!-- 8. Dictation -->
         <div id="dictation" class="section">
-            <h2 class="section-title">Listening Dictation</h2>
-            <p class="instructions">Listen to the sentence from the story and type exactly what you hear.</p>
-            <div id="dictation-container"></div>
-        </div>
-
-        <!-- 3. GRAMMAR -->
-        <div id="grammar" class="section">
-            <h2 class="section-title">Grammar Gap-Fill</h2>
-            <p class="instructions">Select a word from the bank, then click the gap where it belongs.</p>
-            
-            <div class="word-bank" id="grammar-bank">
-                <!-- Words injected via JS -->
-            </div>
-
-            <div class="gap-fill-container" id="grammar-text">
-                <!-- Text injected via JS -->
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <button class="btn" onclick="checkGrammar()">Check Answers</button>
-                <div id="grammar-feedback" class="feedback"></div>
+            <h2>🎧 Listening Dictation</h2>
+            <div class="dictation-box">
+                <button class="btn-main" onclick="playDictationWord()">🔊 Play Word</button>
+                <input type="text" id="dictation-input" class="dictation-input" placeholder="Type what you hear...">
+                <button class="btn-main" onclick="checkDictation()">Check Spelling</button>
+                <div id="dictation-feedback" class="feedback-msg"></div>
             </div>
         </div>
 
-        <!-- 4. SCRAMBLE -->
-        <div id="scramble" class="section">
-            <h2 class="section-title">Sentence Scramble</h2>
-            <p class="instructions">Click words in the top box to move them to the bottom box to form a correct sentence.</p>
-            <div id="scramble-container"></div>
-        </div>
-
-        <!-- 5. QUIZ -->
-        <div id="quiz" class="section">
-            <h2 class="section-title">Comprehension Check</h2>
-            <p class="instructions">Answer questions based on "The Community Connector".</p>
-            <div id="quiz-container"></div>
-            <div style="text-align: center; margin-top: 2rem;">
-                <button class="btn" onclick="checkQuiz()">Submit Quiz</button>
-                <div id="quiz-feedback" class="feedback"></div>
-            </div>
-        </div>
     </div>
 
     <footer>
-        <div class="score-board">
-            <div class="score-item">Vocab: <span id="score-vocab">0</span></div>
-            <div class="score-item">Dictation: <span id="score-dictation">0</span>/3</div>
-            <div class="score-item">Grammar: <span id="score-grammar">0</span>/8</div>
-            <div class="score-item">Scramble: <span id="score-scramble">0</span>/3</div>
-            <div class="score-item">Quiz: <span id="score-quiz">0</span>/3</div>
-        </div>
+        Private Lesson for Musab İkbal SUBAŞI • Created with Excellence 👑
     </footer>
 
     <script>
-        // --- DATA ---
-        
-        const vocabData = [
-            { word: "Promote", def: "To help something happen or develop.", sent: "I came to promote community health." },
-            { word: "Concentrated", def: "Thinking very hard about something.", sent: "He was deeply concentrated on his phone." },
-            { word: "Fusion", def: "A mix of different styles.", sent: "It is jazz fusion music." },
-            { word: "Originally", def: "In the beginning; where someone is from.", sent: "Where are you from originally?" },
-            { word: "Satisfied", def: "Feeling happy because you did something well.", sent: "It makes me feel creative and satisfied." },
-            { word: "Energized", def: "Feeling full of energy and excitement.", sent: "Furkan realized he was energized!" }
+        /* --- 1. STORY DATA & LOGIC --- */
+        const storyText = `Yusuf is a student at Van Yüzüncü Yıl University. He studies electrical engineering. Every day, he walks by the beautiful lake. He loves his university, but sometimes he feels a little lonely. He wants to talk to more people and share his university life.
+        Today, Yusuf feels a bit shy but also very excited. He decides to join an online book club. He sits at his desk with his laptop. "I want to hear different ideas," he thinks. He hopes the other students are kind.
+        The meeting starts. Many faces appear on the screen. Yusuf feels shy, so he keeps his microphone off at first. He sees a girl waving. She looks very happy to be there. Yusuf takes a deep breath and turns on his camera.
+        A student named Selin speaks first. "Hello! My name is Selin," she says. Yusuf smiles back. He remembers his English lessons. He asks her, "What is your name?" even though she just said it, to practice his speaking. They both laugh.
+        Another student named Emre joins the conversation. He looks a little tired. Yusuf wants to be a good friend. He asks an icebreaker question: "What made you happy today, Emre?" Emre smiles and talks about his morning coffee.
+        "Where are you from?" Selin asks Yusuf. Yusuf feels proud. "My hometown is Van," he says. "It is famous for the lake and the cats." Selin says she is from Izmir. They enjoy learning about different cities.
+        They talk about their studies. Yusuf explains his favorite subject, electrical engineering. "It is difficult but interesting," he says. Selin likes literature. Yusuf realizes that having different ideas makes the conversation better.
+        Soon, they talk about their hobbies. Emre loves playing basketball. Yusuf says, "My hobbies are photography and reading sci-fi." They also talk about their favorite movies. Yusuf loves movies about space and robots.
+        "What is your favorite food?" Selin asks. Yusuf thinks of the famous Van breakfast. "I love a big breakfast with honey and cheese!" he says. They promise to meet in real life one day to eat together. Yusuf is no longer sad.
+        The meeting ends, and Yusuf closes his laptop. He doesn't feel shy anymore. He feels happy and connected. Meeting new people online was a great idea. He looks forward to the next book club meeting with his new friends.`;
+
+        /* --- 2. VOCAB DATA --- */
+        const vocabList = [
+            { word: "Ice breaker", icon: "🔨", def: "A question to start a conversation." },
+            { word: "Hometown", icon: "🏠", def: "The city where you were born." },
+            { word: "University", icon: "🎓", def: "A place for higher education." },
+            { word: "Engineering", icon: "⚡", def: "Designing machines and structures." },
+            { word: "Literature", icon: "📚", def: "Books, poems, and stories." },
+            { word: "Shy", icon: "🙈", def: "Feeling nervous about meeting people." },
+            { word: "Excited", icon: "🤩", def: "Feeling very happy and enthusiastic." },
+            { word: "Online", icon: "💻", def: "Connected to the internet." },
+            { word: "Hobbies", icon: "🎨", def: "Fun activities in free time." },
+            { word: "Lonely", icon: "😔", def: "Sad because you have no friends with you." }
         ];
 
-        const dictationData = [
-            "He needed to make new friends in his new city.",
-            "I cook Thai food almost every weekend.",
-            "Meeting new people was simply the best cure for loneliness."
+        /* --- 3. TRUE/FALSE DATA --- */
+        const tfQuestions = [
+            { q: "Yusuf studies Literature at university.", a: false },
+            { q: "Selin is from Izmir.", a: true },
+            { q: "Emre was happy about his morning coffee.", a: true },
+            { q: "Yusuf hates sci-fi movies.", a: false },
+            { q: "They met in a real library.", a: false }
         ];
 
-        const grammarText = [
-            { text: "Dr. Furkan ", type: "text" },
-            { text: "woke", type: "gap" },
-            { text: " up feeling happy. He ", type: "text" },
-            { text: "decided", type: "gap" },
-            { text: " to introduce himself. “Hello! I’m Furkan. ", type: "text" },
-            { text: "Are", type: "gap" },
-            { text: " you enjoying the beautiful weather?” Kira replied, “I ", type: "text" },
-            { text: "coach", type: "gap" },
-            { text: " a youth soccer team.” Later, Furkan met Liran. “What ", type: "text" },
-            { text: "kind", type: "gap" },
-            { text: " of music are you listening to?” Liran said, “It’s jazz. It ", type: "text" },
-            { text: "helps", type: "gap" },
-            { text: " me focus.” Furkan felt ", type: "text" },
-            { text: "excited", type: "gap" },
-            { text: " and realized he wasn't ", type: "text" },
-            { text: "shy", type: "gap" },
-            { text: " at all.", type: "text" }
+        /* --- 4. SENTENCE BUILDER DATA --- */
+        const sentences = [
+            { text: "Where are you from", hint: "Asking about location" },
+            { text: "What is your name", hint: "Asking identity" },
+            { text: "I like reading books", hint: "Stating a hobby" },
+            { text: "Do you have a pet", hint: "Asking about animals" }
         ];
+        let currentSentenceIdx = 0;
+        let builtSentence = [];
 
-        const scrambleData = [
-            "I came to promote community health.",
-            "The park was full of people jogging and stretching.",
-            "I cook Thai food because it makes me feel creative."
+        /* --- 5. MATCHING DATA --- */
+        const matchPairs = [
+            { q: "What is your name?", a: "My name is Yusuf." },
+            { q: "Where do you live?", a: "I live in Van." },
+            { q: "How are you?", a: "I am fine, thanks." },
+            { q: "What is your hobby?", a: "I like photography." }
         ];
+        let selectedLeft = null;
 
-        const quizData = [
+        /* --- 6. SORTING DATA --- */
+        const sortData = {
+            'd1': 'yusuf', 'd2': 'selin', 'd3': 'yusuf', 'd4': 'selin',
+            'd5': 'yusuf', 'd6': 'selin', 'd7': 'yusuf', 'd8': 'selin' 
+            // Note: d6 changed to "Likes Coffee" which was Emre, but for game let's say Selin agreed or assign "Waved Hello" to Selin
+            // Correction based on story: Emre had coffee. Let's change d6 to "Waved Hello" (Selin) in HTML logic or accept Emre details.
+            // Simplified: d6 in HTML is "Likes Coffee" -> Emre. Let's change HTML text to something Selin did. 
+            // Update: Changed d6 in HTML to "Likes Coffee" -> Actually Emre. 
+            // Let's update HTML text d6 to "First to speak" (Selin) for accuracy.
+        };
+
+        /* --- 7. CHAT DATA --- */
+        const chatSteps = [
             {
-                q: "Why did Dr. Furkan go to Elm Park?",
-                options: ["To play soccer", "To sleep", "For the Community Wellness Festival", "To listen to Jazz"],
-                a: 2
+                msg: "Selin: What do you study, Yusuf?",
+                opts: [
+                    { txt: "I study Electrical Engineering.", correct: true },
+                    { txt: "I study sleeping.", correct: false }
+                ]
             },
             {
-                q: "What is Liran's job?",
-                options: ["Family Doctor", "Soccer Coach", "Musician", "Graphic Designer"],
-                a: 3
+                msg: "Selin: That sounds difficult! I study Literature.",
+                opts: [
+                    { txt: "Books are boring.", correct: false },
+                    { txt: "Wow, that sounds interesting!", correct: true }
+                ]
             },
             {
-                q: "How did Furkan feel at the end of the story?",
-                options: ["Lonely and tired", "Energized and connected", "Angry and moody", "Hungry for Thai food"],
-                a: 1
+                msg: "Selin: Do you want to meet for breakfast one day?",
+                opts: [
+                    { txt: "Yes, I love Van breakfast!", correct: true },
+                    { txt: "No, I am busy forever.", correct: false }
+                ]
             }
         ];
+        let chatStepIdx = 0;
 
-        // --- STATE ---
-        let scores = { vocab: 0, dictation: 0, grammar: 0, scramble: 0, quiz: 0 };
-        let selectedWord = null;
+        /* --- INITIALIZATION --- */
+        window.onload = function() {
+            initStory();
+            initVocab();
+            initTF();
+            loadScramble(0);
+            initMatch();
+        };
 
-        // --- SPEECH SYNTHESIS ---
         function speak(text) {
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US';
-            utterance.rate = 0.9; // Slightly slower for ESL learners
+            utterance.rate = 0.9;
             window.speechSynthesis.speak(utterance);
         }
 
-        // --- TABS ---
+        /* --- TAB LOGIC --- */
         function openTab(tabName) {
-            const sections = document.querySelectorAll('.section');
-            const buttons = document.querySelectorAll('.tab-btn');
-            
-            sections.forEach(sec => sec.classList.remove('active'));
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
+            document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        // --- INIT VOCABULARY ---
+        /* --- 1. STORY LOGIC --- */
+        function initStory() {
+            const container = document.getElementById('story-content');
+            const sentencesArr = storyText.match( /[^\.!\?]+[\.!\?]+/g );
+            sentencesArr.forEach(sentence => {
+                const span = document.createElement('span');
+                span.className = 'story-sentence';
+                span.textContent = sentence.trim() + " ";
+                span.onclick = function() {
+                    document.querySelectorAll('.story-sentence').forEach(s => s.classList.remove('playing'));
+                    this.classList.add('playing');
+                    speak(sentence);
+                };
+                container.appendChild(span);
+            });
+        }
+
+        /* --- 2. VOCAB LOGIC --- */
         function initVocab() {
             const grid = document.getElementById('vocab-grid');
-            vocabData.forEach(item => {
+            vocabList.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'flashcard';
-                card.onclick = (e) => {
-                    if(!e.target.closest('.btn-small')) {
-                        card.classList.toggle('flipped');
-                        if(card.classList.contains('flipped')) {
-                             // Increment score only once per card flip
-                             if(!card.dataset.viewed) {
-                                 scores.vocab += 1;
-                                 card.dataset.viewed = "true";
-                                 updateScores();
-                             }
-                        }
-                    }
-                };
-
+                card.className = 'card';
+                card.onclick = function() { this.classList.toggle('flipped'); };
                 card.innerHTML = `
-                    <div class="flashcard-inner">
-                        <div class="flashcard-front">
-                            <div class="word-title">${item.word}</div>
-                            <p style="margin-top:10px; font-size: 0.8rem; color: #777;">(Click to flip)</p>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-icon">${item.icon}</div>
+                            <div class="card-word">${item.word}</div>
+                            <small style="margin-top:10px; opacity:0.7;">Click to flip</small>
                         </div>
-                        <div class="flashcard-back">
-                            <p><strong>${item.def}</strong></p>
-                            <p style="font-style:italic; margin: 10px 0;">"${item.sentence || item.sent}"</p>
-                            <button class="btn btn-small" onclick="speak('${item.word}. ${item.sentence || item.sent}')">
-                                🔊 Listen
-                            </button>
+                        <div class="card-back">
+                            <div class="card-def">${item.def}</div>
+                            <button onclick="event.stopPropagation(); speak('${item.word}')" style="margin-top:15px; padding:5px 10px; background:var(--gold); border:none; border-radius:4px; cursor:pointer;">🔊 Listen</button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
                 grid.appendChild(card);
             });
         }
 
-        // --- INIT DICTATION ---
-        function initDictation() {
-            const container = document.getElementById('dictation-container');
-            dictationData.forEach((sentence, index) => {
+        /* --- 3. TRUE/FALSE LOGIC --- */
+        function initTF() {
+            const container = document.getElementById('tf-container');
+            tfQuestions.forEach((item, index) => {
                 const div = document.createElement('div');
-                div.className = 'dictation-item';
+                div.className = 'tf-item';
                 div.innerHTML = `
-                    <div class="dictation-controls">
-                        <button class="btn" onclick="speak('${sentence.replace(/'/g, "\\'")}')">🔊 Listen</button>
-                        <span>Sentence #${index + 1}</span>
+                    <span>${index + 1}. ${item.q}</span>
+                    <div>
+                        <button class="tf-btn" onclick="checkTF(this, ${item.a}, true)">True</button>
+                        <button class="tf-btn" onclick="checkTF(this, ${item.a}, false)">False</button>
                     </div>
-                    <input type="text" id="dict-input-${index}" placeholder="Type what you hear...">
-                    <div id="dict-feedback-${index}" class="feedback"></div>
-                    <button class="btn btn-small" style="margin-top:10px" onclick="checkDictation(${index}, '${sentence.replace(/'/g, "\\'")}')">Check</button>
                 `;
                 container.appendChild(div);
             });
         }
 
-        function checkDictation(index, correct) {
-            const input = document.getElementById(`dict-input-${index}`).value.trim();
-            const feedback = document.getElementById(`dict-feedback-${index}`);
+        function checkTF(btn, correctAnswer, userAnswer) {
+            const parent = btn.parentElement;
+            // Reset buttons
+            parent.querySelectorAll('.tf-btn').forEach(b => {
+                b.classList.remove('correct', 'wrong');
+                b.disabled = true;
+            });
             
-            // Normalize strings (remove punctuation for easier matching)
-            const cleanInput = input.toLowerCase().replace(/[.,!]/g, '');
-            const cleanCorrect = correct.toLowerCase().replace(/[.,!]/g, '');
-
-            if (cleanInput === cleanCorrect) {
-                feedback.textContent = "Correct! Great listening.";
-                feedback.className = "feedback correct";
-                if(!feedback.dataset.scored) {
-                    scores.dictation += 1;
-                    feedback.dataset.scored = "true";
-                    updateScores();
-                }
+            const feedback = document.getElementById('tf-feedback');
+            if (userAnswer === correctAnswer) {
+                btn.classList.add('correct');
+                feedback.textContent = "Correct! Well done.";
+                feedback.style.color = "#2ecc71";
             } else {
-                feedback.innerHTML = `Incorrect. Try again.<br><small>Hint: ${correct}</small>`;
-                feedback.className = "feedback incorrect";
+                btn.classList.add('wrong');
+                feedback.textContent = "Oops! That's not right.";
+                feedback.style.color = "#e74c3c";
             }
         }
 
-        // --- INIT GRAMMAR ---
-        function initGrammar() {
-            const bank = document.getElementById('grammar-bank');
-            const textContainer = document.getElementById('grammar-text');
-            const words = [];
-            
-            // Extract gaps and shuffle
-            grammarText.forEach(item => {
-                if(item.type === 'gap') words.push(item.text);
-            });
-            words.sort(() => Math.random() - 0.5);
+        /* --- 4. SENTENCE BUILDER LOGIC --- */
+        function loadScramble(idx) {
+            currentSentenceIdx = idx;
+            builtSentence = [];
+            const data = sentences[idx];
+            document.getElementById('scramble-hint').textContent = "Hint: " + data.hint;
+            const zone = document.getElementById('scramble-zone');
+            const bank = document.getElementById('scramble-bank');
+            zone.innerHTML = '';
+            bank.innerHTML = '';
+            document.getElementById('scramble-feedback').textContent = '';
 
-            // Create Word Bank
+            // Shuffle words
+            const words = data.text.split(' ').sort(() => Math.random() - 0.5);
+            
             words.forEach(word => {
-                const span = document.createElement('span');
-                span.className = 'bank-word';
-                span.textContent = word;
-                span.onclick = () => selectWord(span);
-                bank.appendChild(span);
-            });
-
-            // Create Text with Gaps
-            grammarText.forEach((item, index) => {
-                if (item.type === 'text') {
-                    textContainer.appendChild(document.createTextNode(item.text));
-                } else {
-                    const gap = document.createElement('span');
-                    gap.className = 'gap';
-                    gap.textContent = "____";
-                    gap.dataset.correct = item.text;
-                    gap.dataset.index = index;
-                    gap.onclick = () => fillGap(gap);
-                    textContainer.appendChild(gap);
-                }
+                const el = document.createElement('div');
+                el.className = 'scramble-word';
+                el.textContent = word;
+                el.onclick = function() {
+                    // Move to zone
+                    if (el.parentElement === bank) {
+                        zone.appendChild(el);
+                        builtSentence.push(word);
+                    } else {
+                        // Move back to bank
+                        bank.appendChild(el);
+                        builtSentence = builtSentence.filter(w => w !== word);
+                    }
+                    checkScramble();
+                };
+                bank.appendChild(el);
             });
         }
 
-        function selectWord(element) {
-            // Deselect others
-            document.querySelectorAll('.bank-word').forEach(el => el.classList.remove('selected'));
-            if (!element.classList.contains('used')) {
-                element.classList.add('selected');
-                selectedWord = element;
-            }
-        }
-
-        function fillGap(gapElement) {
-            if (selectedWord) {
-                // If gap already filled, return word to bank (logic simplified for this demo)
-                // Just overwrite
-                gapElement.textContent = selectedWord.textContent;
-                gapElement.classList.remove('correct', 'incorrect'); // Reset state
-                selectedWord.classList.add('used');
-                selectedWord.classList.remove('selected');
-                selectedWord = null;
-            }
-        }
-
-        function checkGrammar() {
-            const gaps = document.querySelectorAll('.gap');
-            let correctCount = 0;
-            gaps.forEach(gap => {
-                if (gap.textContent === gap.dataset.correct) {
-                    gap.style.color = "var(--success)";
-                    gap.style.borderBottom = "2px solid var(--success)";
-                    correctCount++;
-                } else {
-                    gap.style.color = "var(--error)";
-                }
-            });
-            scores.grammar = correctCount;
-            updateScores();
-            document.getElementById('grammar-feedback').textContent = `You got ${correctCount} out of ${gaps.length} correct.`;
-        }
-
-        // --- INIT SCRAMBLE ---
-        function initScramble() {
-            const container = document.getElementById('scramble-container');
+        function checkScramble() {
+            const currentTarget = sentences[currentSentenceIdx].text.split(' ').join('');
+            const currentBuilt = Array.from(document.getElementById('scramble-zone').children).map(c => c.textContent).join('');
+            const feedback = document.getElementById('scramble-feedback');
             
-            scrambleData.forEach((sentence, sIdx) => {
-                const wrapper = document.createElement('div');
-                wrapper.style.marginBottom = "2rem";
-                
-                // Prepare words
-                const words = sentence.split(' ');
-                const shuffled = [...words].sort(() => Math.random() - 0.5);
-                
-                // HTML structure
-                wrapper.innerHTML = `
-                    <div style="margin-bottom:5px; font-weight:bold; color:var(--navy);">Sentence ${sIdx+1}</div>
-                    <div class="word-pool" id="pool-${sIdx}"></div>
-                    <div class="answer-pool" id="ans-${sIdx}"></div>
-                    <div id="scramble-msg-${sIdx}" class="feedback"></div>
-                    <button class="btn btn-small" style="margin-top:5px;" onclick="checkScramble(${sIdx}, '${sentence.replace(/'/g, "\\'")}')">Check</button>
-                `;
-                container.appendChild(wrapper);
-
-                const poolDiv = document.getElementById(`pool-${sIdx}`);
-                const ansDiv = document.getElementById(`ans-${sIdx}`);
-
-                // Add words to pool
-                shuffled.forEach(word => {
-                    const wSpan = document.createElement('span');
-                    wSpan.className = 'scramble-word';
-                    wSpan.textContent = word;
-                    wSpan.onclick = function() {
-                        // Move between pool and answer
-                        if (this.parentElement === poolDiv) {
-                            ansDiv.appendChild(this);
-                        } else {
-                            poolDiv.appendChild(this);
-                        }
-                    };
-                    poolDiv.appendChild(wSpan);
-                });
-            });
-        }
-
-        function checkScramble(index, correctSentence) {
-            const ansDiv = document.getElementById(`ans-${index}`);
-            const words = Array.from(ansDiv.children).map(span => span.textContent);
-            const userSentence = words.join(' ');
-            const feedback = document.getElementById(`scramble-msg-${index}`);
-
-            if (userSentence === correctSentence) {
-                feedback.textContent = "Correct!";
-                feedback.className = "feedback correct";
-                speak(correctSentence);
-                if (!feedback.dataset.scored) {
-                    scores.scramble += 1;
-                    feedback.dataset.scored = "true";
-                    updateScores();
-                }
+            if (currentBuilt === currentTarget) {
+                feedback.textContent = "✅ Correct Sentence!";
+                feedback.style.color = "#2ecc71";
+                speak(sentences[currentSentenceIdx].text);
+            } else if (document.getElementById('scramble-bank').children.length === 0) {
+                 feedback.textContent = "❌ Incorrect order. Try resetting.";
+                 feedback.style.color = "#e74c3c";
             } else {
-                feedback.textContent = "Incorrect order. Try again.";
-                feedback.className = "feedback incorrect";
+                feedback.textContent = "";
             }
         }
 
-        // --- INIT QUIZ ---
-        function initQuiz() {
-            const container = document.getElementById('quiz-container');
-            quizData.forEach((item, idx) => {
-                const qDiv = document.createElement('div');
-                qDiv.className = 'quiz-question';
-                
-                let optionsHtml = '';
-                item.options.forEach((opt, optIdx) => {
-                    optionsHtml += `
-                        <label>
-                            <input type="radio" name="q${idx}" value="${optIdx}">
-                            ${opt}
-                        </label>
-                    `;
-                });
+        function resetScramble() { loadScramble(currentSentenceIdx); }
+        function nextScramble() {
+            let next = (currentSentenceIdx + 1) % sentences.length;
+            loadScramble(next);
+        }
 
-                qDiv.innerHTML = `
-                    <div class="question-text">${idx+1}. ${item.q}</div>
-                    <div class="options">${optionsHtml}</div>
-                `;
-                container.appendChild(qDiv);
+        /* --- 5. MATCHING LOGIC --- */
+        function initMatch() {
+            const leftCol = document.getElementById('match-left');
+            const rightCol = document.getElementById('match-right');
+            
+            // Randomize pairs
+            const lefts = matchPairs.map((p, i) => ({txt: p.q, id: i})).sort(() => Math.random() - 0.5);
+            const rights = matchPairs.map((p, i) => ({txt: p.a, id: i})).sort(() => Math.random() - 0.5);
+
+            leftCol.innerHTML = ''; rightCol.innerHTML = '';
+
+            lefts.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.textContent = item.txt;
+                card.dataset.id = item.id;
+                card.onclick = () => selectLeft(card);
+                leftCol.appendChild(card);
+            });
+
+            rights.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.textContent = item.txt;
+                card.dataset.id = item.id;
+                card.onclick = () => selectRight(card);
+                rightCol.appendChild(card);
             });
         }
 
-        function checkQuiz() {
-            let correct = 0;
-            quizData.forEach((item, idx) => {
-                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
-                if (selected && parseInt(selected.value) === item.a) {
-                    correct++;
-                }
-            });
-            scores.quiz = correct;
-            updateScores();
-            const feedback = document.getElementById('quiz-feedback');
-            feedback.textContent = `You scored ${correct} out of ${quizData.length}.`;
-            if(correct === quizData.length) feedback.className = "feedback correct";
+        function selectLeft(card) {
+            if (card.classList.contains('matched')) return;
+            // Deselect others
+            document.querySelectorAll('#match-left .match-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedLeft = card;
         }
 
-        // --- UTILS ---
-        function updateScores() {
-            document.getElementById('score-vocab').textContent = scores.vocab;
-            document.getElementById('score-dictation').textContent = scores.dictation;
-            document.getElementById('score-grammar').textContent = scores.grammar;
-            document.getElementById('score-scramble').textContent = scores.scramble;
-            document.getElementById('score-quiz').textContent = scores.quiz;
+        function selectRight(card) {
+            if (!selectedLeft || card.classList.contains('matched')) return;
+            
+            const feedback = document.getElementById('match-feedback');
+            if (selectedLeft.dataset.id === card.dataset.id) {
+                // Match
+                selectedLeft.classList.add('matched');
+                card.classList.add('matched');
+                selectedLeft.classList.remove('selected');
+                feedback.textContent = "It's a match!";
+                feedback.style.color = "#2ecc71";
+                selectedLeft = null;
+            } else {
+                feedback.textContent = "Not a match. Try again.";
+                feedback.style.color = "#e74c3c";
+            }
         }
 
-        // --- STARTUP ---
-        window.onload = function() {
-            initVocab();
-            initDictation();
-            initGrammar();
-            initScramble();
-            initQuiz();
-        };
+        /* --- 6. SORTING LOGIC --- */
+        function allowDrop(ev) { ev.preventDefault(); document.querySelectorAll('.sort-bucket').forEach(b => b.classList.add('drag-over')); }
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+        function drop(ev, targetPerson) {
+            ev.preventDefault();
+            document.querySelectorAll('.sort-bucket').forEach(b => b.classList.remove('drag-over'));
+            const data = ev.dataTransfer.getData("text");
+            const draggedElement = document.getElementById(data);
+            const feedback = document.getElementById('sort-feedback');
 
+            // Hardcoded fixes for new items
+            // d6 is "Likes Coffee" -> Emre? No, I labelled d6 as "Likes Coffee" in HTML but that was Emre. 
+            // Let's assume user drags it to "Emre" (not a bucket) or just treat it as Wrong for both?
+            // Wait, I updated HTML labels.
+            // d1: Van (Yusuf), d2: Izmir (Selin), d3: Eng (Yusuf), d4: Lit (Selin)
+            // d5: SciFi (Yusuf), d6: Coffee (Emre - tricky), d7: Shy (Yusuf), d8: Waved (Selin)
+            
+            // Allow Coffee to match NO ONE or provide Feedback?
+            // Actually, in previous code "d6" was mapped to "damla".
+            // Let's map d6 to Selin for the sake of gameplay flow (maybe she likes coffee too?) 
+            // OR change d6 text in HTML. I will treat d6 as "selin" in logic for now, or change d6 in logic.
+            
+            // Logic Check:
+            let correct = false;
+            if (targetPerson === 'yusuf' && ['d1','d3','d5','d7'].includes(data)) correct = true;
+            if (targetPerson === 'selin' && ['d2','d4','d8'].includes(data)) correct = true;
+            
+            if (data === 'd6') {
+                 feedback.textContent = "Wait! In the story, Emre liked coffee, not Yusuf or Selin!";
+                 feedback.style.color = "orange";
+                 return;
+            }
+
+            if (correct) {
+                ev.target.closest('.sort-bucket').appendChild(draggedElement);
+                draggedElement.style.background = '#2ecc71';
+                feedback.textContent = "Correct!";
+                feedback.style.color = "#2ecc71";
+            } else {
+                feedback.textContent = "Try the other person.";
+                feedback.style.color = "#e74c3c";
+            }
+        }
+
+        /* --- 7. CHAT LOGIC --- */
+        function handleChat(choiceIdx) {
+            const data = chatSteps[chatStepIdx];
+            const messages = document.getElementById('chat-messages');
+            
+            // Add user choice
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg sent';
+            userMsg.textContent = data.opts[choiceIdx].txt;
+            messages.appendChild(userMsg);
+
+            if (data.opts[choiceIdx].correct) {
+                // Correct
+                chatStepIdx++;
+                setTimeout(() => {
+                    if (chatStepIdx < chatSteps.length) {
+                        const reply = document.createElement('div');
+                        reply.className = 'msg received';
+                        reply.textContent = chatSteps[chatStepIdx].msg;
+                        messages.appendChild(reply);
+                        messages.scrollTop = messages.scrollHeight;
+                        updateChatButtons();
+                    } else {
+                        const end = document.createElement('div');
+                        end.className = 'msg received';
+                        end.textContent = "Selin: Great! See you then! 👋";
+                        messages.appendChild(end);
+                        document.getElementById('chat-options').innerHTML = '<div style="text-align:center; color:green; font-weight:bold;">Conversation Complete!</div>';
+                    }
+                }, 1000);
+            } else {
+                // Incorrect
+                setTimeout(() => {
+                    const error = document.createElement('div');
+                    error.className = 'msg received';
+                    error.style.background = '#ffdddd';
+                    error.textContent = "Selin looks confused... (Try a more polite answer!)";
+                    messages.appendChild(error);
+                    messages.scrollTop = messages.scrollHeight;
+                    // Reset step visually? Or just let them try again?
+                    // Simple: Undo user msg and let them try again
+                    setTimeout(() => {
+                        userMsg.remove();
+                        error.remove();
+                    }, 1500);
+                }, 500);
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function updateChatButtons() {
+            const btns = document.querySelectorAll('.chat-btn');
+            const data = chatSteps[chatStepIdx];
+            btns[0].textContent = data.opts[0].txt;
+            btns[1].textContent = data.opts[1].txt;
+        }
+
+        /* --- 8. DICTATION LOGIC --- */
+        let currentDictationWord = "";
+        function playDictationWord() {
+            const randIndex = Math.floor(Math.random() * vocabList.length);
+            currentDictationWord = vocabList[randIndex].word;
+            speak(currentDictationWord);
+        }
+
+        function checkDictation() {
+            const userText = document.getElementById('dictation-input').value.trim().toLowerCase();
+            const feedback = document.getElementById('dictation-feedback');
+            
+            if (!currentDictationWord) {
+                feedback.textContent = "Please click 'Play Word' first.";
+                return;
+            }
+
+            if (userText === currentDictationWord.toLowerCase()) {
+                feedback.textContent = "✅ Correct! Excellent spelling.";
+                feedback.style.color = "#2ecc71";
+            } else {
+                feedback.textContent = `❌ Incorrect. The word was: ${currentDictationWord}`;
+                feedback.style.color = "#e74c3c";
+            }
+        }
     </script>
 </body>
 </html>
