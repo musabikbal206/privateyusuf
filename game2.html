@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yusuf's Eagle Eye Challenge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --navy: #0A192F;
+            --navy-light: #112240;
+            --gold: #D4AF37;
+            --cream: #F8F8F0;
+            --success: #2ecc71;
+            --error: #e74c3c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--navy);
+            color: var(--cream);
+            font-family: 'Lato', sans-serif;
+            overflow: hidden;
+            touch-action: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            user-select: none;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            background: radial-gradient(circle at center, #1e3a5f 0%, var(--navy) 100%);
+            border: 4px solid var(--gold);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* CANVAS */
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+
+        /* OVERLAYS */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 20;
+            padding: 20px;
+            transition: opacity 0.3s;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px var(--navy);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--cream);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 25px;
+            color: #d1d5db;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* BUTTONS */
+        .btn {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 0 #b08d28;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .btn:active { transform: translateY(4px); box-shadow: none; }
+        .btn:hover { background: #fff; }
+
+        /* HUD */
+        #hud {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: var(--gold);
+            text-shadow: 2px 2px var(--navy);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .timer-bar-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--navy);
+            z-index: 10;
+        }
+
+        .timer-bar {
+            height: 100%;
+            background: var(--gold);
+            width: 100%;
+            transition: width 0.1s linear;
+        }
+
+        /* FACT CARD (Level Complete) */
+        .fact-box {
+            background: var(--navy-light);
+            border: 2px solid var(--gold);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            transform: scale(0.9);
+            animation: popIn 0.3s forwards;
+        }
+
+        @keyframes popIn {
+            to { transform: scale(1); }
+        }
+
+        .fact-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="hud">
+            <div>Level: <span id="level-display">1</span>/5</div>
+            <div id="target-display">Find: ???</div>
+        </div>
+        
+        <div class="timer-bar-container">
+            <div id="timer-bar" class="timer-bar"></div>
+        </div>
+
+        <!-- START SCREEN -->
+        <div id="start-screen" class="overlay">
+            <h1>Eagle Eye Challenge</h1>
+            <p>Professor Selim says: "A visual learner notices details!"</p>
+            <p>Find the <b>Hidden Item</b> in the picture before time runs out.</p>
+            <button class="btn" onclick="startGame()">Start Test</button>
+        </div>
+
+        <!-- LEVEL INTRO SCREEN -->
+        <div id="level-intro-screen" class="overlay" style="display: none;">
+            <h2 id="intro-title">Level 1</h2>
+            <p>Find the:</p>
+            <div id="intro-target" style="font-size: 4rem; margin-bottom: 20px;">🚤</div>
+            <p id="intro-name" class="highlight">BOAT</p>
+            <button class="btn" onclick="startLevel()">Ready!</button>
+        </div>
+
+        <!-- SUCCESS / FACT SCREEN -->
+        <div id="fact-screen" class="overlay" style="display: none;">
+            <div class="fact-box">
+                <span id="fact-icon" class="fact-icon">🚤</span>
+                <h2 id="fact-title">Found it!</h2>
+                <p id="fact-desc">Seeing the boat means you are a <b>Creative Person</b>.</p>
+                <button class="btn" onclick="nextLevel()">Next Level</button>
+            </div>
+        </div>
+
+        <!-- GAME OVER SCREEN -->
+        <div id="game-over-screen" class="overlay" style="display: none;">
+            <h1>Time's Up!</h1>
+            <p>You missed the details.</p>
+            <button class="btn" onclick="startGame()">Try Again</button>
+        </div>
+        
+        <!-- WIN SCREEN -->
+        <div id="win-screen" class="overlay" style="display: none;">
+            <h1>👑 Eagle Eye Master!</h1>
+            <p>You found all the hidden items!</p>
+            <p>You are truly a <b>Visual Learner</b> with an <b>Eagle Eye</b>.</p>
+            <button class="btn" onclick="startGame()">Play Again</button>
+        </div>
+
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Setup Canvas
+        function resize() {
+            canvas.width = document.getElementById('game-container').offsetWidth;
+            canvas.height = document.getElementById('game-container').offsetHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Game Data
+        const levels = [
+            {
+                id: 1,
+                targetName: "Boat",
+                targetEmoji: "🚤",
+                distractors: ["🌊", "🐟", "🦆", "🦈", "🐚", "💧"],
+                bgColor: "#2c3e50", // Dark Blue
+                fact: "Seeing the boat means you are a <b>Creative Person</b> who notices small details.",
+                time: 10
+            },
+            {
+                id: 2,
+                targetName: "Crocodile",
+                targetEmoji: "🐊",
+                distractors: ["🌿", "🍃", "🐸", "🐍", "🌳", "🌵"],
+                bgColor: "#27ae60", // Greenish
+                fact: "Seeing the crocodile means you are a <b>Careful Person</b> who avoids risks.",
+                time: 8
+            },
+            {
+                id: 3,
+                targetName: "Car",
+                targetEmoji: "🚗",
+                distractors: ["🌲", "🏠", "🛣️", "🚦", "🚲", "🏘️"],
+                bgColor: "#7f8c8d", // Grey Road
+                fact: "Seeing the car means you like to be <b>Free</b> and travel.",
+                time: 8
+            },
+            {
+                id: 4,
+                targetName: "Happy Face",
+                targetEmoji: "🙂",
+                distractors: ["😐", "🕯️", "🎈", "🎭", "😶", "🧔"],
+                bgColor: "#8e44ad", // Purple
+                fact: "Seeing the faces means you are a <b>Social Person</b>.",
+                time: 6
+            },
+            {
+                id: 5,
+                targetName: "Letter A",
+                targetEmoji: "🅰️",
+                distractors: ["🅱️", "🅾️", "🅿️", "🆎", "🆔", "🆚", "🆗"],
+                bgColor: "#c0392b", // Red
+                fact: "Finding the Letter A means you have an <b>Eagle Eye</b>!",
+                time: 5,
+                small: true // Make target smaller
+            }
+        ];
+
+        let currentLevelIdx = 0;
+        let items = []; // Stores {x, y, text, isTarget}
+        let gameActive = false;
+        let timeLeft = 0;
+        let maxTime = 0;
+        let timerInterval;
+
+        /* --- GAME LOGIC --- */
+
+        function startGame() {
+            currentLevelIdx = 0;
+            showScreen('start-screen', false);
+            showScreen('win-screen', false);
+            showScreen('game-over-screen', false);
+            prepareLevel();
+        }
+
+        function prepareLevel() {
+            if (currentLevelIdx >= levels.length) {
+                showScreen('win-screen', true);
+                return;
+            }
+
+            const lvl = levels[currentLevelIdx];
+            
+            // Update Intro Screen
+            document.getElementById('intro-title').textContent = `Level ${lvl.id}`;
+            document.getElementById('intro-target').textContent = lvl.targetEmoji;
+            document.getElementById('intro-name').textContent = lvl.targetName.toUpperCase();
+            
+            showScreen('level-intro-screen', true);
+            showScreen('fact-screen', false);
+        }
+
+        function startLevel() {
+            showScreen('level-intro-screen', false);
+            const lvl = levels[currentLevelIdx];
+            
+            // Update HUD
+            document.getElementById('level-display').textContent = lvl.id;
+            document.getElementById('target-display').textContent = `Find: ${lvl.targetEmoji}`;
+            
+            // Setup Timer
+            timeLeft = lvl.time;
+            maxTime = lvl.time;
+            updateTimerBar();
+            clearInterval(timerInterval);
+            timerInterval = setInterval(gameLoop, 100); // Check time every 0.1s
+
+            // Generate Items
+            generateItems(lvl);
+            
+            gameActive = true;
+            draw();
+        }
+
+        function generateItems(lvl) {
+            items = [];
+            const count = 40 + (currentLevelIdx * 10); // More items each level
+            
+            // 1. Place Target
+            const padding = 50;
+            const targetX = padding + Math.random() * (canvas.width - padding*2);
+            const targetY = padding + Math.random() * (canvas.height - padding*2);
+            
+            items.push({
+                x: targetX,
+                y: targetY,
+                text: lvl.targetEmoji,
+                isTarget: true,
+                size: lvl.small ? 20 : 40 // Smaller for last level
+            });
+
+            // 2. Place Distractors
+            for (let i = 0; i < count; i++) {
+                const dist = lvl.distractors[Math.floor(Math.random() * lvl.distractors.length)];
+                let x, y, safe;
+                
+                // Simple collision avoidance for target visibility
+                let attempts = 0;
+                do {
+                    x = padding + Math.random() * (canvas.width - padding*2);
+                    y = padding + Math.random() * (canvas.height - padding*2);
+                    
+                    // Distance check from target
+                    const dx = x - targetX;
+                    const dy = y - targetY;
+                    const distance = Math.sqrt(dx*dx + dy*dy);
+                    safe = distance > 50;
+                    attempts++;
+                } while (!safe && attempts < 10);
+
+                items.push({
+                    x: x,
+                    y: y,
+                    text: dist,
+                    isTarget: false,
+                    size: 35 + Math.random() * 15, // Varied size
+                    rotation: (Math.random() - 0.5) * 0.5 // Slight rotation
+                });
+            }
+        }
+
+        /* --- DRAWING --- */
+        function draw() {
+            if (!gameActive) return;
+
+            // Clear Background
+            const lvl = levels[currentLevelIdx];
+            // Gradient BG
+            const grad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 10, canvas.width/2, canvas.height/2, canvas.width);
+            grad.addColorStop(0, "#34495e");
+            grad.addColorStop(1, lvl.bgColor);
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Items
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            
+            items.forEach(item => {
+                ctx.save();
+                ctx.translate(item.x, item.y);
+                if (item.rotation) ctx.rotate(item.rotation);
+                ctx.font = `${item.size}px Arial`;
+                // Add shadow for depth
+                ctx.shadowColor = "rgba(0,0,0,0.5)";
+                ctx.shadowBlur = 4;
+                ctx.fillStyle = "#fff"; // Emoji color doesn't change, but text setting needed
+                ctx.fillText(item.text, 0, 0);
+                ctx.restore();
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        /* --- LOGIC LOOP --- */
+        function gameLoop() {
+            if (!gameActive) return;
+            
+            timeLeft -= 0.1;
+            updateTimerBar();
+
+            if (timeLeft <= 0) {
+                gameOver();
+            }
+        }
+
+        function updateTimerBar() {
+            const pct = (timeLeft / maxTime) * 100;
+            const bar = document.getElementById('timer-bar');
+            bar.style.width = `${pct}%`;
+            
+            if (pct < 30) bar.style.background = "#e74c3c"; // Red warning
+            else bar.style.background = "#D4AF37"; // Gold normal
+        }
+
+        /* --- INPUT HANDLING --- */
+        canvas.addEventListener('mousedown', handleClick);
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent double fire
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent("mousedown", {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }, { passive: false });
+
+        function handleClick(e) {
+            if (!gameActive) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+
+            // Find target (It's always index 0)
+            const target = items[0];
+            
+            // Distance Check (Hitbox)
+            const dx = clickX - target.x;
+            const dy = clickY - target.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+
+            if (dist < 40) { // Hit!
+                levelComplete();
+            } else {
+                // Miss penalty? Optional. Maybe play sound or shake.
+                // For now, no penalty, just time pressure.
+            }
+        }
+
+        function levelComplete() {
+            gameActive = false;
+            clearInterval(timerInterval);
+            
+            const lvl = levels[currentLevelIdx];
+            document.getElementById('fact-icon').textContent = lvl.targetEmoji;
+            document.getElementById('fact-title').textContent = `You found the ${lvl.targetName}!`;
+            document.getElementById('fact-desc').innerHTML = lvl.fact;
+            
+            showScreen('fact-screen', true);
+        }
+
+        function nextLevel() {
+            currentLevelIdx++;
+            prepareLevel();
+        }
+
+        function gameOver() {
+            gameActive = false;
+            clearInterval(timerInterval);
+            showScreen('game-over-screen', true);
+        }
+
+        function showScreen(id, visible) {
+            document.getElementById(id).style.display = visible ? 'flex' : 'none';
+        }
+
+        // Init
+        draw(); // Draw once blank
+
+    </script>
+</body>
+</html>
