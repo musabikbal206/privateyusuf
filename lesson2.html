@@ -3,192 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Lessons with Musab İkbal SUBAŞI</title>
+    <title>Fun Personality Quiz | Musab İkbal SUBAŞI</title>
     <style>
-        /* --- DESIGN SYSTEM EXTRACTED FROM PROVIDED THEME --- */
-        
-        /* --- FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap');
 
-        /* --- VARIABLES --- */
         :root {
             --navy: #0A192F;
-            --navy-light: #172a45;
+            --navy-light: #112240;
             --gold: #D4AF37;
-            --gold-light: #f3cf55;
             --cream: #F8F8F0;
             --white: #ffffff;
             --success: #2ecc71;
             --error: #e74c3c;
-            --shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-            --highlight: rgba(212, 175, 55, 0.3);
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
         }
 
-        /* --- RESET & BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
         body {
             background-color: var(--navy);
-            color: var(--navy);
+            color: var(--cream);
             font-family: 'Lato', sans-serif;
-            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--navy);
-        }
-
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            background-color: var(--navy);
-            color: var(--gold);
-            padding: 2rem 1rem;
+            background: linear-gradient(180deg, var(--navy-light) 0%, var(--navy) 100%);
+            padding: 2rem;
             text-align: center;
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 10;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: var(--shadow);
         }
 
-        header h1 {
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
             color: var(--gold);
-            font-size: 2.2rem;
-            letter-spacing: 1px;
             margin-bottom: 0.5rem;
+            letter-spacing: 1px;
         }
 
-        header p {
-            color: var(--cream);
-            font-size: 0.9rem;
+        .subtitle {
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 300;
+            letter-spacing: 3px;
+            opacity: 0.8;
         }
 
-        /* --- CONTAINER --- */
+        /* CONTAINER */
         .container {
             max-width: 1000px;
             margin: 2rem auto;
-            background: var(--cream);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            flex: 1;
             width: 95%;
-            display: flex;
-            flex-direction: column;
+            flex: 1;
         }
 
-        /* --- NAVIGATION --- */
+        /* NAVIGATION */
         .tabs {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            background: var(--navy-light);
+            gap: 10px;
+            margin-bottom: 2rem;
         }
 
         .tab-btn {
-            flex: 1;
-            padding: 1.2rem;
             background: transparent;
-            border: none;
-            color: var(--cream);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
-            min-width: 140px;
+            transition: all 0.3s;
+            border-radius: 4px;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 120px;
         }
 
-        .tab-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+            font-weight: bold;
         }
 
-        .tab-btn.active {
-            color: var(--gold);
-            border-bottom: 4px solid var(--gold);
-            background: rgba(10, 25, 47, 0.5);
-        }
-
-        /* --- SECTIONS --- */
+        /* SECTIONS */
         .section {
             display: none;
-            padding: 2rem;
             animation: fadeIn 0.5s ease;
-            min-height: 500px;
+            background: var(--navy-light);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 2rem;
         }
 
-        .section.active {
-            display: block;
-        }
+        .section.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--navy);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 2rem;
-            font-style: italic;
-            border-bottom: 1px solid var(--gold);
-            padding-bottom: 1rem;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 80%;
-        }
-
-        /* --- BUTTONS --- */
-        .btn {
-            padding: 0.8rem 1.5rem;
-            background-color: var(--navy);
+        h2 {
+            font-family: 'Playfair Display', serif;
             color: var(--gold);
-            border: 1px solid var(--gold);
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        .btn:hover {
-            background-color: var(--gold);
-            color: var(--navy);
-        }
-
-        .btn-small {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.75rem;
-            border-radius: 20px;
-        }
-
-        /* --- ACTIVITY 1: SMART READER --- */
-        .story-container {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #333;
-            text-align: justify;
+        /* ACTIVITY 1: STORY */
+        .story-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
         .story-sentence {
@@ -199,853 +132,816 @@
         }
 
         .story-sentence:hover {
-            background-color: rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.2);
         }
 
-        .story-sentence.active-sentence {
-            background-color: var(--highlight);
+        .story-sentence.playing {
+            background: var(--gold);
             color: var(--navy);
-            font-weight: 600;
         }
 
-        /* --- ACTIVITY 2: FLASHCARDS --- */
-        .flashcard-grid {
+        /* ACTIVITY 2: FLASHCARDS */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
         }
 
-        .flashcard {
-            background-color: transparent;
-            perspective: 1000px;
+        .card {
+            background: var(--cream);
+            color: var(--navy);
             height: 220px;
+            perspective: 1000px;
             cursor: pointer;
+            border-radius: 8px;
         }
 
-        .flashcard-inner {
+        .card-inner {
             position: relative;
             width: 100%;
             height: 100%;
             text-align: center;
             transition: transform 0.6s;
             transform-style: preserve-3d;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
-        .flashcard.flipped .flashcard-inner {
+        .card.flipped .card-inner {
             transform: rotateY(180deg);
         }
 
-        .flashcard-front, .flashcard-back {
+        .card-front, .card-back {
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 20px;
             border-radius: 8px;
-            border: 2px solid var(--navy);
-            padding: 1.5rem;
+            border: 2px solid var(--gold);
         }
 
-        .flashcard-front {
-            background-color: var(--white);
-            color: var(--navy);
-        }
-
-        .flashcard-back {
-            background-color: var(--navy);
-            color: var(--gold);
+        .card-back {
             transform: rotateY(180deg);
+            background: var(--navy);
+            color: var(--gold);
         }
 
-        .word-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
+        .card-icon { font-size: 3rem; margin-bottom: 10px; }
+        .card-word { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: bold; }
+        .card-def { font-size: 0.9rem; line-height: 1.4; }
 
-        .pos-tag {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        /* --- ACTIVITY 3: DICTATION --- */
-        .dictation-item {
-            background: white;
-            padding: 2rem;
+        /* ACTIVITY 3: TRUE OR FALSE */
+        .tf-container { display: flex; flex-direction: column; gap: 15px; }
+        .tf-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--gold);
-        }
-
-        .dictation-controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            border-left: 3px solid var(--gold);
         }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ccc;
+        .tf-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            cursor: pointer;
+            margin-left: 5px;
             border-radius: 4px;
-            font-family: 'Lato', sans-serif;
-            font-size: 1.1rem;
-            outline: none;
-            transition: border-color 0.3s;
+            transition: 0.2s;
         }
-        
-        input[type="text"]:focus {
-            border-color: var(--navy);
-        }
+        .tf-btn:hover { background: rgba(212, 175, 55, 0.2); }
+        .tf-btn.correct { background: var(--success); color: white; border-color: var(--success); }
+        .tf-btn.wrong { background: var(--error); color: white; border-color: var(--error); }
 
-        .feedback {
-            margin-top: 1rem;
-            font-weight: bold;
-            min-height: 1.5rem;
-        }
-        .correct { color: var(--success); }
-        .incorrect { color: var(--error); }
-
-        /* --- ACTIVITY 4: GRAMMAR (WORD BANK MODE) --- */
-        .gap-container {
-            background: white;
-            padding: 2rem;
+        /* ACTIVITY 4: SENTENCE BUILDER */
+        .scramble-box {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
-
         .word-bank {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: var(--navy-light);
-            border-radius: 8px;
+            margin-top: 15px;
+            min-height: 50px;
         }
-
-        .bank-word {
+        .drop-zone {
+            border-bottom: 2px solid var(--gold);
+            min-height: 50px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.05);
+        }
+        .scramble-word {
             background: var(--cream);
             color: var(--navy);
-            padding: 8px 16px;
+            padding: 8px 15px;
             border-radius: 4px;
             cursor: pointer;
-            border: 2px solid transparent;
             font-weight: bold;
-            transition: all 0.2s;
             user-select: none;
+            border: 1px solid var(--gold);
         }
 
-        .bank-word:hover {
-            transform: translateY(-2px);
+        /* ACTIVITY 5: MATCH UP */
+        .match-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
-
-        .bank-word.selected {
-            background: var(--gold);
-            border-color: var(--white);
-            box-shadow: 0 0 10px var(--gold);
-        }
-
-        .bank-word.used {
-            opacity: 0.3;
-            cursor: default;
-            transform: none;
-            background: #ccc;
-        }
-
-        .grammar-sentence {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            line-height: 2;
-        }
-
-        .gap-slot {
-            display: inline-block;
-            min-width: 120px;
-            height: 2rem;
-            border-bottom: 3px solid var(--navy);
-            color: var(--gold); /* Text color when filled */
+        .match-col { display: flex; flex-direction: column; gap: 10px; }
+        .match-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border: 1px solid var(--gold);
+            cursor: pointer;
             text-align: center;
-            cursor: pointer;
-            margin: 0 5px;
-            font-weight: bold;
-            vertical-align: bottom;
-            transition: all 0.2s;
-            background: rgba(10, 25, 47, 0.05);
-            border-radius: 4px 4px 0 0;
-            padding: 0 10px;
+            transition: 0.2s;
+            border-radius: 6px;
         }
+        .match-card:hover { background: var(--gold); color: var(--navy); }
+        .match-card.selected { background: var(--gold); color: var(--navy); transform: scale(1.02); }
+        .match-card.matched { background: var(--success); color: white; border-color: var(--success); opacity: 0.5; pointer-events: none; }
 
-        .gap-slot:hover {
-            background: rgba(10, 25, 47, 0.1);
+        /* ACTIVITY 6: SORTING */
+        .sorting-area {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
         }
-
-        .gap-slot.filled {
-            border-bottom-color: var(--gold);
-        }
-        
-        .gap-slot.correct {
-            color: var(--success);
-            border-bottom-color: var(--success);
-        }
-        
-        .gap-slot.incorrect {
-            color: var(--error);
-            border-bottom-color: var(--error);
-        }
-
-        /* --- READER QUIZ ADDITIONS --- */
-        .reader-quiz-container {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--gold);
-        }
-        
-        .quiz-question-card {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
+        .sort-bucket {
+            flex: 1;
+            border: 2px dashed var(--gold);
+            padding: 20px;
             border-radius: 8px;
-            border-left: 4px solid var(--navy);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            min-height: 200px;
+            text-align: center;
+            transition: background 0.3s;
         }
-
-        .quiz-question-text {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--navy);
-        }
-
-        .quiz-option {
-            display: block;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .quiz-option:hover {
-            background: #f0f4f8;
-        }
-
-        /* --- ACTIVITY 5: SCRAMBLE --- */
-        .scramble-wrapper {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .pool-area {
-            min-height: 60px;
-            padding: 10px;
-            border-radius: 4px;
+        .sort-bucket.drag-over { background: rgba(212, 175, 55, 0.1); }
+        .bucket-title { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 10px; font-size: 1.2rem; }
+        .draggable-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
         }
-
-        .source-pool {
-            background-color: #f0f4f8;
-        }
-
-        .dest-pool {
-            border: 2px dashed var(--navy);
-            background-color: rgba(212, 175, 55, 0.05);
-        }
-
-        .drag-word {
-            background: var(--navy);
-            color: var(--white);
+        .draggable {
+            background: var(--cream);
+            color: var(--navy);
             padding: 8px 16px;
             border-radius: 20px;
-            cursor: pointer;
-            user-select: none;
-            transition: transform 0.2s, background 0.2s;
-            font-weight: 600;
+            cursor: grab;
+            font-weight: bold;
+            border: 1px solid var(--gold);
         }
 
-        .drag-word:hover {
-            transform: translateY(-2px);
-            background: var(--gold);
-            color: var(--navy);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--navy);
-            color: var(--cream);
-            padding: 2rem 1rem;
-            text-align: center;
-            margin-top: auto;
-            border-top: 1px solid var(--gold);
-        }
-
-        .stats-grid {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
+        /* ACTIVITY 7: CHAT SIM */
+        .chat-screen {
+            background: #fff;
+            color: #333;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 450px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            overflow: hidden;
+            border: 4px solid var(--navy-light);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-
-        .stat-val {
+        .chat-header {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .msg {
+            padding: 10px 15px;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        .msg.received { background: white; align-self: flex-start; border-top-left-radius: 0; border: 1px solid #ddd; }
+        .msg.sent { background: var(--navy); color: var(--gold); align-self: flex-end; border-top-right-radius: 0; }
+        .chat-options {
+            padding: 15px;
+            background: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .chat-btn {
+            background: white;
+            border: 1px solid var(--navy);
+            color: var(--navy);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
             font-weight: bold;
         }
+        .chat-btn:hover { background: var(--navy); color: var(--gold); }
 
-        .stat-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
+        /* ACTIVITY 8: DICTATION */
+        .dictation-box { text-align: center; max-width: 500px; margin: 0 auto; }
+        .dictation-input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid var(--gold);
+            background: rgba(255,255,255,0.1);
+            color: var(--cream);
+            font-size: 1.2rem;
+            border-radius: 8px;
+            text-align: center;
         }
 
-        /* --- UTILS --- */
-        .hidden { display: none; }
-        .text-center { text-align: center; }
-        .mt-2 { margin-top: 2rem; }
+        .btn-main {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 10px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .btn-main:hover { background: var(--white); }
 
+        .feedback-msg { margin-top: 15px; font-weight: bold; min-height: 24px; text-align: center; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: auto;
+            color: var(--gold);
+        }
+
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .tabs { flex-direction: column; }
-            .tab-btn { border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid transparent; }
-            .tab-btn.active { border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--gold); }
-            header h1 { font-size: 1.6rem; }
-            .section { padding: 1rem; }
-            .stats-grid { gap: 1.5rem; }
+            .match-container { grid-template-columns: 1fr; }
+            .sorting-area { flex-direction: column; }
+            .card { height: 250px; }
+            .chat-screen { width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Private Lessons with Musab İkbal SUBAŞI</h1>
-        <p>Premium Curriculum • The Equilibrium of Saturday</p>
+        <div style="font-size: 2rem;">👑</div>
+        <h1>Fun Personality Quiz</h1>
+        <div class="subtitle">Private Lesson • Beginner A1-A2</div>
     </header>
 
     <div class="container">
-        <!-- NAVIGATION -->
+        <!-- Navigation -->
         <nav class="tabs">
-            <button class="tab-btn active" onclick="app.switchTab('reader')">Smart Reader</button>
-            <button class="tab-btn" onclick="app.switchTab('flashcards')">Flashcards</button>
-            <button class="tab-btn" onclick="app.switchTab('grammar')">Grammar</button>
-            <button class="tab-btn" onclick="app.switchTab('dictation')">Dictation</button>
-            <button class="tab-btn" onclick="app.switchTab('scramble')">Sentence Builder</button>
+            <button class="tab-btn active" onclick="openTab('story')">1. Story</button>
+            <button class="tab-btn" onclick="openTab('vocab')">2. Words</button>
+            <button class="tab-btn" onclick="openTab('tf')">3. True/False</button>
+            <button class="tab-btn" onclick="openTab('sentence')">4. Builder</button>
+            <button class="tab-btn" onclick="openTab('match')">5. Quiz Match</button>
+            <button class="tab-btn" onclick="openTab('sorting')">6. Sort</button>
+            <button class="tab-btn" onclick="openTab('chat')">7. Chat</button>
+            <button class="tab-btn" onclick="openTab('dictation')">8. Listen</button>
         </nav>
 
-        <!-- 1. SMART READER -->
-        <div id="reader" class="section active">
-            <h2 class="section-title">Interactive Story Reader</h2>
-            <span class="section-subtitle">Click any sentence to hear it read aloud and see the text highlighted.</span>
-            <div id="story-content" class="story-container">
-                <!-- Content injected by JS -->
-            </div>
+        <!-- 1. Interactive Story -->
+        <div id="story" class="section active">
+            <h2>📖 Yusuf and the Personality Quiz</h2>
+            <p style="margin-bottom: 15px; font-style: italic; color: #aaa;">Click any sentence to listen.</p>
+            <div id="story-content" class="story-text"></div>
+        </div>
 
-            <!-- NEW QUIZ SECTION -->
-            <div class="reader-quiz-container">
-                <h3 class="section-title" style="font-size: 1.5rem;">Quick Comprehension Check</h3>
-                <div id="reader-quiz-list">
-                    <!-- Quiz injected by JS -->
+        <!-- 2. Vocabulary -->
+        <div id="vocab" class="section">
+            <h2>📇 Vocabulary Flashcards</h2>
+            <div class="grid" id="vocab-grid"></div>
+        </div>
+
+        <!-- 3. True or False -->
+        <div id="tf" class="section">
+            <h2>❓ True or False?</h2>
+            <p>Read the sentences about Yusuf's story. Is it True or False?</p>
+            <div class="tf-container" id="tf-container">
+                <!-- JS populates this -->
+            </div>
+            <p id="tf-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 4. Sentence Builder -->
+        <div id="sentence" class="section">
+            <h2>🏗️ Sentence Builder</h2>
+            <p>Click the words in the correct order to form the rule from the quiz.</p>
+            <div class="scramble-box">
+                <h3 id="scramble-hint" style="color:var(--gold); margin-bottom:10px;">Hint</h3>
+                <div class="drop-zone" id="scramble-zone"></div>
+                <div class="word-bank" id="scramble-bank"></div>
+                <button class="btn-main" onclick="resetScramble()" style="margin-top:15px; font-size:0.8rem;">Reset</button>
+            </div>
+            <p id="scramble-feedback" class="feedback-msg"></p>
+            <button class="btn-main" onclick="nextScramble()">Next Sentence ➡</button>
+        </div>
+
+        <!-- 5. Match Up -->
+        <div id="match" class="section">
+            <h2>🔗 Quiz Result Match</h2>
+            <p>Match the Image (Left) to the Personality Trait (Right).</p>
+            <div class="match-container">
+                <div class="match-col" id="match-left"></div>
+                <div class="match-col" id="match-right"></div>
+            </div>
+            <p id="match-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 6. Sorting Game -->
+        <div id="sorting" class="section">
+            <h2>🧐 What did Yusuf see?</h2>
+            <p>Drag the items to the correct bucket based on the story.</p>
+            <div class="draggable-container" id="draggable-source">
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d1">Boat</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d2">Crocodile</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d3">Car</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d4">Binoculars</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d5">Faces</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d6">Candlesticks</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d7">Social</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d8">Careful</div>
+            </div>
+            <div class="sorting-area">
+                <div class="sort-bucket" ondrop="drop(event, 'saw')" ondragover="allowDrop(event)">
+                    <div class="bucket-title">✅ What Yusuf Saw (Is)</div>
                 </div>
-                <div class="text-center mt-2">
-                    <button class="btn" onclick="app.checkReaderQuiz()">Submit Answers</button>
-                    <div id="reader-quiz-feedback" class="feedback"></div>
+                <div class="sort-bucket" ondrop="drop(event, 'didnt')" ondragover="allowDrop(event)">
+                    <div class="bucket-title">❌ What He Didn't See (Isn't)</div>
+                </div>
+            </div>
+            <p id="sort-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 7. Chat Simulator -->
+        <div id="chat" class="section">
+            <h2>💬 Chat Simulator</h2>
+            <p style="margin-bottom:10px;">Yusuf is telling his friend Ali about the quiz. Choose the right answers!</p>
+            <div class="chat-screen">
+                <div class="chat-header">Chat with Ali</div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="msg received">Ali: Hey Yusuf! How was Professor Selim's class today?</div>
+                </div>
+                <div class="chat-options" id="chat-options">
+                    <button class="chat-btn" onclick="handleChat(0)">It was boring. We studied circuits.</button>
+                    <button class="chat-btn" onclick="handleChat(1)">It was fun! We took a personality quiz.</button>
                 </div>
             </div>
         </div>
 
-        <!-- 2. FLASHCARDS -->
-        <div id="flashcards" class="section">
-            <h2 class="section-title">Vocabulary Mastery</h2>
-            <span class="section-subtitle">Key terms from the text. Click to reveal definitions.</span>
-            <div id="flashcards-container" class="flashcard-grid">
-                <!-- Content injected by JS -->
-            </div>
-        </div>
-
-        <!-- 3. GRAMMAR -->
-        <div id="grammar" class="section">
-            <h2 class="section-title">Grammar Gap-Fill</h2>
-            <span class="section-subtitle">Fill in the missing words based on the story context.</span>
-            <div class="gap-container" id="grammar-container">
-                <!-- Content injected by JS -->
-            </div>
-            <div class="text-center mt-2">
-                <button class="btn" onclick="app.checkGrammar()">Check Answers</button>
-                <div id="grammar-result" class="feedback"></div>
-            </div>
-        </div>
-
-        <!-- 4. DICTATION -->
+        <!-- 8. Dictation -->
         <div id="dictation" class="section">
-            <h2 class="section-title">Audio Dictation</h2>
-            <span class="section-subtitle">Listen to the excerpt and type exactly what you hear.</span>
-            <div id="dictation-list">
-                <!-- Content injected by JS -->
+            <h2>🎧 Listening Dictation</h2>
+            <div class="dictation-box">
+                <button class="btn-main" onclick="playDictationWord()">🔊 Play Word</button>
+                <input type="text" id="dictation-input" class="dictation-input" placeholder="Type what you hear...">
+                <button class="btn-main" onclick="checkDictation()">Check Spelling</button>
+                <div id="dictation-feedback" class="feedback-msg"></div>
             </div>
         </div>
 
-        <!-- 5. SCRAMBLE -->
-        <div id="scramble" class="section">
-            <h2 class="section-title">Sentence Reconstruction</h2>
-            <span class="section-subtitle">Click words in the gray box to move them to the answer box.</span>
-            <div id="scramble-list">
-                <!-- Content injected by JS -->
-            </div>
-        </div>
     </div>
 
     <footer>
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-val" id="score-vocab">0</span>
-                <span class="stat-label">Vocab Cards</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-val" id="score-grammar">0</span>
-                <span class="stat-label">Grammar Pts</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-val" id="score-dictation">0</span>
-                <span class="stat-label">Dictation</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-val" id="score-scramble">0</span>
-                <span class="stat-label">Sentences Built</span>
-            </div>
-        </div>
-        <p style="margin-top: 1.5rem; font-size: 0.8rem; opacity: 0.6;">&copy; 2025 Musab İkbal SUBAŞI - Private English Curriculum</p>
+        Private Lesson for Musab İkbal SUBAŞI • Created with Excellence 👑
     </footer>
 
     <script>
-        // --- DATA SOURCE ---
-        const storyText = `The dawn had barely broken, yet Kenan, who had just celebrated his fourth birthday, was already fully cognizant of the glorious weekend that stretched ahead. He was unequivocally cheerful, bouncing on his small, blue mattress. Unlike the weekdays, when his parents were perpetually tethered to their demanding occupations, Saturdays were earmarked exclusively for exhilarating family pursuits. Adjacent to Kenan’s room, Damla was already immersed in the quiet productivity that defined her academic work. As an accomplished research scientist, her mornings often entailed reviewing complex data, even when she wasn't mandated to be on campus. Meanwhile, Furkan, the family physician, finally permitted himself a prolonged period of slumber. Having spent the previous day treating a particularly difficult cohort of patients, he was utterly depleted. His job required remarkable composure and constant vigilance, making the ability to entirely disconnect from his responsibilities during the weekend an essential prerequisite for maintaining his equilibrium.`;
+        /* --- 1. STORY DATA --- */
+        const storyText = `Today, Yusuf is nervous. He has a big exam tomorrow. He looks at his heavy books and sighs. He wants to do well, but he feels a little bit stressed. Yusuf goes to his morning class. Professor Selim is at the front of the room. "Hello, Yusuf!" says Professor Selim. "Don't be nervous. Today, we are not studying circuits. We have a fun personality quiz! It is an icebreaker to help us relax."
+        Professor Selim shows the first picture on the screen. "Look at this image," he says. "What did you see first? A crocodile or a boat?" Yusuf looks very closely at the screen. He sees a boat on the water immediately. He does not see the animal yet.
+        Professor Selim explains the first result. "If you saw the crocodile, you are a very careful person," he says. "You do not like to take risks." Yusuf thinks about his engineering projects. He is always very careful with wires and electricity.
+        "If you saw the boat, you are a creative person," Selim continues. "You pay attention to small details when you do your homework." Yusuf nods his head. He likes finding creative ways to solve math problems. He feels more relaxed now.
+        Now, they look at a second image. It is a drawing of a landscape. "What do you see now?" Selim asks. Yusuf looks at the colors. He sees a car driving on a road. He does not see the man with binoculars.
+        "If you saw the car, you like to be free," says Selim. "It means you love traveling and spending time with others." Yusuf thinks about the summer holidays. He is very excited about traveling to the sea with his family after his exams.
+        Professor Selim points to a small part of the picture. "Look at the letter A," he says. "It is very hard to see. If you saw the letter A first, you have an eagle eye. You can see things that other people cannot see."
+        The last picture is very tricky. "Do you see faces or candlesticks?" Selim asks. Yusuf sees two faces looking at each other. "If you saw the faces, you are a social person," says the professor. Yusuf agrees. He loves talking to his classmates.
+        The class is over. Yusuf is not nervous anymore. He is happy and full of energy. He learned that he is a creative and social person. "Thank you, Professor Selim!" Yusuf says. He picks up his books and goes to the cafeteria to study with his friends.`;
 
-        const vocabData = [
-            { word: "Cognizant", pos: "adj.", def: "Having knowledge or being aware of something.", context: "Kenan was fully cognizant of the weekend." },
-            { word: "Unequivocally", pos: "adv.", def: "In a way that leaves no doubt.", context: "He was unequivocally cheerful." },
-            { word: "Earmarked", pos: "verb", def: "Designated for a particular purpose.", context: "Saturdays were earmarked for family pursuits." },
-            { word: "Indispensable", pos: "adj.", def: "Absolutely necessary.", context: "She considered this time indispensable." },
-            { word: "Equilibrium", pos: "noun", def: "A state of physical or mental balance.", context: "Maintaining his equilibrium." },
-            { word: "Vigilance", pos: "noun", def: "The action of keeping careful watch.", context: "Job required constant vigilance." }
+        /* --- 2. VOCAB DATA --- */
+        const vocabList = [
+            { word: "Crocodile", icon: "🐊", def: "A big reptile with sharp teeth." },
+            { word: "Boat", icon: "🚤", def: "Something used to travel on water." },
+            { word: "Binoculars", icon: "🔭", def: "A tool to see things far away." },
+            { word: "Visual learner", icon: "👁️", def: "Someone who learns by seeing." },
+            { word: "Social", icon: "🗣️", def: "Someone who likes being with people." },
+            { word: "Eagle eye", icon: "🦅", def: "Ability to see very small details." },
+            { word: "Candlesticks", icon: "🕯️", def: "Holders for candles." },
+            { word: "Logical", icon: "🧠", def: "Using reason and thinking clearly." },
+            { word: "Emotional", icon: "❤️", def: "Following your feelings/heart." },
+            { word: "Analytical", icon: "📊", def: "Thinking about details carefully." }
         ];
 
-        const grammarData = [
-            { split: ["Saturdays were ", " exclusively for exhilarating family pursuits."], answer: "earmarked" },
-            { split: ["Furkan finally ", " himself a prolonged period of slumber."], answer: "permitted" },
-            { split: ["He was ", " depleted after treating patients."], answer: "utterly" },
-            { split: ["Damla was ", " in the quiet productivity of her work."], answer: "immersed" }
+        /* --- 3. TRUE/FALSE DATA --- */
+        const tfQuestions = [
+            { q: "Yusuf has a big exam tomorrow.", a: true },
+            { q: "Professor Selim taught about circuits today.", a: false },
+            { q: "Yusuf saw the crocodile first.", a: false },
+            { q: "Seeing the car means you like to be free.", a: true },
+            { q: "Yusuf is an introverted person.", a: false }
         ];
 
-        const dictationData = [
-            "The dawn had barely broken.",
-            "He was unequivocally cheerful.",
-            "Are you feeling quite rested my dear?"
+        /* --- 4. SENTENCE BUILDER DATA --- */
+        const sentences = [
+            { text: "If you saw the boat you are creative", hint: "Result of seeing the boat" },
+            { text: "You pay attention to small details", hint: "What creative people do" },
+            { text: "He sees a car driving on a road", hint: "What Yusuf saw in the landscape" },
+            { text: "Do you see faces or candlesticks", hint: "The last question" }
         ];
+        let currentSentenceIdx = 0;
+        let builtSentence = [];
 
-        const scrambleData = [
-            "The family converged in the kitchen a hub of activity.",
-            "Dad is exceptionally strong and manages to reassure people.",
-            "This shared pastime was one activity the entire family relished."
+        /* --- 5. MATCHING DATA --- */
+        const matchPairs = [
+            { q: "Crocodile 🐊", a: "Careful Person" },
+            { q: "Boat 🚤", a: "Creative Person" },
+            { q: "Faces 🙂", a: "Social Person" },
+            { q: "Candlesticks 🕯️", a: "Introverted/Alone" },
+            { q: "Letter A 🅰️", a: "Eagle Eye" }
         ];
+        let selectedLeft = null;
 
-        const readerQuizData = [
-            { 
-                q: "What is Damla's profession according to the text?", 
-                options: ["Family Physician", "Research Scientist", "School Teacher"], 
-                correct: 1 
-            },
-            { 
-                q: "Why is the weekend hike indispensable for Furkan?", 
-                options: ["It helps maintain his equilibrium", "He needs to collect samples", "He wants to avoid patients"], 
-                correct: 0 
-            },
-            { 
-                q: "How is Kenan described at the start of the story?", 
-                options: ["Utterly depleted", "Mildly anxious", "Unequivocally cheerful"], 
-                correct: 2 
-            }
-        ];
-
-        // --- APP LOGIC ---
-        const app = {
-            scores: { vocab: 0, grammar: 0, dictation: 0, scramble: 0, quiz: 0 },
-            
-            init: function() {
-                this.renderReader();
-                this.renderReaderQuiz(); // New Init Call
-                this.renderFlashcards();
-                this.renderGrammar();
-                this.renderDictation();
-                this.renderScramble();
-            },
-
-            // TAB SWITCHING
-            switchTab: function(tabId) {
-                document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-                document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-                
-                document.getElementById(tabId).classList.add('active');
-                // Find button that calls this function with specific tabId to highlight it
-                // Using event.currentTarget if available, else loop
-                if (event && event.currentTarget) {
-                    event.currentTarget.classList.add('active');
-                }
-            },
-
-            // SPEECH SYNTHESIS
-            speak: function(text) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'en-US';
-                utterance.rate = 0.9;
-                window.speechSynthesis.speak(utterance);
-            },
-
-            // 1. READER LOGIC
-            renderReader: function() {
-                const container = document.getElementById('story-content');
-                // Split by regex looking for sentence endings (.!?) but keeping the delimiter
-                const sentences = storyText.match(/[^.!?]+[.!?]+/g) || [storyText];
-                
-                sentences.forEach(sentence => {
-                    const span = document.createElement('span');
-                    span.className = 'story-sentence';
-                    span.textContent = sentence + " ";
-                    span.onclick = () => {
-                        // Highlight
-                        document.querySelectorAll('.story-sentence').forEach(s => s.classList.remove('active-sentence'));
-                        span.classList.add('active-sentence');
-                        // Read
-                        this.speak(sentence);
-                    };
-                    container.appendChild(span);
-                });
-            },
-
-            // 1.5 READER QUIZ LOGIC
-            renderReaderQuiz: function() {
-                const container = document.getElementById('reader-quiz-list');
-                readerQuizData.forEach((item, idx) => {
-                    const div = document.createElement('div');
-                    div.className = 'quiz-question-card';
-                    
-                    let optionsHTML = '';
-                    item.options.forEach((opt, optIdx) => {
-                        optionsHTML += `
-                            <label class="quiz-option">
-                                <input type="radio" name="rq-${idx}" value="${optIdx}">
-                                ${opt}
-                            </label>
-                        `;
-                    });
-
-                    div.innerHTML = `
-                        <div class="quiz-question-text">${idx + 1}. ${item.q}</div>
-                        <div>${optionsHTML}</div>
-                    `;
-                    container.appendChild(div);
-                });
-            },
-
-            checkReaderQuiz: function() {
-                let correctCount = 0;
-                readerQuizData.forEach((item, idx) => {
-                    const selected = document.querySelector(`input[name="rq-${idx}"]:checked`);
-                    const card = document.querySelectorAll('.quiz-question-card')[idx];
-                    
-                    // Reset style
-                    card.style.borderLeftColor = 'var(--navy)';
-
-                    if (selected) {
-                        if (parseInt(selected.value) === item.correct) {
-                            correctCount++;
-                            card.style.borderLeftColor = 'var(--success)';
-                        } else {
-                            card.style.borderLeftColor = 'var(--error)';
-                        }
-                    }
-                });
-
-                const fb = document.getElementById('reader-quiz-feedback');
-                fb.textContent = `You scored ${correctCount} / ${readerQuizData.length}`;
-                fb.className = correctCount === readerQuizData.length ? "feedback correct" : "feedback incorrect";
-            },
-
-            // 2. FLASHCARD LOGIC
-            renderFlashcards: function() {
-                const container = document.getElementById('flashcards-container');
-                vocabData.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'flashcard';
-                    card.innerHTML = `
-                        <div class="flashcard-inner">
-                            <div class="flashcard-front">
-                                <div class="word-title">${item.word}</div>
-                                <div class="pos-tag">${item.pos}</div>
-                                <div style="font-size:0.8rem; color:#888;">Tap to flip</div>
-                            </div>
-                            <div class="flashcard-back">
-                                <p style="font-weight:bold; margin-bottom:10px;">${item.def}</p>
-                                <p style="font-style:italic; font-size:0.9rem; margin-bottom:15px;">"${item.context}"</p>
-                                <button class="btn btn-small" onclick="event.stopPropagation(); app.speak('${item.word}')">🔊 Listen</button>
-                            </div>
-                        </div>
-                    `;
-                    card.onclick = (e) => {
-                        if (e.target.tagName !== 'BUTTON') {
-                            card.classList.toggle('flipped');
-                            if (card.classList.contains('flipped') && !card.dataset.viewed) {
-                                card.dataset.viewed = "true";
-                                this.scores.vocab++;
-                                this.updateUI();
-                            }
-                        }
-                    };
-                    container.appendChild(card);
-                });
-            },
-
-            // 3. GRAMMAR LOGIC (Word Bank Version)
-            selectedWord: null, // Track selected bank word
-
-            renderGrammar: function() {
-                const container = document.getElementById('grammar-container');
-                container.innerHTML = ''; // Clear previous content
-
-                // 1. Create Word Bank
-                const bankDiv = document.createElement('div');
-                bankDiv.className = 'word-bank';
-                
-                // Get all answers and shuffle
-                const words = grammarData.map((item, idx) => ({ text: item.answer, id: idx }));
-                // Simple shuffle
-                words.sort(() => Math.random() - 0.5);
-
-                words.forEach(w => {
-                    const btn = document.createElement('div');
-                    btn.className = 'bank-word';
-                    btn.textContent = w.text;
-                    btn.dataset.word = w.text;
-                    btn.onclick = (e) => this.selectBankWord(e.target);
-                    bankDiv.appendChild(btn);
-                });
-
-                container.appendChild(bankDiv);
-
-                // 2. Create Sentences
-                grammarData.forEach((item, idx) => {
-                    const div = document.createElement('div');
-                    div.className = 'grammar-sentence';
-                    div.innerHTML = `
-                        <span>${idx + 1}. ${item.split[0]}</span>
-                        <span class="gap-slot" data-correct="${item.answer}" onclick="app.fillGap(this)"></span>
-                        <span>${item.split[1]}</span>
-                    `;
-                    container.appendChild(div);
-                });
-            },
-
-            selectBankWord: function(el) {
-                if (el.classList.contains('used')) return;
-
-                // Deselect others
-                document.querySelectorAll('.bank-word').forEach(b => b.classList.remove('selected'));
-                
-                // Select this one
-                el.classList.add('selected');
-                this.selectedWord = el;
-            },
-
-            fillGap: function(slot) {
-                // If slot is already filled, return word to bank
-                if (slot.textContent) {
-                    const wordText = slot.textContent;
-                    // Find the bank button for this word and un-use it
-                    const buttons = document.querySelectorAll('.bank-word');
-                    for (let btn of buttons) {
-                        if (btn.textContent === wordText && btn.classList.contains('used')) {
-                            btn.classList.remove('used');
-                            break;
-                        }
-                    }
-                    slot.textContent = '';
-                    slot.classList.remove('filled', 'correct', 'incorrect');
-                }
-
-                // If we have a selected word from bank, place it
-                if (this.selectedWord) {
-                    slot.textContent = this.selectedWord.textContent;
-                    slot.classList.add('filled');
-                    
-                    // Mark bank word as used
-                    this.selectedWord.classList.remove('selected');
-                    this.selectedWord.classList.add('used');
-                    this.selectedWord = null;
-                }
-            },
-
-            checkGrammar: function() {
-                let correctCount = 0;
-                const slots = document.querySelectorAll('.gap-slot');
-                
-                slots.forEach(slot => {
-                    const userWord = slot.textContent.trim().toLowerCase();
-                    const correctWord = slot.dataset.correct.toLowerCase();
-                    
-                    if (userWord === correctWord) {
-                        slot.className = 'gap-slot correct';
-                        correctCount++;
-                    } else {
-                        slot.className = 'gap-slot incorrect';
-                    }
-                });
-                
-                this.scores.grammar = correctCount;
-                this.updateUI();
-                
-                const result = document.getElementById('grammar-result');
-                result.textContent = `You got ${correctCount} / ${slots.length} correct.`;
-                result.className = correctCount === slots.length ? "feedback correct" : "feedback incorrect";
-            },
-
-            // 4. DICTATION LOGIC
-            renderDictation: function() {
-                const container = document.getElementById('dictation-list');
-                dictationData.forEach((sent, idx) => {
-                    const div = document.createElement('div');
-                    div.className = 'dictation-item';
-                    div.innerHTML = `
-                        <div class="dictation-controls">
-                            <strong>Phrase #${idx+1}</strong>
-                            <button class="btn btn-small" onclick="app.speak('${sent.replace(/'/g, "\\'")}')">🔊 Play Audio</button>
-                        </div>
-                        <input type="text" id="dict-in-${idx}" placeholder="Type what you hear...">
-                        <div id="dict-fb-${idx}" class="feedback"></div>
-                        <button class="btn btn-small mt-2" onclick="app.checkDictation(${idx}, '${sent.replace(/'/g, "\\'")}')">Check</button>
-                    `;
-                    container.appendChild(div);
-                });
-            },
-
-            checkDictation: function(idx, correct) {
-                const input = document.getElementById(`dict-in-${idx}`);
-                const fb = document.getElementById(`dict-fb-${idx}`);
-                
-                // Remove punctuation for easier matching
-                const cleanIn = input.value.toLowerCase().replace(/[^a-z ]/g, "").trim();
-                const cleanCorr = correct.toLowerCase().replace(/[^a-z ]/g, "").trim();
-
-                if (cleanIn === cleanCorr) {
-                    fb.textContent = "Perfect Match!";
-                    fb.className = "feedback correct";
-                    if (!input.dataset.scored) {
-                        this.scores.dictation++;
-                        input.dataset.scored = "true";
-                        this.updateUI();
-                    }
-                } else {
-                    fb.innerHTML = `Try again.<br><span style="font-weight:normal; font-size:0.9rem; color:#666">Correct: ${correct}</span>`;
-                    fb.className = "feedback incorrect";
-                }
-            },
-
-            // 5. SCRAMBLE LOGIC
-            renderScramble: function() {
-                const container = document.getElementById('scramble-list');
-                scrambleData.forEach((sentence, idx) => {
-                    const words = sentence.split(' ');
-                    const shuffled = [...words].sort(() => Math.random() - 0.5);
-                    
-                    const wrapper = document.createElement('div');
-                    wrapper.className = 'scramble-wrapper';
-                    
-                    wrapper.innerHTML = `
-                        <p style="margin-bottom:10px; font-weight:bold;">Sentence ${idx+1}</p>
-                        <div class="pool-area source-pool" id="src-${idx}"></div>
-                        <div class="pool-area dest-pool" id="dest-${idx}"></div>
-                        <div id="scram-fb-${idx}" class="feedback"></div>
-                        <div style="text-align:right">
-                            <button class="btn btn-small" onclick="app.checkScramble(${idx}, '${sentence.replace(/'/g, "\\'")}')">Check Order</button>
-                        </div>
-                    `;
-                    container.appendChild(wrapper);
-
-                    const srcPool = document.getElementById(`src-${idx}`);
-                    const destPool = document.getElementById(`dest-${idx}`);
-
-                    shuffled.forEach(word => {
-                        const span = document.createElement('span');
-                        span.className = 'drag-word';
-                        span.textContent = word;
-                        span.onclick = function() {
-                            if (this.parentElement === srcPool) {
-                                destPool.appendChild(this);
-                            } else {
-                                srcPool.appendChild(this);
-                            }
-                        };
-                        srcPool.appendChild(span);
-                    });
-                });
-            },
-
-            checkScramble: function(idx, correct) {
-                const dest = document.getElementById(`dest-${idx}`);
-                const fb = document.getElementById(`scram-fb-${idx}`);
-                const userSent = Array.from(dest.children).map(c => c.textContent).join(' ');
-
-                if (userSent === correct) {
-                    fb.textContent = "Correct! Well done.";
-                    fb.className = "feedback correct";
-                    if (!dest.dataset.scored) {
-                        this.scores.scramble++;
-                        dest.dataset.scored = "true";
-                        this.updateUI();
-                        this.speak(correct);
-                    }
-                } else {
-                    fb.textContent = "Incorrect order.";
-                    fb.className = "feedback incorrect";
-                }
-            },
-
-            updateUI: function() {
-                document.getElementById('score-vocab').textContent = this.scores.vocab;
-                document.getElementById('score-grammar').textContent = this.scores.grammar;
-                document.getElementById('score-dictation').textContent = this.scores.dictation;
-                document.getElementById('score-scramble').textContent = this.scores.scramble;
-            }
+        /* --- 6. SORTING DATA --- */
+        const sortData = {
+            'd1': 'saw',   // Boat
+            'd2': 'didnt', // Crocodile
+            'd3': 'saw',   // Car
+            'd4': 'didnt', // Binoculars
+            'd5': 'saw',   // Faces
+            'd6': 'didnt', // Candlesticks
+            'd7': 'saw',   // Social
+            'd8': 'didnt'  // Careful
         };
 
-        // Initialize App
+        /* --- 7. CHAT DATA --- */
+        const chatSteps = [
+            {
+                msg: "Ali: Oh cool! What was the first picture?",
+                opts: [
+                    { txt: "It was a crocodile vs a boat.", correct: true },
+                    { txt: "It was a duck vs a rabbit.", correct: false }
+                ]
+            },
+            {
+                msg: "Ali: Interesting. Which one did you see?",
+                opts: [
+                    { txt: "I saw the crocodile. I am scary.", correct: false },
+                    { txt: "I saw the boat. It means I am creative.", correct: true }
+                ]
+            },
+            {
+                msg: "Ali: Nice! Being creative helps with engineering too. Did you see the faces?",
+                opts: [
+                    { txt: "Yes! It means I am social.", correct: true },
+                    { txt: "No, I saw the candlesticks.", correct: false }
+                ]
+            }
+        ];
+        let chatStepIdx = 0;
+
+        /* --- INITIALIZATION --- */
         window.onload = function() {
-            app.init();
+            initStory();
+            initVocab();
+            initTF();
+            loadScramble(0);
+            initMatch();
         };
 
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        /* --- TAB LOGIC --- */
+        function openTab(tabName) {
+            document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        /* --- 1. STORY LOGIC --- */
+        function initStory() {
+            const container = document.getElementById('story-content');
+            const sentencesArr = storyText.match( /[^\.!\?]+[\.!\?]+/g );
+            sentencesArr.forEach(sentence => {
+                const span = document.createElement('span');
+                span.className = 'story-sentence';
+                span.textContent = sentence.trim() + " ";
+                span.onclick = function() {
+                    document.querySelectorAll('.story-sentence').forEach(s => s.classList.remove('playing'));
+                    this.classList.add('playing');
+                    speak(sentence);
+                };
+                container.appendChild(span);
+            });
+        }
+
+        /* --- 2. VOCAB LOGIC --- */
+        function initVocab() {
+            const grid = document.getElementById('vocab-grid');
+            vocabList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = function() { this.classList.toggle('flipped'); };
+                card.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-icon">${item.icon}</div>
+                            <div class="card-word">${item.word}</div>
+                            <small style="margin-top:10px; opacity:0.7;">Click to flip</small>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-def">${item.def}</div>
+                            <button onclick="event.stopPropagation(); speak('${item.word}')" style="margin-top:15px; padding:5px 10px; background:var(--gold); border:none; border-radius:4px; cursor:pointer;">🔊 Listen</button>
+                        </div>
+                    </div>`;
+                grid.appendChild(card);
+            });
+        }
+
+        /* --- 3. TRUE/FALSE LOGIC --- */
+        function initTF() {
+            const container = document.getElementById('tf-container');
+            tfQuestions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'tf-item';
+                div.innerHTML = `
+                    <span>${index + 1}. ${item.q}</span>
+                    <div>
+                        <button class="tf-btn" onclick="checkTF(this, ${item.a}, true)">True</button>
+                        <button class="tf-btn" onclick="checkTF(this, ${item.a}, false)">False</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function checkTF(btn, correctAnswer, userAnswer) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.tf-btn').forEach(b => {
+                b.classList.remove('correct', 'wrong');
+                b.disabled = true;
+            });
+            
+            const feedback = document.getElementById('tf-feedback');
+            if (userAnswer === correctAnswer) {
+                btn.classList.add('correct');
+                feedback.textContent = "Correct! Well done.";
+                feedback.style.color = "#2ecc71";
+            } else {
+                btn.classList.add('wrong');
+                feedback.textContent = "Oops! That's not right.";
+                feedback.style.color = "#e74c3c";
+            }
+        }
+
+        /* --- 4. SENTENCE BUILDER LOGIC --- */
+        function loadScramble(idx) {
+            currentSentenceIdx = idx;
+            builtSentence = [];
+            const data = sentences[idx];
+            document.getElementById('scramble-hint').textContent = "Hint: " + data.hint;
+            const zone = document.getElementById('scramble-zone');
+            const bank = document.getElementById('scramble-bank');
+            zone.innerHTML = '';
+            bank.innerHTML = '';
+            document.getElementById('scramble-feedback').textContent = '';
+
+            const words = data.text.split(' ').sort(() => Math.random() - 0.5);
+            words.forEach(word => {
+                const el = document.createElement('div');
+                el.className = 'scramble-word';
+                el.textContent = word;
+                el.onclick = function() {
+                    if (el.parentElement === bank) {
+                        zone.appendChild(el);
+                        builtSentence.push(word);
+                    } else {
+                        bank.appendChild(el);
+                        builtSentence = builtSentence.filter(w => w !== word);
+                    }
+                    checkScramble();
+                };
+                bank.appendChild(el);
+            });
+        }
+
+        function checkScramble() {
+            const currentTarget = sentences[currentSentenceIdx].text.split(' ').join('');
+            const currentBuilt = Array.from(document.getElementById('scramble-zone').children).map(c => c.textContent).join('');
+            const feedback = document.getElementById('scramble-feedback');
+            
+            if (currentBuilt === currentTarget) {
+                feedback.textContent = "✅ Correct Sentence!";
+                feedback.style.color = "#2ecc71";
+                speak(sentences[currentSentenceIdx].text);
+            } else if (document.getElementById('scramble-bank').children.length === 0) {
+                 feedback.textContent = "❌ Incorrect order. Try resetting.";
+                 feedback.style.color = "#e74c3c";
+            } else {
+                feedback.textContent = "";
+            }
+        }
+
+        function resetScramble() { loadScramble(currentSentenceIdx); }
+        function nextScramble() {
+            let next = (currentSentenceIdx + 1) % sentences.length;
+            loadScramble(next);
+        }
+
+        /* --- 5. MATCHING LOGIC --- */
+        function initMatch() {
+            const leftCol = document.getElementById('match-left');
+            const rightCol = document.getElementById('match-right');
+            const lefts = matchPairs.map((p, i) => ({txt: p.q, id: i})).sort(() => Math.random() - 0.5);
+            const rights = matchPairs.map((p, i) => ({txt: p.a, id: i})).sort(() => Math.random() - 0.5);
+
+            leftCol.innerHTML = ''; rightCol.innerHTML = '';
+            lefts.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.textContent = item.txt;
+                card.dataset.id = item.id;
+                card.onclick = () => selectLeft(card);
+                leftCol.appendChild(card);
+            });
+            rights.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'match-card';
+                card.textContent = item.txt;
+                card.dataset.id = item.id;
+                card.onclick = () => selectRight(card);
+                rightCol.appendChild(card);
+            });
+        }
+
+        function selectLeft(card) {
+            if (card.classList.contains('matched')) return;
+            document.querySelectorAll('#match-left .match-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedLeft = card;
+        }
+
+        function selectRight(card) {
+            if (!selectedLeft || card.classList.contains('matched')) return;
+            const feedback = document.getElementById('match-feedback');
+            if (selectedLeft.dataset.id === card.dataset.id) {
+                selectedLeft.classList.add('matched');
+                card.classList.add('matched');
+                selectedLeft.classList.remove('selected');
+                feedback.textContent = "It's a match!";
+                feedback.style.color = "#2ecc71";
+                selectedLeft = null;
+            } else {
+                feedback.textContent = "Not a match. Try again.";
+                feedback.style.color = "#e74c3c";
+            }
+        }
+
+        /* --- 6. SORTING LOGIC --- */
+        function allowDrop(ev) { ev.preventDefault(); document.querySelectorAll('.sort-bucket').forEach(b => b.classList.add('drag-over')); }
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+        function drop(ev, targetCat) {
+            ev.preventDefault();
+            document.querySelectorAll('.sort-bucket').forEach(b => b.classList.remove('drag-over'));
+            const data = ev.dataTransfer.getData("text");
+            const draggedElement = document.getElementById(data);
+            const feedback = document.getElementById('sort-feedback');
+
+            if (sortData[data] === targetCat) {
+                ev.target.closest('.sort-bucket').appendChild(draggedElement);
+                draggedElement.style.background = '#2ecc71';
+                feedback.textContent = "Correct!";
+                feedback.style.color = "#2ecc71";
+            } else {
+                feedback.textContent = "Try the other bucket.";
+                feedback.style.color = "#e74c3c";
+            }
+        }
+
+        /* --- 7. CHAT LOGIC --- */
+        function handleChat(choiceIdx) {
+            const data = chatSteps[chatStepIdx];
+            const messages = document.getElementById('chat-messages');
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg sent';
+            userMsg.textContent = data.opts[choiceIdx].txt;
+            messages.appendChild(userMsg);
+
+            if (data.opts[choiceIdx].correct) {
+                chatStepIdx++;
+                setTimeout(() => {
+                    if (chatStepIdx < chatSteps.length) {
+                        const reply = document.createElement('div');
+                        reply.className = 'msg received';
+                        reply.textContent = chatSteps[chatStepIdx].msg;
+                        messages.appendChild(reply);
+                        messages.scrollTop = messages.scrollHeight;
+                        updateChatButtons();
+                    } else {
+                        const end = document.createElement('div');
+                        end.className = 'msg received';
+                        end.textContent = "Ali: That sounds like a great class! Let's go to the cafeteria.";
+                        messages.appendChild(end);
+                        document.getElementById('chat-options').innerHTML = '<div style="text-align:center; color:green; font-weight:bold;">Conversation Complete!</div>';
+                    }
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    const error = document.createElement('div');
+                    error.className = 'msg received';
+                    error.style.background = '#ffdddd';
+                    error.textContent = "Ali looks confused... (Check the story details!)";
+                    messages.appendChild(error);
+                    messages.scrollTop = messages.scrollHeight;
+                    setTimeout(() => {
+                        userMsg.remove();
+                        error.remove();
+                    }, 1500);
+                }, 500);
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function updateChatButtons() {
+            const btns = document.querySelectorAll('.chat-btn');
+            const data = chatSteps[chatStepIdx];
+            btns[0].textContent = data.opts[0].txt;
+            btns[1].textContent = data.opts[1].txt;
+        }
+
+        /* --- 8. DICTATION LOGIC --- */
+        let currentDictationWord = "";
+        function playDictationWord() {
+            const randIndex = Math.floor(Math.random() * vocabList.length);
+            currentDictationWord = vocabList[randIndex].word;
+            speak(currentDictationWord);
+        }
+
+        function checkDictation() {
+            const userText = document.getElementById('dictation-input').value.trim().toLowerCase();
+            const feedback = document.getElementById('dictation-feedback');
+            
+            if (!currentDictationWord) {
+                feedback.textContent = "Please click 'Play Word' first.";
+                return;
+            }
+
+            if (userText === currentDictationWord.toLowerCase()) {
+                feedback.textContent = "✅ Correct! Excellent spelling.";
+                feedback.style.color = "#2ecc71";
+            } else {
+                feedback.textContent = `❌ Incorrect. The word was: ${currentDictationWord}`;
+                feedback.style.color = "#e74c3c";
+            }
+        }
     </script>
 </body>
 </html>
