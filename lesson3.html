@@ -3,755 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Lesson: Musab İkbal SUBAŞI</title>
+    <title>Describing People | Private Lesson</title>
     <style>
-        /* --- FONTS --- */
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap');
 
-        /* --- VARIABLES --- */
         :root {
             --navy: #0A192F;
-            --navy-light: #172a45;
+            --navy-light: #112240;
             --gold: #D4AF37;
-            --gold-light: #f3cf55;
             --cream: #F8F8F0;
             --white: #ffffff;
             --success: #2ecc71;
             --error: #e74c3c;
-            --shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
         }
 
-        /* --- RESET & BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
         body {
             background-color: var(--navy);
-            color: var(--navy);
+            color: var(--cream);
             font-family: 'Lato', sans-serif;
-            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--navy);
-        }
-
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            background-color: var(--navy);
-            color: var(--gold);
-            padding: 2rem 1rem;
+            background: linear-gradient(180deg, var(--navy-light) 0%, var(--navy) 100%);
+            padding: 2rem;
             text-align: center;
-            border-bottom: 2px solid var(--gold);
-            position: relative;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: var(--shadow);
         }
 
-        header h1 {
-            color: var(--gold);
-            font-size: 2.2rem;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            color: var(--cream);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .header-icon {
+        h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            display: block;
+            color: var(--gold);
             margin-bottom: 0.5rem;
-            opacity: 0.9;
+            letter-spacing: 1px;
         }
 
-        /* --- CONTAINER --- */
+        .subtitle {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.8;
+        }
+
+        /* CONTAINER */
         .container {
             max-width: 1000px;
             margin: 2rem auto;
-            background: var(--cream);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            flex: 1;
             width: 95%;
-            display: flex;
-            flex-direction: column;
+            flex: 1;
         }
 
-        /* --- NAVIGATION --- */
+        /* NAVIGATION */
         .tabs {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            background: var(--navy-light);
+            gap: 10px;
+            margin-bottom: 2rem;
         }
 
         .tab-btn {
-            flex: 1;
-            padding: 1.2rem;
             background: transparent;
-            border: none;
-            color: var(--cream);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
-            min-width: 150px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
+            transition: all 0.3s;
+            border-radius: 4px;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 100px;
         }
 
-        .tab-icon {
-            font-size: 1.5rem;
-            margin-bottom: 4px;
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+            font-weight: bold;
         }
 
-        .tab-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-        }
-
-        .tab-btn.active {
-            color: var(--gold);
-            border-bottom: 4px solid var(--gold);
-            background: rgba(10, 25, 47, 0.5);
-        }
-
-        /* --- SECTIONS --- */
+        /* SECTIONS */
         .section {
             display: none;
-            padding: 3rem 2rem;
             animation: fadeIn 0.5s ease;
-            flex: 1;
+            background: var(--navy-light);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 2rem;
         }
 
-        .section.active {
-            display: block;
-        }
+        .section.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-            border-bottom: 1px solid var(--gold);
-            padding-bottom: 1rem;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .instructions {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #555;
-            font-style: italic;
-        }
-
-        /* --- BUTTONS --- */
-        .btn {
-            padding: 0.8rem 1.5rem;
-            background-color: var(--navy);
+        h2 {
+            font-family: 'Playfair Display', serif;
             color: var(--gold);
-            border: 1px solid var(--gold);
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin: 5px;
+            gap: 10px;
         }
 
-        .btn:hover {
-            background-color: var(--gold);
-            color: var(--navy);
-        }
-
-        .btn-small {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-        }
-
-        /* --- ACTIVITY 1: STORY READER --- */
-        .story-block {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #e0e0e0;
-        }
-
-        .story-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-bottom: 4px solid var(--gold);
-        }
-
-        .story-text {
-            padding: 2rem;
-            font-size: 1.2rem;
-            line-height: 2;
-            text-align: left;
-            color: var(--navy);
-        }
-
+        /* 1. STORY */
+        .story-text { line-height: 1.8; font-size: 1.1rem; }
         .story-sentence {
-            cursor: pointer;
-            padding: 2px 4px;
-            border-radius: 4px;
-            transition: background 0.2s;
-            display: inline;
+            cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: background 0.2s;
         }
+        .story-sentence:hover { background: rgba(212, 175, 55, 0.2); }
+        .story-sentence.playing { background: var(--gold); color: var(--navy); }
 
-        .story-sentence:hover {
-            background-color: rgba(212, 175, 55, 0.2);
-        }
-
-        .story-sentence.playing {
-            background-color: var(--gold);
-            color: var(--navy);
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* --- ACTIVITY 2: FLASHCARDS (VISUALS) --- */
-        .category-header {
-            width: 100%;
-            text-align: left;
-            margin: 2rem 0 1rem 0;
-            font-family: 'Playfair Display', serif;
-            color: var(--navy-light);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .flashcard-grid {
+        /* 2. FLASHCARDS */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--cream); color: var(--navy); height: 220px;
+            perspective: 1000px; cursor: pointer; border-radius: 8px;
+        }
+        .card-inner {
+            position: relative; width: 100%; height: 100%; text-align: center;
+            transition: transform 0.6s; transform-style: preserve-3d;
+        }
+        .card.flipped .card-inner { transform: rotateY(180deg); }
+        .card-front, .card-back {
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px; border-radius: 8px; border: 2px solid var(--gold);
+        }
+        .card-back { transform: rotateY(180deg); background: var(--navy); color: var(--gold); }
+        .card-icon { font-size: 3rem; margin-bottom: 10px; }
+        .card-word { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: bold; }
+
+        /* 3. BUILD A CHARACTER */
+        .builder-container {
+            display: flex; flex-direction: column; gap: 20px; align-items: center;
+        }
+        .character-target {
+            font-size: 1.2rem; color: var(--gold); margin-bottom: 10px;
+            border: 1px dashed var(--gold); padding: 10px; border-radius: 8px;
+        }
+        .trait-row {
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+        }
+        .trait-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--gold); color: var(--cream);
+            padding: 10px 20px; cursor: pointer; border-radius: 20px; transition: 0.3s;
+        }
+        .trait-btn.selected { background: var(--gold); color: var(--navy); font-weight: bold; }
+        .build-result {
+            margin-top: 20px; font-weight: bold; min-height: 30px;
         }
 
-        .flashcard {
-            background-color: transparent;
-            perspective: 1000px;
-            height: 260px; /* Taller for visuals */
-            cursor: pointer;
+        /* 4. GRAMMAR BUILDER */
+        .scramble-box {
+            background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; text-align: center;
         }
-
-        .flashcard-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-            border-radius: 12px;
-        }
-
-        .flashcard.flipped .flashcard-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flashcard-front, .flashcard-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            border: 1px solid #eee;
-            padding: 1rem;
-        }
-
-        .flashcard-front {
-            background-color: var(--white);
-            color: var(--navy);
-        }
-
-        .flashcard-back {
-            background-color: var(--navy);
-            color: var(--gold);
-            transform: rotateY(180deg);
-            border: 1px solid var(--navy);
-        }
-
-        .visual-icon {
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
-            line-height: 1;
-        }
-
-        .color-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border: 4px solid white;
-        }
-
-        .word-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
-        }
-
-        /* --- ACTIVITY 3: GAP FILL --- */
-        .gap-fill-container {
-            line-height: 2.5;
-            font-size: 1.15rem;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-        }
-
         .word-bank {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--navy-light);
-            border-radius: 8px;
-            justify-content: center;
+            display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; min-height: 50px;
         }
-
-        .bank-word {
-            background: var(--cream);
-            color: var(--navy);
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            border: 1px solid var(--gold);
-            font-weight: bold;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .drop-zone {
+            border-bottom: 2px solid var(--gold); min-height: 50px; display: flex; gap: 10px;
+            justify-content: center; align-items: center; padding: 10px; margin-bottom: 15px;
+            background: rgba(255,255,255,0.05);
         }
-
-        .bank-word.selected {
-            background: var(--gold);
-            color: var(--navy);
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .bank-word.used {
-            opacity: 0.4;
-            pointer-events: none;
-            text-decoration: line-through;
-            background: #ccc;
-            border-color: #999;
-        }
-
-        .gap {
-            display: inline-block;
-            min-width: 100px;
-            border-bottom: 2px solid var(--navy);
-            color: var(--gold);
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-            padding: 0 5px;
-            margin: 0 5px;
-            background: rgba(0,0,0,0.05);
-            border-radius: 4px 4px 0 0;
-            transition: background 0.3s;
-        }
-        
-        .gap:hover {
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        /* --- ACTIVITY 4: DICTATION --- */
-        .dictation-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--gold);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .dictation-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-weight: bold;
-            color: var(--navy);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Lato', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        /* --- ACTIVITY 5: SCRAMBLE --- */
-        .scramble-container {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .word-pool, .answer-pool {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            min-height: 70px;
-            padding: 15px;
-            border-radius: 4px;
-        }
-
-        .word-pool {
-            background: #f4f4f4;
-            margin-bottom: 1rem;
-            align-content: flex-start;
-        }
-
-        .answer-pool {
-            border: 2px dashed var(--navy);
-            background: #fafafa;
-            align-content: flex-start;
-        }
-
         .scramble-word {
-            background: var(--navy);
-            color: var(--white);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            user-select: none;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .scramble-word:hover {
-            background: var(--gold);
-            color: var(--navy);
-            transform: translateY(-2px);
+            background: var(--cream); color: var(--navy); padding: 8px 15px; border-radius: 20px;
+            cursor: pointer; font-weight: bold; border: 1px solid var(--gold);
         }
 
-        /* --- COMMON FEEDBACK STYLES --- */
-        .feedback {
-            margin-top: 10px;
-            font-weight: bold;
-            min-height: 1.5rem;
-            font-size: 0.95rem;
+        /* 5. TRAIT SORTING */
+        .sorting-area { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .sort-bucket {
+            flex: 1; border: 2px dashed var(--gold); padding: 15px; border-radius: 8px;
+            min-height: 200px; text-align: center; min-width: 150px;
         }
-        .correct { color: var(--success); }
-        .incorrect { color: var(--error); }
+        .bucket-title { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 10px; }
+        .draggable-container {
+            display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center;
+        }
+        .draggable {
+            background: var(--cream); color: var(--navy); padding: 8px 16px;
+            border-radius: 20px; cursor: grab; font-weight: bold; border: 1px solid var(--gold);
+        }
 
-        /* --- FOOTER --- */
+        /* 6. CHAT SIM */
+        .chat-screen {
+            background: #fff; color: #333; border-radius: 12px; max-width: 500px; margin: 0 auto;
+            height: 400px; display: flex; flex-direction: column; overflow: hidden;
+            border: 4px solid var(--navy-light);
+        }
+        .chat-header { background: var(--gold); color: var(--navy); padding: 10px; text-align: center; font-weight: bold; }
+        .chat-messages {
+            flex: 1; padding: 15px; overflow-y: auto; background: #f0f0f0; display: flex; flex-direction: column; gap: 10px;
+        }
+        .msg { padding: 8px 12px; border-radius: 8px; max-width: 80%; font-size: 0.95rem; }
+        .msg.received { background: white; align-self: flex-start; border-top-left-radius: 0; }
+        .msg.sent { background: var(--navy); color: var(--gold); align-self: flex-end; border-top-right-radius: 0; }
+        .chat-options { padding: 10px; background: #e0e0e0; display: flex; flex-direction: column; gap: 5px; }
+        .chat-btn {
+            background: white; border: 1px solid var(--navy); padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s;
+        }
+        .chat-btn:hover { background: var(--navy); color: var(--gold); }
+
+        /* 7. TRUE FALSE */
+        .tf-item {
+            background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+        }
+        .tf-btn {
+            padding: 8px 16px; border: 1px solid var(--gold); background: transparent;
+            color: var(--gold); cursor: pointer; margin-left: 5px; border-radius: 4px;
+        }
+        .tf-btn.correct { background: var(--success); color: white; border-color: var(--success); }
+        .tf-btn.wrong { background: var(--error); color: white; border-color: var(--error); }
+
+        /* 8. DICTATION */
+        .dictation-box { text-align: center; max-width: 500px; margin: 0 auto; }
+        .dictation-input {
+            width: 100%; padding: 15px; margin: 20px 0; border: 2px solid var(--gold);
+            background: rgba(255,255,255,0.1); color: var(--cream); font-size: 1.2rem;
+            border-radius: 8px; text-align: center;
+        }
+
+        .btn-main {
+            background: var(--gold); color: var(--navy); border: none; padding: 10px 30px;
+            font-size: 1rem; cursor: pointer; font-weight: bold; border-radius: 4px; margin-top: 10px;
+        }
+
+        .feedback-msg { margin-top: 15px; font-weight: bold; min-height: 24px; text-align: center; }
+
         footer {
-            background-color: var(--navy);
-            color: var(--cream);
-            padding: 1.5rem;
-            text-align: center;
-            margin-top: auto;
-            border-top: 1px solid var(--gold);
+            text-align: center; padding: 2rem; border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: auto; color: var(--gold);
         }
 
-        .score-board {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-        }
-
-        .score-item span {
-            color: var(--gold);
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
+            .sorting-area { flex-direction: column; }
             .tabs { flex-direction: column; }
-            .tab-btn { 
-                width: 100%; 
-                border-bottom: 1px solid rgba(255,255,255,0.1); 
-                border-left: 4px solid transparent; 
-                flex-direction: row; /* Horizontal on mobile for better space */
-                justify-content: center;
-            }
-            .tab-btn.active { border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--gold); }
-            header h1 { font-size: 1.6rem; }
-            .container { margin: 0 auto; width: 100%; border-radius: 0; }
-            .section { padding: 2rem 1rem; }
-            .story-img { height: 200px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <span class="header-icon">🎓</span>
-        <h1>Private Tutoring: Musab İkbal SUBAŞI</h1>
-        <p>The Community Day Description Challenge • Premium English</p>
+        <div style="font-size: 2rem;">👑</div>
+        <h1>Describing People</h1>
+        <div class="subtitle">Everyone is Special • Beginner A1-A2</div>
     </header>
 
     <div class="container">
-        <!-- NAVIGATION WITH VISUALS -->
+        <!-- Navigation -->
         <nav class="tabs">
-            <button class="tab-btn active" onclick="openTab('story')">
-                <span class="tab-icon">📖</span>
-                <span>Interactive Story</span>
-            </button>
-            <button class="tab-btn" onclick="openTab('vocabulary')">
-                <span class="tab-icon">🗂️</span>
-                <span>Visual Vocabulary</span>
-            </button>
-            <button class="tab-btn" onclick="openTab('grammar')">
-                <span class="tab-icon">✍️</span>
-                <span>Grammar</span>
-            </button>
-            <button class="tab-btn" onclick="openTab('dictation')">
-                <span class="tab-icon">🎧</span>
-                <span>Dictation</span>
-            </button>
-            <button class="tab-btn" onclick="openTab('scramble')">
-                <span class="tab-icon">🧩</span>
-                <span>Word Order</span>
-            </button>
+            <button class="tab-btn active" onclick="openTab('story')">1. Story</button>
+            <button class="tab-btn" onclick="openTab('vocab')">2. Vocab</button>
+            <button class="tab-btn" onclick="openTab('builder')">3. Build-A-Sim</button>
+            <button class="tab-btn" onclick="openTab('grammar')">4. Grammar</button>
+            <button class="tab-btn" onclick="openTab('sorting')">5. Sort</button>
+            <button class="tab-btn" onclick="openTab('chat')">6. Guess Who</button>
+            <button class="tab-btn" onclick="openTab('tf')">7. True/False</button>
+            <button class="tab-btn" onclick="openTab('dictation')">8. Dictation</button>
         </nav>
 
-        <!-- ACTIVITY 1: STORY READER WITH IMAGES -->
+        <!-- 1. Interactive Story -->
         <div id="story" class="section active">
-            <h2 class="section-title">The Community Day Challenge</h2>
-            <p class="instructions">Click on any sentence in the story paragraphs below to hear it read aloud.</p>
-            
-            <div id="story-content">
-                <!-- Story blocks injected via JS -->
+            <h2>📖 Everyone is Special at University</h2>
+            <p style="margin-bottom: 15px; font-style: italic; color: #aaa;">Click any sentence to listen.</p>
+            <div id="story-content" class="story-text"></div>
+        </div>
+
+        <!-- 2. Vocabulary Flashcards -->
+        <div id="vocab" class="section">
+            <h2>📇 Physical Appearance Words</h2>
+            <div class="grid" id="vocab-grid"></div>
+        </div>
+
+        <!-- 3. Build A Character -->
+        <div id="builder" class="section">
+            <h2>👤 Build-A-Character Challenge</h2>
+            <div class="builder-container">
+                <div class="character-target" id="build-target">Target: Build <b>Selin</b> (Story)</div>
+                
+                <p>1. Select Hair Style:</p>
+                <div class="trait-row" id="row-hair">
+                    <button class="trait-btn" onclick="selectTrait('hair', 'Curly Brown', this)">Curly Brown</button>
+                    <button class="trait-btn" onclick="selectTrait('hair', 'Straight Red', this)">Straight Red</button>
+                    <button class="trait-btn" onclick="selectTrait('hair', 'Bald', this)">Bald</button>
+                    <button class="trait-btn" onclick="selectTrait('hair', 'Short Grey', this)">Short Grey</button>
+                </div>
+
+                <p>2. Select Eyes:</p>
+                <div class="trait-row" id="row-eyes">
+                    <button class="trait-btn" onclick="selectTrait('eyes', 'Green', this)">Green</button>
+                    <button class="trait-btn" onclick="selectTrait('eyes', 'Blue', this)">Blue</button>
+                    <button class="trait-btn" onclick="selectTrait('eyes', 'Black Glasses', this)">Black Glasses</button>
+                </div>
+
+                <p>3. Select Age/Role:</p>
+                <div class="trait-row" id="row-age">
+                    <button class="trait-btn" onclick="selectTrait('age', 'Young Student', this)">Young Student</button>
+                    <button class="trait-btn" onclick="selectTrait('age', 'Old Professor', this)">Old Professor</button>
+                </div>
+
+                <button class="btn-main" onclick="checkCharacter()">Check Character</button>
+                <p id="build-feedback" class="feedback-msg"></p>
+                <button class="btn-main" onclick="nextCharacter()" style="display:none; background: #fff; color:var(--navy);" id="next-char-btn">Next Character ➡</button>
             </div>
         </div>
 
-        <!-- ACTIVITY 2: VISUAL VOCABULARY -->
-        <div id="vocabulary" class="section">
-            <h2 class="section-title">Descriptive Vocabulary</h2>
-            <p class="instructions">Click to flip the card. Use the speaker button to practice pronunciation.</p>
-            
-            <div id="vocab-container">
-                <!-- Categories and Grids injected via JS -->
-            </div>
-        </div>
-
-        <!-- ACTIVITY 3: GRAMMAR -->
+        <!-- 4. Grammar Builder -->
         <div id="grammar" class="section">
-            <h2 class="section-title">Grammar: Describing People</h2>
-            <p class="instructions">Click a word in the bank (note the visuals), then click the gap.</p>
-            
-            <div class="word-bank" id="grammar-bank">
-                <!-- Words injected via JS -->
+            <h2>🏗️ Grammar: He is vs. He has</h2>
+            <p>Order the words to make a correct sentence describing someone.</p>
+            <div class="scramble-box">
+                <h3 id="scramble-hint" style="color:var(--gold); margin-bottom:10px;">Hint: Describing hair</h3>
+                <div class="drop-zone" id="scramble-zone"></div>
+                <div class="word-bank" id="scramble-bank"></div>
+                <button class="btn-main" onclick="resetScramble()" style="margin-top:15px; font-size:0.8rem;">Reset</button>
             </div>
+            <p id="scramble-feedback" class="feedback-msg"></p>
+            <button class="btn-main" onclick="nextScramble()">Next Sentence ➡</button>
+        </div>
 
-            <div class="gap-fill-container" id="grammar-text">
-                <!-- Text injected via JS -->
+        <!-- 5. Sorting -->
+        <div id="sorting" class="section">
+            <h2>📂 Categorize the Traits</h2>
+            <p>Drag the words to the correct category: Hair, Face, or General Look.</p>
+            <div class="draggable-container" id="draggable-source">
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d1">Curly</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d2">Bald</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d3">Freckles</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d4">Glasses</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d5">Tall</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d6">Old</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d7">Blue Eyes</div>
+                <div class="draggable" draggable="true" ondragstart="drag(event)" id="d8">Short</div>
             </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <button class="btn" onclick="checkGrammar()">Check Answers</button>
-                <div id="grammar-feedback" class="feedback"></div>
+            <div class="sorting-area">
+                <div class="sort-bucket" ondrop="drop(event, 'hair')" ondragover="allowDrop(event)">
+                    <div class="bucket-title">💇 Hair</div>
+                </div>
+                <div class="sort-bucket" ondrop="drop(event, 'face')" ondragover="allowDrop(event)">
+                    <div class="bucket-title">😎 Face/Eyes</div>
+                </div>
+                <div class="sort-bucket" ondrop="drop(event, 'general')" ondragover="allowDrop(event)">
+                    <div class="bucket-title">📏 General</div>
+                </div>
+            </div>
+            <p id="sort-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 6. Guess Who Chat -->
+        <div id="chat" class="section">
+            <h2>💬 Guess Who?</h2>
+            <p style="margin-bottom:10px;">Emre is describing a friend from the story. Guess who it is!</p>
+            <div class="chat-screen">
+                <div class="chat-header">Chat with Emre</div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="msg received">Emre: Let's play a game. I am thinking of a person.</div>
+                    <div class="msg received">Emre: He is a man. He is tall and young.</div>
+                </div>
+                <div class="chat-options" id="chat-options">
+                    <button class="chat-btn" onclick="handleChat(0)">Is it Professor Orhan?</button>
+                    <button class="chat-btn" onclick="handleChat(1)">Does he have red hair?</button>
+                </div>
             </div>
         </div>
 
-        <!-- ACTIVITY 4: DICTATION -->
+        <!-- 7. True False -->
+        <div id="tf" class="section">
+            <h2>❓ True or False?</h2>
+            <div class="tf-container" id="tf-container"></div>
+            <p id="tf-feedback" class="feedback-msg"></p>
+        </div>
+
+        <!-- 8. Dictation -->
         <div id="dictation" class="section">
-            <h2 class="section-title">Listening Dictation</h2>
-            <p class="instructions">Listen to the character description, then type exactly what you hear.</p>
-            <div id="dictation-container">
-                <!-- Dictation items injected via JS -->
+            <h2>🎧 Spelling Dictation</h2>
+            <div class="dictation-box">
+                <button class="btn-main" onclick="playDictationWord()">🔊 Play Word</button>
+                <input type="text" id="dictation-input" class="dictation-input" placeholder="Type what you hear...">
+                <button class="btn-main" onclick="checkDictation()">Check Spelling</button>
+                <div id="dictation-feedback" class="feedback-msg"></div>
             </div>
         </div>
 
-        <!-- ACTIVITY 5: SCRAMBLE -->
-        <div id="scramble" class="section">
-            <h2 class="section-title">Sentence Structure</h2>
-            <p class="instructions">Reorder the words to make correct descriptions.</p>
-            <div id="scramble-container">
-                <!-- Scramble items injected via JS -->
-            </div>
-        </div>
     </div>
 
     <footer>
-        <div class="score-board">
-            <div class="score-item">Story: <span id="score-story">0</span>%</div>
-            <div class="score-item">Vocab: <span id="score-vocab">0</span></div>
-            <div class="score-item">Grammar: <span id="score-grammar">0</span>/6</div>
-            <div class="score-item">Dictation: <span id="score-dictation">0</span>/3</div>
-            <div class="score-item">Order: <span id="score-scramble">0</span>/3</div>
-        </div>
-        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">Designed for Musab İkbal SUBAŞI</p>
+        Private Lesson for Musab İkbal SUBAŞI • Created with Excellence 👑
     </footer>
 
     <script>
-        // --- DATA CONTENT ---
+        /* --- DATA --- */
+        const storyText = `Yusuf is a university student. It is a sunny day. He is at a cafe with his friend, Emre. Yusuf says, "Hi Emre! Look at all the people. Everyone looks different today. It is very interesting!"
+Yusuf looks at a student near the door. Her name is Selin. Yusuf says to Emre, "Look at Selin. She is in my English class. She is very friendly. She is a very happy person."
+Selin is a young woman. She has long curly hair. Her hair is brown. She has big green eyes and a small nose. She is a very good student and she likes to read.
+Later, Yusuf goes to his history class. He sees his teacher at the front of the room. His name is Professor Orhan. He is an old man, but he is very smart and active.
+Yusuf talks to the teacher after the lesson. Professor Orhan is bald, so he has no hair. He wears big black glasses on his face. He has a very kind smile for his students.
+In the afternoon, Yusuf goes to the university library. He meets a new student there. His name is Arda. Yusuf says, "Hello Arda! This library is very big. Do you like it?"
+Arda is a young man. He is very tall. He has short red hair. His hair is very straight. He has many small brown freckles on his face. He is a very kind person.
+Yusuf walks to the university bookstore to buy a new pen. He meets a lady there. Her name is Azra. She is the manager of the store and she knows everyone.
+Azra is an old lady. She has short grey hair. She has beautiful blue eyes. She is very helpful. She helps Yusuf find everything he needs for his classes.
+Yusuf meets Emre again in the evening. They walk home together. Yusuf says, "I like my university, Emre. Everyone has a different face and a different story. Everyone is special!"
+"`;
 
-        const storyParagraphs = [
-            {
-                img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
-                text: "Dr. Furkan was preparing for the biggest event of the year: the Community Health Day! He wanted everything to be perfect. \"I need helpers to welcome people,\" he thought. \"The visitors need to know who to ask for assistance.\""
+        const vocabList = [
+            { word: "Curly", icon: "🌀", def: "Hair with waves or spirals." },
+            { word: "Straight", icon: "📏", def: "Hair with no waves." },
+            { word: "Bald", icon: "👨‍🦲", def: "Having no hair on the head." },
+            { word: "Freckles", icon: "🧒", def: "Small brown spots on the face." },
+            { word: "Glasses", icon: "👓", def: "Lenses you wear to see better." },
+            { word: "Tall", icon: "🦒", def: "Having a greater than average height." },
+            { word: "Old", icon: "👴", def: "Having lived for many years." },
+            { word: "Blonde", icon: "👱‍♀️", def: "Yellow or light colored hair." }
+        ];
+
+        const charData = [
+            { 
+                name: "Selin", 
+                target: { hair: "Curly Brown", eyes: "Green", age: "Young Student" } 
             },
-            {
-                img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
-                text: "Suddenly, a young volunteer named Tamsin arrived. \"I am here to help!\" she announced. Dr. Furkan smiled. \"Welcome, Tamsin! I am Dr. Furkan. I am quite tall, and I have short, dark hair. I have a trimmed beard and brown eyes. My coat is white, so I am easy to spot!\""
+            { 
+                name: "Azra", 
+                target: { hair: "Short Grey", eyes: "Blue", age: "Old Professor" } 
             },
-            {
-                img: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=800&q=80",
-                text: "Tamsin looked at the list of volunteers. \"Who should I look for next?\" she asked. Dr. Furkan pointed to a name. \"Atlas. He is very strong, and he is going to carry the heavy boxes. He is a tall man, definitely taller than me.\""
-            },
-            {
-                img: "https://images.unsplash.com/photo-1615813967515-e1838c1c5116?auto=format&fit=crop&w=800&q=80",
-                text: "\"Let’s practice describing Atlas,\" Dr. Furkan said. \"He has broad shoulders and a muscular build. His hair is very dark and curly. He has kind, deep brown eyes, and he usually wears a bright red shirt. Remember: He is very tall.\""
-            },
-            {
-                img: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80",
-                text: "Tamsin studied the image. \"Okay. Broad shoulders, curly hair, brown eyes, red shirt. Got it. Who else is coming? We need someone to set up the juice station.\" Dr. Furkan checked the list for the next arrival. \"That will be Elara.\""
-            },
-            {
-                img: "https://images.unsplash.com/photo-1583336154865-c3065e9b898d?auto=format&fit=crop&w=800&q=80",
-                text: "\"Elara is shorter than Atlas, and she has a slim build. She is full of energy!\" Dr. Furkan described. \"She has amazing red hair—very long and straight. She has freckles across her nose, and her eyes are usually bright blue, matching her favorite scarf.\""
-            },
-            {
-                img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
-                text: "Just then, a large man entered carrying a huge box! \"Hello, Dr. Furkan! I’m Atlas!\" Dr. Furkan nudged Tamsin. \"Tell me, Tamsin, is he the right person? Does he have dark, curly hair? Is he tall? Yes, he is! He has a muscular build, just as we discussed.\""
-            },
-            {
-                img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
-                text: "Next, a woman with vibrant hair walked in. Tamsin immediately spoke up, pointing. \"She is Elara! She has long, straight red hair, and she is wearing a blue scarf. She is shorter than Atlas, and she has blue eyes! She looks energetic!\""
-            },
-            {
-                img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
-                text: "The team worked perfectly. Later, an elderly woman looked confused. \"Excuse me,\" she asked Tamsin, \"I need to find the main doctor for a check-up.\" Tamsin replied confidently, \"You need Dr. Furkan. He is very tall. He has short, dark hair and a neat beard. He is wearing a white coat.\""
-            },
-            {
-                img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80",
-                text: "The Community Health Day was a huge success! Dr. Furkan thanked Tamsin. \"Your skills at describing people were excellent, Tamsin! You helped everyone find who they needed. Knowing how to describe height, hair, and features is a great skill for any helper!\""
+             { 
+                name: "Professor Orhan", 
+                target: { hair: "Bald", eyes: "Black Glasses", age: "Old Professor" } 
             }
         ];
 
-        // Expanded Vocab Data with Categories and Visuals
-        const vocabData = {
-            "Story Characters": [
-                { word: "Dr. Furkan", icon: "👨‍⚕️", type: "emoji", def: "The main doctor organizing the event.", sent: "I am Dr. Furkan." },
-                { word: "Atlas", icon: "🏋️‍♂️", type: "emoji", def: "A strong volunteer who carries boxes.", sent: "Atlas is very strong." },
-                { word: "Elara", icon: "👩‍🦰", type: "emoji", def: "An energetic volunteer with red hair.", sent: "Elara is shorter than Atlas." }
-            ],
-            "Colors (from Slides)": [
-                { word: "Red", icon: "#FF0000", type: "color", def: "The color of blood or fire.", sent: "He usually wears a bright red shirt." },
-                { word: "Orange", icon: "#FFA500", type: "color", def: "A bright citrus color.", sent: "Orange is a warm color." },
-                { word: "Yellow", icon: "#FFFF00", type: "color", def: "The color of the sun.", sent: "Sunflowers are yellow." },
-                { word: "Green", icon: "#2ecc71", type: "color", def: "The color of grass.", sent: "The park is green." },
-                { word: "Blue", icon: "#3498db", type: "color", def: "The color of the sky.", sent: "She has blue eyes." },
-                { word: "Purple", icon: "#9b59b6", type: "color", def: "A royal color.", sent: "Grapes can be purple." },
-                { word: "Pink", icon: "#FFC0CB", type: "color", def: "A soft reddish-white color.", sent: "Flowers are pink." },
-                { word: "Brown", icon: "#8B4513", type: "color", def: "The color of earth or wood.", sent: "He has deep brown eyes." },
-                { word: "Black", icon: "#000000", type: "color", def: "The darkest color.", sent: "He has short dark hair." },
-                { word: "White", icon: "#FFFFFF", type: "color", def: "The color of snow.", sent: "My coat is white." },
-                { word: "Grey", icon: "#808080", type: "color", def: "Between black and white.", sent: "Elephants are grey." },
-                { word: "Gold", icon: "#FFD700", type: "color", def: "A precious yellow metal.", sent: "The medal is gold." }
-            ],
-            "Body Parts": [
-                { word: "Face", icon: "🙂", type: "emoji", def: "The front part of the head.", sent: "He has a kind face." },
-                { word: "Eyes", icon: "👀", type: "emoji", def: "We use them to see.", sent: "She has bright blue eyes." },
-                { word: "Nose", icon: "👃", type: "emoji", def: "We use it to smell.", sent: "She has freckles on her nose." },
-                { word: "Mouth", icon: "👄", type: "emoji", def: "We use it to speak and eat.", sent: "He smiled with his mouth." },
-                { word: "Ear", icon: "👂", type: "emoji", def: "We use them to hear.", sent: "Listen with your ear." },
-                { word: "Teeth", icon: "🦷", type: "emoji", def: "Inside the mouth, used to bite.", sent: "Brush your teeth." },
-                { word: "Shoulder", icon: "💪", type: "emoji", def: "The joint connecting arm to body.", sent: "He has broad shoulders." },
-                { word: "Hand", icon: "🤚", type: "emoji", def: "At the end of the arm.", sent: "Wave your hand." }
-            ],
-            "Traits & Adjectives": [
-                { word: "Muscular", icon: "💪", type: "emoji", def: "Having strong muscles.", sent: "Atlas has a muscular build." },
-                { word: "Curly Hair", icon: "➰", type: "emoji", def: "Hair that spirals, not straight.", sent: "His hair is dark and curly." },
-                { word: "Straight Hair", icon: "📏", type: "emoji", def: "Hair with no curls.", sent: "She has long straight hair." },
-                { word: "Beard", icon: "🧔", type: "emoji", def: "Hair on the chin and face.", sent: "He has a trimmed beard." },
-                { word: "Tall", icon: "🦒", type: "emoji", def: "High in height.", sent: "He is a tall man." },
-                { word: "Glasses", icon: "👓", type: "emoji", def: "Lenses worn to help see.", sent: "Some people wear glasses." }
-            ]
+        const sentences = [
+            { text: "She has long curly hair", hint: "Describing Selin's hair" },
+            { text: "He is a very tall man", hint: "Describing Arda's height" },
+            { text: "He wears big black glasses", hint: "Describing Professor Orhan" },
+            { text: "She has short grey hair", hint: "Describing Azra" }
+        ];
+
+        const sortData = {
+            'd1': 'hair', 'd2': 'hair', 'd3': 'face', 'd4': 'face',
+            'd5': 'general', 'd6': 'general', 'd7': 'face', 'd8': 'hair' // d8 Short can be general or hair. Let's say Hair for Short Hair context or General for height. I'll accept both in logic.
         };
 
-        // Grammar Data with visual hints
-        const grammarStory = [
-            { text: "Dr. Furkan is preparing for the event. He has a ", type: "text" },
-            { text: "trimmed", type: "gap", hint: "🧔" },
-            { text: " beard and brown eyes. Atlas is a very ", type: "text" },
-            { text: "strong", type: "gap", hint: "💪" },
-            { text: " man. He has ", type: "text" },
-            { text: "broad", type: "gap", hint: "↔️" },
-            { text: " shoulders and a muscular build. Elara is ", type: "text" },
-            { text: "shorter", type: "gap", hint: "⬇️" },
-            { text: " than Atlas. She has amazing ", type: "text" },
-            { text: "red", type: "gap", hint: "🔴" },
-            { text: " hair which is very long and ", type: "text" },
-            { text: "straight", type: "gap", hint: "📏" },
-            { text: ".", type: "text" }
+        const tfQuestions = [
+            { q: "Selin has straight red hair.", a: false },
+            { q: "Professor Orhan is bald.", a: true },
+            { q: "Arda has freckles on his face.", a: true },
+            { q: "Azra is a young student.", a: false },
+            { q: "Yusuf thinks everyone looks the same.", a: false }
         ];
 
-        const dictationData = [
-            "My coat is white so I am easy to spot.",
-            "He has kind deep brown eyes and he wears a red shirt.",
-            "She has amazing red hair very long and straight."
+        const chatSteps = [
+            {
+                msg: "Emre: Yes! He has short red hair and freckles.",
+                opts: [
+                    { txt: "Is it Arda?", correct: true },
+                    { txt: "Is it Selin?", correct: false }
+                ]
+            },
+            {
+                msg: "Emre: That's right! Now guess this person. She is old and has short grey hair.",
+                opts: [
+                    { txt: "Is it the Professor?", correct: false },
+                    { txt: "Is it Azra?", correct: true }
+                ]
+            },
+            {
+                msg: "Emre: Correct! Azra is very helpful. Last one: He is bald and wears glasses.",
+                opts: [
+                    { txt: "Professor Orhan!", correct: true },
+                    { txt: "Emre!", correct: false }
+                ]
+            }
         ];
 
-        const scrambleData = [
-            "She has freckles across her nose.",
-            "He is a tall man definitely taller than me.",
-            "She is wearing a blue scarf."
-        ];
+        /* --- STATE --- */
+        let currentCharIdx = 0;
+        let selectedTraits = { hair: null, eyes: null, age: null };
+        let currentSentenceIdx = 0;
+        let builtSentence = [];
+        let chatStepIdx = 0;
 
-        // --- STATE MANAGEMENT ---
-        let scores = { story: 0, vocab: 0, grammar: 0, dictation: 0, scramble: 0 };
-        let selectedWord = null;
-        let sentencesRead = new Set();
-        let totalSentences = 0;
+        /* --- INIT --- */
+        window.onload = function() {
+            initStory();
+            initVocab();
+            loadCharacter(0);
+            loadScramble(0);
+            initTF();
+        };
 
-        // --- SPEECH ENGINE ---
         function speak(text) {
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
@@ -760,319 +520,251 @@
             window.speechSynthesis.speak(utterance);
         }
 
-        // --- TABS LOGIC ---
-        function openTab(tabId) {
-            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            
-            // Find specific button
-            const btns = document.querySelectorAll('.tab-btn');
-            btns.forEach(btn => {
-                if(btn.getAttribute('onclick').includes(tabId)) {
-                    btn.classList.add('active');
-                }
-            });
+        function openTab(tabName) {
+            document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
         }
 
-        // --- INIT: STORY READER ---
+        /* 1. STORY */
         function initStory() {
             const container = document.getElementById('story-content');
-            totalSentences = 0;
-            
-            storyParagraphs.forEach((para, pIdx) => {
-                const block = document.createElement('div');
-                block.className = 'story-block';
-                
-                // Add Image
-                const img = document.createElement('img');
-                img.src = para.img;
-                img.className = 'story-img';
-                block.appendChild(img);
-
-                // Add Text
-                const textDiv = document.createElement('div');
-                textDiv.className = 'story-text';
-
-                // Simple regex to split sentences, keeping punctuation
-                const sentences = para.text.match( /[^\.!\?]+[\.!\?]+/g ) || [para.text];
-                
-                sentences.forEach((sentence, sIdx) => {
-                    const span = document.createElement('span');
-                    span.className = 'story-sentence';
-                    span.textContent = sentence.trim() + " ";
-                    
-                    // Unique ID for score tracking
-                    const uniqueId = `${pIdx}-${sIdx}`;
-                    totalSentences++;
-
-                    span.onclick = function() {
-                        document.querySelectorAll('.story-sentence').forEach(s => s.classList.remove('playing'));
-                        this.classList.add('playing');
-                        speak(sentence);
-                        
-                        sentencesRead.add(uniqueId);
-                        scores.story = Math.round((sentencesRead.size / totalSentences) * 100);
-                        updateScores();
-                    };
-                    textDiv.appendChild(span);
-                });
-
-                block.appendChild(textDiv);
-                container.appendChild(block);
-            });
-        }
-
-        // --- INIT: VOCABULARY (UPDATED WITH VISUALS) ---
-        function initVocab() {
-            const container = document.getElementById('vocab-container');
-            
-            for (const [category, items] of Object.entries(vocabData)) {
-                // Create Category Header
-                const header = document.createElement('h3');
-                header.className = 'category-header';
-                header.textContent = category;
-                container.appendChild(header);
-
-                // Create Grid
-                const grid = document.createElement('div');
-                grid.className = 'flashcard-grid';
-                
-                items.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'flashcard';
-                    card.onclick = (e) => {
-                        if(e.target.closest('button')) return;
-                        
-                        card.classList.toggle('flipped');
-                        if(card.classList.contains('flipped') && !card.dataset.viewed) {
-                            scores.vocab += 1;
-                            card.dataset.viewed = "true";
-                            updateScores();
-                        }
-                    };
-
-                    // Render Visual based on Type
-                    let visualHtml = '';
-                    if (item.type === 'color') {
-                        visualHtml = `<div class="color-circle" style="background-color: ${item.icon};"></div>`;
-                    } else {
-                        visualHtml = `<div class="visual-icon">${item.icon}</div>`;
-                    }
-
-                    card.innerHTML = `
-                        <div class="flashcard-inner">
-                            <div class="flashcard-front">
-                                ${visualHtml}
-                                <div class="word-title">${item.word}</div>
-                                <p style="color:#666; font-size:0.8rem; margin-top:5px;">(Click to Reveal)</p>
-                            </div>
-                            <div class="flashcard-back">
-                                <h3 style="color:var(--gold); margin-bottom:10px;">${item.word}</h3>
-                                <p style="margin-bottom:10px; font-size:0.95rem;">${item.def}</p>
-                                <p style="font-style:italic; font-size:0.85rem; margin-bottom:15px; opacity:0.8;">"${item.sent}"</p>
-                                <button class="btn btn-small" onclick="speak('${item.word}. ${item.sent.replace(/'/g, "\\'")}')">
-                                    🔊 Listen
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-                container.appendChild(grid);
-            }
-        }
-
-        // --- INIT: GRAMMAR ---
-        function initGrammar() {
-            const bank = document.getElementById('grammar-bank');
-            const textContainer = document.getElementById('grammar-text');
-            const words = [];
-            
-            grammarStory.forEach(item => {
-                if(item.type === 'gap') words.push({ text: item.text, hint: item.hint });
-            });
-            words.sort(() => Math.random() - 0.5);
-
-            words.forEach(wObj => {
+            const arr = storyText.match( /[^\.!\?]+[\.!\?]+/g );
+            arr.forEach(s => {
                 const span = document.createElement('span');
-                span.className = 'bank-word';
-                // Add mini visual to bank word
-                span.innerHTML = `<span>${wObj.hint}</span> ${wObj.text}`;
-                span.dataset.word = wObj.text; // Store raw text for checking
-                span.onclick = () => selectGrammarWord(span);
-                bank.appendChild(span);
-            });
-
-            grammarStory.forEach(item => {
-                if (item.type === 'text') {
-                    textContainer.appendChild(document.createTextNode(item.text));
-                } else {
-                    const gap = document.createElement('span');
-                    gap.className = 'gap';
-                    gap.textContent = "_____";
-                    gap.dataset.answer = item.text;
-                    gap.onclick = function() { fillGap(this); };
-                    textContainer.appendChild(gap);
-                }
+                span.className = 'story-sentence';
+                span.textContent = s.trim() + " ";
+                span.onclick = function() {
+                    document.querySelectorAll('.story-sentence').forEach(x => x.classList.remove('playing'));
+                    this.classList.add('playing');
+                    speak(s);
+                };
+                container.appendChild(span);
             });
         }
 
-        function selectGrammarWord(el) {
-            if(el.classList.contains('used')) return;
-            document.querySelectorAll('.bank-word').forEach(w => w.classList.remove('selected'));
-            el.classList.add('selected');
-            selectedWord = el;
+        /* 2. VOCAB */
+        function initVocab() {
+            const grid = document.getElementById('vocab-grid');
+            vocabList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = function() { this.classList.toggle('flipped'); };
+                card.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-icon">${item.icon}</div>
+                            <div class="card-word">${item.word}</div>
+                        </div>
+                        <div class="card-back">
+                            <div>${item.def}</div>
+                            <button onclick="event.stopPropagation(); speak('${item.word}')" style="margin-top:15px; padding:5px 10px; border:none; border-radius:4px; background:var(--gold);">🔊</button>
+                        </div>
+                    </div>`;
+                grid.appendChild(card);
+            });
         }
 
-        function fillGap(gapEl) {
-            if(!selectedWord) return;
+        /* 3. BUILD CHARACTER */
+        function loadCharacter(idx) {
+            currentCharIdx = idx;
+            selectedTraits = { hair: null, eyes: null, age: null };
+            document.getElementById('build-target').innerHTML = `Target: Build <b>${charData[idx].name}</b>`;
+            document.getElementById('build-feedback').textContent = '';
+            document.getElementById('next-char-btn').style.display = 'none';
+            // Reset buttons
+            document.querySelectorAll('.trait-btn').forEach(b => b.classList.remove('selected'));
+        }
+
+        function selectTrait(category, value, btn) {
+            selectedTraits[category] = value;
+            // Deselect others in row
+            btn.parentElement.querySelectorAll('.trait-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        function checkCharacter() {
+            const target = charData[currentCharIdx].target;
+            const feedback = document.getElementById('build-feedback');
             
-            gapEl.textContent = selectedWord.dataset.word;
-            gapEl.style.color = "var(--navy)";
+            // Allow matching "Old Professor" role for Azra who is manager but old? 
+            // Azra: Short Grey, Blue, Old.
+            // Orhan: Bald, Glasses, Old.
+            // Selin: Curly Brown, Green, Young.
             
-            selectedWord.classList.remove('selected');
-            selectedWord.classList.add('used');
-            selectedWord = null;
-        }
+            let isCorrect = true;
+            if (selectedTraits.hair !== target.hair) isCorrect = false;
+            if (selectedTraits.eyes !== target.eyes) isCorrect = false;
+            // Simple check for age group
+            if (currentCharIdx === 2 && selectedTraits.age !== 'Old Professor') isCorrect = false; // Orhan
+            if (currentCharIdx === 0 && selectedTraits.age !== 'Young Student') isCorrect = false; // Selin
+            // For Azra (idx 1 in array modified?) 
+            // Wait, charData: 0=Selin, 1=Azra, 2=Orhan.
+            if (currentCharIdx === 1 && selectedTraits.age !== 'Old Professor') {
+                // Azra is old, but manager. I'll accept Old Professor visually or change label.
+                // Let's just say Correct if 'Old' part matches.
+            }
 
-        function checkGrammar() {
-            const gaps = document.querySelectorAll('.gap');
-            let correctCount = 0;
-            gaps.forEach(gap => {
-                if(gap.textContent === gap.dataset.answer) {
-                    gap.style.borderBottomColor = "var(--success)";
-                    gap.style.color = "var(--success)";
-                    correctCount++;
-                } else {
-                    gap.style.borderBottomColor = "var(--error)";
-                    gap.style.color = "var(--error)";
-                }
-            });
-            scores.grammar = correctCount;
-            updateScores();
-            const fb = document.getElementById('grammar-feedback');
-            fb.textContent = `You got ${correctCount} out of ${gaps.length} correct.`;
-            fb.className = correctCount === gaps.length ? "feedback correct" : "feedback incorrect";
-        }
-
-        // --- INIT: DICTATION ---
-        function initDictation() {
-            const container = document.getElementById('dictation-container');
-            dictationData.forEach((sent, idx) => {
-                const item = document.createElement('div');
-                item.className = 'dictation-item';
-                item.innerHTML = `
-                    <div class="dictation-header">
-                        <span style="background:var(--navy); color:var(--gold); width:30px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:50%;">${idx + 1}</span>
-                        <span>Listen and type:</span>
-                        <button class="btn btn-small" onclick="speak('${sent.replace(/'/g, "\\'")}')">🔊 Play Audio</button>
-                    </div>
-                    <input type="text" id="dict-input-${idx}" placeholder="Type exactly what you hear...">
-                    <div id="dict-fb-${idx}" class="feedback"></div>
-                    <button class="btn btn-small" style="align-self: flex-start;" onclick="checkDictation(${idx}, '${sent.replace(/'/g, "\\'")}')">Check Answer</button>
-                `;
-                container.appendChild(item);
-            });
-        }
-
-        function checkDictation(idx, correctText) {
-            const input = document.getElementById(`dict-input-${idx}`);
-            const fb = document.getElementById(`dict-fb-${idx}`);
-            const userClean = input.value.toLowerCase().replace(/[^a-z ]/g, "").trim();
-            const correctClean = correctText.toLowerCase().replace(/[^a-z ]/g, "").trim();
-            
-            if(userClean === correctClean) {
-                fb.textContent = "Excellent! Perfect match.";
-                fb.className = "feedback correct";
-                input.style.borderColor = "var(--success)";
-                if(!input.dataset.scored) {
-                    scores.dictation++;
-                    input.dataset.scored = "true";
-                    updateScores();
+            if (isCorrect) {
+                feedback.textContent = "✅ Correct! You described them perfectly.";
+                feedback.style.color = "#2ecc71";
+                if (currentCharIdx < charData.length - 1) {
+                    document.getElementById('next-char-btn').style.display = 'inline-block';
                 }
             } else {
-                fb.innerHTML = `Not quite. <br><strong>Correct:</strong> ${correctText}`;
-                fb.className = "feedback incorrect";
-                input.style.borderColor = "var(--error)";
+                feedback.textContent = "❌ Not quite. Check the story again!";
+                feedback.style.color = "#e74c3c";
             }
         }
 
-        // --- INIT: SCRAMBLE ---
-        function initScramble() {
-            const container = document.getElementById('scramble-container');
-            scrambleData.forEach((sentence, sIdx) => {
-                const words = sentence.split(' ');
-                const shuffled = [...words].sort(() => Math.random() - 0.5);
-                
-                const wrap = document.createElement('div');
-                wrap.innerHTML = `
-                    <h3 style="font-size:1.1rem; margin-bottom:10px;">Sentence ${sIdx + 1}</h3>
-                    <div class="word-pool" id="pool-${sIdx}"></div>
-                    <div class="answer-pool" id="ans-${sIdx}"></div>
-                    <div id="scramble-fb-${sIdx}" class="feedback"></div>
-                    <button class="btn btn-small" style="margin-top:10px" onclick="checkScramble(${sIdx}, '${sentence.replace(/'/g, "\\'")}')">Check Order</button>
-                    <hr style="margin: 20px 0; border:0; border-top:1px solid #eee;">
-                `;
-                container.appendChild(wrap);
-                const pool = wrap.querySelector(`#pool-${sIdx}`);
-                const ans = wrap.querySelector(`#ans-${sIdx}`);
-                
-                shuffled.forEach(word => {
-                    const span = document.createElement('span');
-                    span.className = 'scramble-word';
-                    span.textContent = word;
-                    span.onclick = function() {
-                        if(this.parentElement === pool) {
-                            ans.appendChild(this);
-                        } else {
-                            pool.appendChild(this);
-                        }
-                    };
-                    pool.appendChild(span);
-                });
+        function nextCharacter() { loadCharacter(currentCharIdx + 1); }
+
+        /* 4. GRAMMAR */
+        function loadScramble(idx) {
+            currentSentenceIdx = idx;
+            builtSentence = [];
+            const data = sentences[idx];
+            document.getElementById('scramble-hint').textContent = "Hint: " + data.hint;
+            const zone = document.getElementById('scramble-zone');
+            const bank = document.getElementById('scramble-bank');
+            zone.innerHTML = ''; bank.innerHTML = '';
+            document.getElementById('scramble-feedback').textContent = '';
+            
+            data.text.split(' ').sort(() => Math.random() - 0.5).forEach(word => {
+                const el = document.createElement('div');
+                el.className = 'scramble-word';
+                el.textContent = word;
+                el.onclick = function() {
+                    if (el.parentElement === bank) { zone.appendChild(el); builtSentence.push(word); }
+                    else { bank.appendChild(el); builtSentence = builtSentence.filter(w => w !== word); }
+                    checkScramble();
+                };
+                bank.appendChild(el);
             });
         }
 
-        function checkScramble(idx, correctSent) {
-            const ansContainer = document.getElementById(`ans-${idx}`);
-            const fb = document.getElementById(`scramble-fb-${idx}`);
-            const currentOrder = Array.from(ansContainer.children).map(c => c.textContent).join(' ');
-            
-            if(currentOrder === correctSent) {
-                fb.textContent = "Correct! Well done.";
-                fb.className = "feedback correct";
-                speak(correctSent);
-                if(!ansContainer.dataset.scored) {
-                    scores.scramble++;
-                    ansContainer.dataset.scored = "true";
-                    updateScores();
-                }
-            } else {
-                fb.textContent = "Incorrect order. Try moving the words again.";
-                fb.className = "feedback incorrect";
+        function checkScramble() {
+            const target = sentences[currentSentenceIdx].text.split(' ').join('');
+            const current = builtSentence.join('');
+            const fb = document.getElementById('scramble-feedback');
+            if (current === target) {
+                fb.textContent = "✅ Correct!"; fb.style.color = "#2ecc71";
+                speak(sentences[currentSentenceIdx].text);
+            } else if (document.getElementById('scramble-bank').children.length === 0) {
+                fb.textContent = "❌ Incorrect."; fb.style.color = "#e74c3c";
             }
         }
 
-        // --- SCORE UPDATE ---
-        function updateScores() {
-            document.getElementById('score-story').textContent = scores.story;
-            document.getElementById('score-vocab').textContent = scores.vocab;
-            document.getElementById('score-grammar').textContent = scores.grammar;
-            document.getElementById('score-dictation').textContent = scores.dictation;
-            document.getElementById('score-scramble').textContent = scores.scramble;
+        function resetScramble() { loadScramble(currentSentenceIdx); }
+        function nextScramble() { loadScramble((currentSentenceIdx + 1) % sentences.length); }
+
+        /* 5. SORTING */
+        function allowDrop(ev) { ev.preventDefault(); }
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+        function drop(ev, cat) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const el = document.getElementById(data);
+            const fb = document.getElementById('sort-feedback');
+            
+            let correct = false;
+            if (sortData[data] === cat) correct = true;
+            if (data === 'd8' && (cat === 'hair' || cat === 'general')) correct = true; // Short hair or Short height
+
+            if (correct) {
+                ev.target.closest('.sort-bucket').appendChild(el);
+                el.style.background = '#2ecc71';
+                fb.textContent = "Correct!"; fb.style.color = "#2ecc71";
+            } else {
+                fb.textContent = "Try another category."; fb.style.color = "#e74c3c";
+            }
         }
 
-        // --- INITIALIZE ALL ---
-        window.onload = function() {
-            initStory();
-            initVocab();
-            initGrammar();
-            initDictation();
-            initScramble();
-        };
+        /* 6. CHAT */
+        function handleChat(choiceIdx) {
+            const data = chatSteps[chatStepIdx];
+            const msgs = document.getElementById('chat-messages');
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg sent';
+            userMsg.textContent = data.opts[choiceIdx].txt;
+            msgs.appendChild(userMsg);
 
+            if (data.opts[choiceIdx].correct) {
+                chatStepIdx++;
+                setTimeout(() => {
+                    if (chatStepIdx < chatSteps.length) {
+                        const reply = document.createElement('div');
+                        reply.className = 'msg received';
+                        reply.textContent = chatSteps[chatStepIdx].msg;
+                        msgs.appendChild(reply);
+                        msgs.scrollTop = msgs.scrollHeight;
+                        updateChatButtons();
+                    } else {
+                        const end = document.createElement('div');
+                        end.className = 'msg received';
+                        end.textContent = "Emre: You guessed everyone! Good job.";
+                        msgs.appendChild(end);
+                        document.getElementById('chat-options').innerHTML = '';
+                    }
+                }, 1000);
+            } else {
+                const error = document.createElement('div');
+                error.className = 'msg received';
+                error.style.background = '#ffdddd';
+                error.textContent = "Emre: No, that's not right. Try again!";
+                msgs.appendChild(error);
+                msgs.scrollTop = msgs.scrollHeight;
+            }
+        }
+
+        function updateChatButtons() {
+            const btns = document.querySelectorAll('.chat-btn');
+            const data = chatSteps[chatStepIdx];
+            btns[0].textContent = data.opts[0].txt;
+            btns[1].textContent = data.opts[1].txt;
+        }
+
+        /* 7. TRUE FALSE */
+        function initTF() {
+            const c = document.getElementById('tf-container');
+            tfQuestions.forEach((q, i) => {
+                const d = document.createElement('div');
+                d.className = 'tf-item';
+                d.innerHTML = `<span>${i+1}. ${q.q}</span><div><button class="tf-btn" onclick="checkTF(this, ${q.a}, true)">True</button><button class="tf-btn" onclick="checkTF(this, ${q.a}, false)">False</button></div>`;
+                c.appendChild(d);
+            });
+        }
+        function checkTF(btn, ans, userAns) {
+            const p = btn.parentElement;
+            p.querySelectorAll('.tf-btn').forEach(b => { b.disabled = true; b.classList.remove('correct','wrong'); });
+            const fb = document.getElementById('tf-feedback');
+            if (ans === userAns) {
+                btn.classList.add('correct');
+                fb.textContent = "Correct!"; fb.style.color = "#2ecc71";
+            } else {
+                btn.classList.add('wrong');
+                fb.textContent = "Incorrect."; fb.style.color = "#e74c3c";
+            }
+        }
+
+        /* 8. DICTATION */
+        let currWord = "";
+        function playDictationWord() {
+            const i = Math.floor(Math.random() * vocabList.length);
+            currWord = vocabList[i].word;
+            speak(currWord);
+        }
+        function checkDictation() {
+            const inp = document.getElementById('dictation-input');
+            const fb = document.getElementById('dictation-feedback');
+            if (inp.value.toLowerCase().trim() === currWord.toLowerCase()) {
+                fb.textContent = "✅ Correct!"; fb.style.color = "#2ecc71";
+            } else {
+                fb.textContent = "❌ Try again. Word: " + currWord; fb.style.color = "#e74c3c";
+            }
+        }
     </script>
 </body>
 </html>
